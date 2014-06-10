@@ -29,7 +29,7 @@ def is_format_legal(seq, alphabet):
         return False
     if -1 != seq.name.find('>'):
         print 'Error, sequence', seq.no, 'name has > character.'
-        return Fasta
+        return False
     if 0 == seq.length:
         print 'Error, sequence', seq.no, 'is null.'
         return False
@@ -67,22 +67,40 @@ def read_seq(f):
     yield Seq(name, seq, count)
 
 
-def judge_fasta(f, alphabet_choice):
+def read_fasta_seq(f, alphabet):
     """
-    Judge the input is Fasta or not.
+    Read the fasta file.
     Input: f: HANDLE to input. e.g. sys.stdin, or open(<file>)
-    Return True or False.
+    Return the seq list.
     """
-    if alphabet_choice == 'rna':
-        alphabet = ['A', 'C', 'G', 'U']
-    elif alphabet_choice == 'amino':
-        alphabet = ['A', 'R', 'D', 'C', 'Q', 'E', 'H', 'I', 'G', 'N', 'L', 'K', 'M', 'F', 'P', 'S', 'T', 'W', 'Y', 'V']
+    seq = []
     for e in read_seq(f):
         # print e
         if not is_format_legal(e, alphabet):
-            return False
-    return True
+            return None
+        seq.append(e)
+
+    return seq
+
+
+def read_fasta_sequence(f, alphabet):
+    """
+    Read the fasta file.
+    Input: f: HANDLE to input. e.g. sys.stdin, or open(<file>)
+    Return the seq list.
+    """
+    sequence_list = []
+    for e in read_seq(f):
+        # print e
+        if not is_format_legal(e, alphabet):
+            return None
+        sequence_list.append(e.seq)
+
+    return sequence_list
+
 
 if __name__ == '__main__':
     test_file = sys.argv[1]
-    judge_fasta(open(test_file, 'r'), 'rna')
+    temp_seq = read_fasta_seq(open(test_file, 'r'), 'ACGU')
+    for e in temp_seq:
+        print e
