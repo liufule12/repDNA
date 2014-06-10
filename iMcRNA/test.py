@@ -1,9 +1,11 @@
 __author__ = 'aleeee'
+import sys
+sys.path.append("..")
+import util
 
 import iMcRNA
-import util
 import time
-import sys
+
 
 
 # The file path that we generate.
@@ -21,7 +23,7 @@ if __name__ == '__main__':
     start_time = time.time()
     test_file = sys.argv[1]
     way_choice = sys.argv[2]
-    if util.judge_fasta(open(test_file, 'r'), 'rna'):
+    if util.read_fasta_seq(open(test_file, 'r'), 'ACGU'):
         iMcRNA.generate_bracket_seq(test_file, BRACKET_FILE_PATH)
         iMcRNA.match_2st_has_name(BRACKET_FILE_PATH, MATCHED_FILE_PATH)
         p_values, n_gram, mfe = [], [], []
