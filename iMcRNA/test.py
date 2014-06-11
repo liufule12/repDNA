@@ -1,11 +1,11 @@
 __author__ = 'aleeee'
 import sys
+
 sys.path.append("..")
 import util
 
 import iMcRNA
 import time
-
 
 
 # The file path that we generate.
@@ -17,7 +17,6 @@ VECTOR_PATH = "vector.txt"
 
 # The file path that we have.
 N_GRAM_PERL_PATH = "64_coding_triplet_pri-sequence.pl"
-
 
 if __name__ == '__main__':
     start_time = time.time()
