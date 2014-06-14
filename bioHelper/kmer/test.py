@@ -13,8 +13,9 @@ if sys.argv[3] == '-revcomp':
 if sys.argv[4] == '-normalize':
     normalize = True
 
-kmer = Kmer(k, upto, revcomp)
-print "k:", kmer.k_value, "upto:", kmer.upto, "revcomp:", kmer.revcomp, "normalize:", kmer.normalize, "alphabet:", kmer.alphabet
+kmer = Kmer(k, upto, revcomp, normalize)
+print "k:", kmer.k_value, "upto:", kmer.upto, "revcomp:", kmer.revcomp, "normalize:", kmer.normalize, \
+      "alphabet:", kmer.alphabet
 vector = kmer.make_kmer_vector("hs.txt")
 for e in vector:
     print e

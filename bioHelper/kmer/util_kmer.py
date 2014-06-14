@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 # FILE: fasta2matrix.py
-# AUTHOR: William Stafford Noble
-# CREATE DATE: 27 September 2005
+# AUTHOR: William Stafford Noble, Changed by Fule liu.
+# CREATE DATE: 27 September 2005, modified date: June 11 2014.
 import sys
 import math
+
+sys.path.append("..")
+from util import frequency
 
 
 def make_kmer_list(k, alphabet):
@@ -384,29 +387,6 @@ def make_revcomp_kmer_list(kmer_list):
 #########################################################################
 # The start of Changing by aleeee.
 #########################################################################
-def frequency(tol_str, tar_str):
-    """
-    Generate the frequency of tar_str in tol_str.
-    Return the count.
-    """
-    i, j, tar_count = 0, 0, 0
-    len_tol_str = len(tol_str)
-    len_tar_str = len(tar_str)
-    while i < len_tol_str and j < len_tar_str:
-        if tol_str[i] == tar_str[j]:
-            i += 1
-            j += 1
-            if j >= len_tar_str:
-                tar_count += 1
-                i = i - j + 1
-                j = 0
-        else:
-            i = i - j + 1
-            j = 0
-
-    return tar_count
-
-
 def make_index_upto_k_revcomp(k):
     """
     Generate the index for revcomp and from 1 to k.
