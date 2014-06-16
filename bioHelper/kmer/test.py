@@ -1,7 +1,7 @@
 __author__ = 'aleeee'
 
 import sys
-from kmer import Kmer
+from bioHelper.kmer.kmer import Kmer
 
 k, upto, revcomp, normalize = 1, False, False, False
 if len(sys.argv[1]) != 0:

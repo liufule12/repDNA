@@ -1,10 +1,7 @@
 __author__ = 'aleeee'
 
-import sys
-
-sys.path.append('..')
-from util import read_fasta_sequence
-from util_pseDNC import make_psednc_vector
+from bioHelper.util import read_fasta_sequence
+from bioHelper.pseudo.util_pseDNC import make_psednc_vector
 
 
 class PseDNC():

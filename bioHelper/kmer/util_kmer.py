@@ -5,8 +5,8 @@
 import sys
 import math
 
-sys.path.append("..")
-from util import frequency
+# sys.path.append("..")
+from bioHelper.util import frequency
 
 
 def make_kmer_list(k, alphabet):
@@ -388,9 +388,7 @@ def make_revcomp_kmer_list(kmer_list):
 # The start of Changing by aleeee.
 #########################################################################
 def make_index_upto_k_revcomp(k):
-    """
-    Generate the index for revcomp and from 1 to k.
-    """
+    """Generate the index for revcomp and from 1 to k."""
     sum = 0
     index = [0]
     for i in range(1, k + 1):
@@ -405,9 +403,7 @@ def make_index_upto_k_revcomp(k):
 
 
 def make_index_upto_k(k):
-    """
-    Generate the index from 1 to k.
-    """
+    """Generate the index from 1 to k."""
     sum = 0
     index = [0]
     for i in range(1, k + 1):
@@ -418,18 +414,14 @@ def make_index_upto_k(k):
 
 
 def make_index(k):
-    """
-    Generate the index just for k.
-    """
+    """Generate the index just for k."""
     index = [0, int(math.pow(4, k))]
 
     return index
 
 
 def make_kmer_vector(seq_list, kmer_list, rev_kmer_list, k, upto, revcomp, normalize):
-    """
-    Generate the vector.
-    """
+    """Generate the vector."""
     # Generate the alphabet index.
     if upto:
         index = make_index_upto_k(k)
@@ -503,8 +495,9 @@ def make_kmer_vector(seq_list, kmer_list, rev_kmer_list, k, upto, revcomp, norma
 ##############################################################################
 # MAIN
 ##############################################################################
-if __name__ == '__main__':
 
+
+def main():
     # Define the command line usage.
     usage = """Usage: fasta2matrix [options] <k> <fasta file>
 
@@ -683,3 +676,6 @@ if __name__ == '__main__':
     # Close the file.
     fasta_file.close()
 
+
+if __name__ == '__main__':
+    main()

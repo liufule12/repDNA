@@ -1,7 +1,7 @@
 __author__ = 'aleeee'
 
 import sys
-from pseDNC import PseDNC
+from bioHelper.pseudo.pseDNC import PseDNC
 
 # k, upto, revcomp, normalize = 1, False, False, False
 # if len(sys.argv[1]) != 0:

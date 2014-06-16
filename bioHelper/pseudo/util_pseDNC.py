@@ -1,10 +1,8 @@
 __author__ = 'aleeee'
 
 from math import pow
-import sys
-sys.path.append('..')
 
-from util import frequency
+from bioHelper.util import frequency
 
 
 U = 6

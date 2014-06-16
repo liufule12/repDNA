@@ -1,9 +1,7 @@
 __author__ = 'aleeee'
 
-from util_kmer import make_upto_kmer_list, make_revcomp_kmer_list, make_kmer_vector
-import sys
-sys.path.append("..")
-from util import read_fasta_sequence
+from bioHelper.kmer.util_kmer import make_upto_kmer_list, make_revcomp_kmer_list, make_kmer_vector
+from bioHelper.util import read_fasta_sequence
 
 
 class Kmer():
