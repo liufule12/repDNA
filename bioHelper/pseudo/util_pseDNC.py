@@ -82,7 +82,6 @@ def make_psednc_vector(sequence_list, lamada, w):
             temp_vec.append(w*theta/denominator)
 
         vector.append(temp_vec)
-        print len(temp_vec)
 
     return vector
 
