@@ -38,6 +38,31 @@ def frequency(tol_str, tar_str):
     return tar_count
 
 
+def write_libsvm(vector_list, label_list, write_file):
+    """Write the vector to disk in livSVM format."""
+    len_vector_list = len(vector_list)
+    len_label_list = len(label_list)
+    if len_vector_list == 0:
+        sys.stderr.write("The vector is none.")
+        sys.exit(1)
+    if len_label_list == 0:
+        sys.stderr.write("The label is none.")
+        sys.exit(1)
+    if len_vector_list != len_label_list:
+        sys.stderr.write("The length of vector and label is different.")
+        sys.exit(1)
+
+    f = open(write_file, 'w')
+    len_vector = len(vector_list[0])
+    for i in range(0, len_vector_list):
+        temp_write = str(label_list[i])
+        for j in range(0, len_vector):
+            temp_write += ' ' + str(j+1) + ':' + str(vector_list[i][j])
+        f.write(temp_write)
+        f.write('\n')
+    f.close()
+
+
 def is_format_legal(seq, alphabet):
     """
     Judge the seq is in alphabet or null.
@@ -124,6 +149,6 @@ def read_fasta_sequence(f, alphabet):
 
 if __name__ == '__main__':
     test_file = sys.argv[1]
-    temp_seq = read_fasta_seq(open(test_file, 'r'), 'ACGU')
+    temp_seq = read_fasta_seq(open(test_file, 'r'), 'ACGT')
     for e in temp_seq:
         print e
