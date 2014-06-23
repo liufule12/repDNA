@@ -1,14 +1,23 @@
-Bio_package
+# bioHelper
+----
+This is a package for DNA vectoring.
 
-This is a package for bioinformatics.
+# Python Requirements
+----
+We currently recommend using Python 2.7 from http://www.python.org which is the final version of Python 2. 
 
-Environmental Requirements:
-1. Python version 2.7 or above. https://www.python.org/
+# Installtion
+To install bioHelper, download the source code, go to this directory at the command line, and type:
 
-2. Perl version 5.14.2 or above. http://www.perl.org/
+    python setup.py sdist
+    sudo python setup.py install
+    
+# Denpendencies
+----
+- Perl version 5.14.2 or above. http://www.perl.org/
 
-3. ViennaRNA version 2.1.6 or above. http://www.tbi.univie.ac.at/~ronny/RNA/index.html
+- ViennaRNA version 2.1.6 or above. http://www.tbi.univie.ac.at/~ronny/RNA/index.html
 
-4. Sean Eddy's SQUID library. http://selab.janelia.org/software.html
+- Sean Eddy's SQUID library. http://selab.janelia.org/software.html
 
-5. randfold-2.0. http://bioinformatics.psb.ugent.be/supplementary_data/erbon/nov2003/
+- randfold-2.0. http://bioinformatics.psb.ugent.be/supplementary_data/erbon/nov2003/
