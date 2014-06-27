@@ -5,8 +5,9 @@
 import sys
 import math
 
-# sys.path.append("..")
 from bioHelper.util import frequency
+
+sys.setrecursionlimit(99999999)
 
 
 def make_kmer_list(k, alphabet):
