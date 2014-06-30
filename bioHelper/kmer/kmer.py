@@ -1,7 +1,9 @@
 __author__ = 'aleeee'
 
-from bioHelper.kmer.util_kmer import make_upto_kmer_list, make_revcomp_kmer_list, make_kmer_vector
-from bioHelper.util import read_fasta_sequence
+import sys
+sys.path.append('..')
+from util_kmer import make_upto_kmer_list, make_revcomp_kmer_list, make_kmer_vector
+from util import get_sequence_check_dna
 
 
 class Kmer():
@@ -18,7 +20,7 @@ class Kmer():
         self.alphabet = alphabet
 
     def make_kmer_vector(self, fasta_file):
-        sequence_list = read_fasta_sequence(open(fasta_file, 'r'), self.alphabet)
+        sequence_list = get_sequence_check_dna(open(fasta_file, 'r'))
 
         if self.upto:
             k_values = range(1, self.k_value + 1)
@@ -36,4 +38,16 @@ class Kmer():
         return vector
 
 
+if __name__ == '__main__':
+    import sys
+    from bioHelper.kmer.kmer import Kmer
+
+    k, upto, revcomp, normalize = 1, False, False, False
+
+    kmer = Kmer(k, upto, revcomp, normalize)
+    print "k:", kmer.k_value, ", upto:", kmer.upto, ", revcomp:", kmer.revcomp, ", normalize:", kmer.normalize, \
+        ", alphabet:", kmer.alphabet
+    vector = kmer.make_kmer_vector("hs.txt")
+    for e in vector:
+        print e
 
