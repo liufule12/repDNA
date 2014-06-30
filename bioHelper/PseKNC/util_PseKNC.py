@@ -1,11 +1,13 @@
 __author__ = 'aleeee'
 
 import sys
+sys.path.append('..')
+sys.path.append('../kmer')
 import cPickle
 from math import pow
 
-from bioHelper.util import frequency
-from bioHelper.kmer.util_kmer import make_kmer_list
+from util import frequency
+from util_kmer import make_kmer_list
 
 
 def get_phyche_factor_dic(k):

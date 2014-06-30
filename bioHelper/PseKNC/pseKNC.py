@@ -4,7 +4,7 @@ import sys
 
 sys.path.append('..')
 from util_PseKNC import make_type1_vector, make_type2_vector
-from bioHelper.util import read_fasta_sequence
+from util import get_sequence_check_dna
 
 
 class PseKNC():
@@ -15,7 +15,7 @@ class PseKNC():
         self.alphabet = alphabet
 
     def make_vector(self, vec_type):
-        sequence_list = read_fasta_sequence(open('hs.txt', 'r'), self.alphabet)
+        sequence_list = get_sequence_check_dna(open('hs.txt', 'r'))
 
         if self.k == 2:
             phyche_list = ['Tilt', 'Twist']
@@ -34,10 +34,14 @@ class PseKNC():
 
 
 if __name__ == '__main__':
-    k = int(sys.argv[1])
-    lamada = int(sys.argv[2])
-    w = float(sys.argv[3])
-    vec_type = int(sys.argv[4])
+    # k = int(sys.argv[1])
+    # lamada = int(sys.argv[2])
+    # w = float(sys.argv[3])
+    # vec_type = int(sys.argv[4])
+    k = 2
+    lamada = 1
+    w = 0.05
+    vec_type = 1
     pseKNC = PseKNC(k, lamada, w)
     vector = pseKNC.make_vector(vec_type)
     for e in vector:

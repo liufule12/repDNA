@@ -1,8 +1,10 @@
 __author__ = 'aleeee'
 
+import sys
+sys.path.append('..')
 from math import pow
 
-from bioHelper.util import frequency
+from util import frequency
 
 
 U = 6
@@ -49,8 +51,9 @@ def get_cor_factor(lamada, sequence):
 
 
 def make_psednc_vector(sequence_list, lamada, w):
-    """Generate the psednc vector."""
+    """Generate the pseknc vector."""
     vector = []
+
     for sequence in sequence_list:
 
         # Get the dinucleotide frequency in the DNA sequence.
@@ -84,11 +87,3 @@ def make_psednc_vector(sequence_list, lamada, w):
         vector.append(temp_vec)
 
     return vector
-
-
-
-
-
-
-
-
