@@ -189,7 +189,7 @@ def read_fasta_check_dna(f):
             seq_list.append(e)
         else:
             error_info = 'Sorry, sequence ' + str(e.no) \
-                         + ' has character ' + res + '.(The character must be A or C or G or T)'
+                         + ' has character ' + str(res) + '.(The character must be A or C or G or T)'
             sys.stderr(error_info)
             sys.exit(0)
 
@@ -238,28 +238,29 @@ def is_sequence_list(sequence_list):
 
 
 def get_data(data):
-    if isinstance(data, str):
-        import os
+    """Get sequence data from file or list with check.
 
-        if os.path.isfile(data):
-            sequence_list = get_sequence_check_dna(open(data, 'r'))
-            return sequence_list
-        else:
-            sys.stderr.write("Sorry, the input file is not exist.")
-            sys.exit(0)
+    :param data: type file or list
+    :return: sequence data or shutdown.
+    """
+    if isinstance(data, file):
+        return get_sequence_check_dna(data)
     elif isinstance(data, list):
         if is_sequence_list(data):
             return data
         else:
             sys.exit(0)
+    else:
+        error_info = 'Sorry, the parameter in get_data method must be list or file type.'
+        sys.stderr.write(error_info)
+        sys.exit(0)
 
 
 if __name__ == '__main__':
-    # test_file = sys.argv[1]
-    # temp_seq = read_fasta_seq(open(test_file, 'r'), 'ACGT')
-    # temp_seq = read_fasta(open(test_file, 'r'))
+    temp_seq = get_data(open('hs.txt'))
+    for e in temp_seq:
+        print e
 
-    # temp_seq = read_fasta_check_dna(open(test_file))
     test_file = ['AAAAAAAAAAAAAAAAAAA', 'CCCCCCCCCCCCCCCCCCCCCCCCC']
     temp_seq = get_data(test_file)
     for e in temp_seq:
