@@ -1,5 +1,10 @@
 __author__ = 'aleeee'
 
+import sys
+sys.path.append('..')
+from util import get_data
+from util_iNucPseKNC import make_pseknc_vector
+
 
 class INucPseKNC():
     """This class should be used to make iNucPseKNC vector."""
@@ -22,16 +27,9 @@ class INucPseKNC():
         :param data: The fasta file path or single DNA sequence or DNA sequence list.
         :return: vector: The iNucPseKNC vector.
         """
-        import sys
-        sys.path.append('..')
-        from util import get_data
 
         sequence_list = get_data(data)
         print sequence_list
-
-        import sys
-        sys.path.append('..')
-        from util_iNucPseKNC import make_pseknc_vector
 
         vector = make_pseknc_vector(sequence_list, self.k, self.lamada, self.w)
 
