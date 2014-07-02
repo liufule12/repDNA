@@ -2,7 +2,7 @@ __author__ = 'aleeee'
 
 import sys
 sys.path.append('..')
-from util import get_sequence_check_dna
+from util import get_data
 from util_pseDNC import make_psednc_vector
 
 
@@ -12,18 +12,19 @@ class PseDNC():
         self.w = w
         self.alphabet = alphabet
 
-    def make_vector(self, fasta_file):
-        sequence_list = get_sequence_check_dna(open(fasta_file, 'r'))
+    def make_vector(self, data):
+        sequence_list = get_data(data)
 
         vector = make_psednc_vector(sequence_list, self.lamada, self.w)
-        for e in vector:
-            print e
 
         return vector
 
 
 if __name__ == '__main__':
-    psednc = PseDNC(1, 0.3)
-    vector = psednc.make_vector('hs.txt')
+    import time
+    start_time = time.time()
+    psednc = PseDNC(1, 0.05)
+    vector = psednc.make_vector(open('hs.txt'))
     for e in vector:
         print e
+    print 'Time:', time.time() - start_time
