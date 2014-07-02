@@ -55,6 +55,11 @@ def make_psednc_vector(sequence_list, lamada, w):
     vector = []
 
     for sequence in sequence_list:
+        if len(sequence) < 2+lamada:
+            error_info = "Sorry, the sequence length must be larger than " + str(lamada+2)
+            sys.stderr.write(error_info)
+            sys.exit(0)
+
         # Get the dinucleotide frequency in the DNA sequence.
         fre_list = [frequency(sequence, str(key)) for key in PU_RI_RJ.keys()]
         fre_sum = float(sum(fre_list))
