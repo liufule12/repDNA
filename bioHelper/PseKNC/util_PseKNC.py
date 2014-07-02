@@ -37,7 +37,7 @@ def parallel_cor_function(k, nucleotide1, nucleotide2, phyche_list):
         for phyche_tripe in phyche_factor_dic[nucleotide1]:
             if phyche_tripe[0] == phyche:
                 h1 = phyche_tripe[1]
-                print nucleotide1, phyche_tripe
+                # print nucleotide1, phyche_tripe
         if None == h1:
             error_info = "Do not find the Physicochemical properties " + str(phyche)
             sys.stderr.write(error_info)
@@ -46,7 +46,7 @@ def parallel_cor_function(k, nucleotide1, nucleotide2, phyche_list):
         for phyche_tripe in phyche_factor_dic[nucleotide2]:
             if phyche_tripe[0] == phyche:
                 h2 = phyche_tripe[1]
-                print nucleotide2, phyche_tripe
+                # print nucleotide2, phyche_tripe
         if None == h2:
             error_info = "Do not find the Physicochemical properties " + str(phyche)
             sys.stderr.write(error_info)
@@ -66,12 +66,11 @@ def get_cor_factor1(k, lamada, sequence, phyche_list):
         for j in range(0, l-k-i+1):
             nucleotide1 = ''
             nucleotide2 = ''
-            for u in range(0, k):
+            for u in range(k):
                 nucleotide1 += sequence[j+u]
                 nucleotide2 += sequence[j+i+u]
-            print nucleotide1, nucleotide2
             sum += parallel_cor_function(k, nucleotide1, nucleotide2, phyche_list)
-            print sum
+            # print nucleotide1, nucleotide2, sum
 
         theta.append(sum/(l-k-i+1))
 
@@ -84,38 +83,32 @@ def make_type1_vector(sequence_list, k, lamada, w, alphabet, phyche_list):
     kmer = make_kmer_list(k, alphabet)
 
     for sequence in sequence_list:
+        if len(sequence) < k or lamada + k > len(sequence):
+            error_info = "Sorry, the sequence length must be larger than " + str(lamada+k)
+            sys.stderr.write(error_info)
+            sys.exit(0)
+
         # Get the dinucleotide frequency in the DNA sequence.
-        fre_list = []
-        fre_sum = 0.0
-        # print '-----------------------------'
-        for key in kmer:
-            temp_fre = frequency(sequence, str(key))
-            fre_list.append(temp_fre)
-            fre_sum += temp_fre
-            # print key, temp_fre
-            if temp_fre != 0:
-                print key, temp_fre
+        fre_list = [frequency(sequence, str(key)) for key in kmer]
+        fre_sum = float(sum(fre_list))
+        # print fre_list
+        # print fre_sum
+
         # Get the normalized occurrence frequency of dinucleotide in the DNA sequence.
         fre_len = len(fre_list)
-        for i in range(0, fre_len):
-            fre_list[i] /= fre_sum
+        fre_list = [fre_list[i]/fre_sum for i in range(fre_len)]
+        # print fre_list
 
         # Get the theta_list according the Equation 5.
         theta_list = get_cor_factor1(k, lamada, sequence, phyche_list)
+        theta_sum = sum(theta_list)
+        # print theta_sum
 
         # Generate the vector according the Equation 9.
-        theta_sum = 0.0
-        for theta in theta_list:
-            theta_sum += theta
-        print theta_sum
         denominator = 1 + w*theta_sum
+        # print denominator
 
-        temp_vec = []
-        for f in fre_list:
-            # print f
-            temp_vec.append(round(f/denominator, 3))
-        print denominator
-        # print theta_list
+        temp_vec = [round(f/denominator, 3) for f in fre_list]
         for theta in theta_list:
             temp_vec.append(round(w*theta/denominator, 3))
 
@@ -165,34 +158,30 @@ def get_cor_factor2(k, lamada, sequence, phyche_list):
 def make_type2_vector(sequence_list, k, lamada, w, alphabet, phyche_list):
     """Generate the series(Type 2) vector."""
     vector = []
-    kmer = make_kmer_list(k, alphabet)
+    kmer_list = make_kmer_list(k, alphabet)
 
     for sequence in sequence_list:
+        if len(sequence) < k or lamada + k > len(sequence):
+            error_info = "Sorry, the sequence length must be larger than " + str(lamada+k)
+            sys.stderr.write(error_info)
+            sys.exit(0)
+
         # Get the nucleotide frequency in the DNA sequence.
-        fre_list = []
-        fre_sum = 0.0
-        for key in kmer:
-            temp_fre = frequency(sequence, str(key))
-            fre_list.append(temp_fre)
-            fre_sum += temp_fre
+        fre_list = [frequency(sequence, str(kmer)) for kmer in kmer_list]
+        fre_sum = float(sum(fre_list))
 
         # Get the normalized occurrence frequency of dinucleotide in the DNA sequence.
         fre_len = len(fre_list)
-        for i in range(0, fre_len):
-            fre_list[i] /= fre_sum
+        fre_list = [fre_list[i]/fre_sum for i in range(fre_len)]
 
         # Get the theta_list according the Equation 13.
         theta_list = get_cor_factor2(k, lamada, sequence, phyche_list)
+        theta_sum = sum(theta_list)
 
         # Generate the vector according the Equation 16.
-        theta_sum = 0.0
-        for theta in theta_list:
-            theta_sum += theta
         denominator = 1 + w*theta_sum
 
-        temp_vec = []
-        for f in fre_list:
-            temp_vec.append(round(f/denominator, 3))
+        temp_vec = [round(f/denominator, 3) for f in fre_list]
         for theta in theta_list:
             temp_vec.append(round(w*theta/denominator, 3))
 
