@@ -37,5 +37,8 @@ class INucPseKNC():
 
 
 if __name__ == '__main__':
-    iNuPseKNC = INucPseKNC(3, 1, 0.1)
-    print iNuPseKNC.make_vector(['AAAAA'])
+    iNuPseKNC = INucPseKNC(3, 1, 0.05)
+    res = iNuPseKNC.make_vector(['AAAAACCC'])
+    for e in res:
+        print e
+        print len(e)
