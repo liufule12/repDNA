@@ -4,8 +4,8 @@
 # CREATE DATE: 27 September 2005, modified date: June 11 2014.
 import sys
 import math
-sys.path.append('..')
-from util import frequency
+
+from dnavec.util import frequency
 
 sys.setrecursionlimit(99999999)
 

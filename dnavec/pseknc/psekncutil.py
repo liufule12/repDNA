@@ -6,8 +6,8 @@ sys.path.append('../kmer')
 import cPickle
 from math import pow
 
-from util import frequency
-from util_kmer import make_kmer_list
+from dnavec.util import frequency
+from dnavec.kmer.kmerutil import make_kmer_list
 
 
 def get_phyche_factor_dic(k):

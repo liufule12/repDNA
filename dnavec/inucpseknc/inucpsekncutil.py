@@ -2,10 +2,9 @@ __author__ = 'aleeee'
 
 from math import pow
 import sys
-sys.path.append('..')
 
-from util import frequency
-from kmer.util_kmer import make_kmer_list
+from dnavec.util import frequency
+from dnavec.kmer.kmerutil import make_kmer_list
 
 
 ALPHABET = 'ACGT'

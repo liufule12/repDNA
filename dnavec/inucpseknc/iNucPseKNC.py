@@ -1,9 +1,7 @@
 __author__ = 'aleeee'
 
-import sys
-sys.path.append('..')
-from util import get_data
-from util_iNucPseKNC import make_pseknc_vector
+from dnavec.util import get_data
+from dnavec.inucpseknc.inucpsekncutil import make_pseknc_vector
 
 
 class INucPseKNC():

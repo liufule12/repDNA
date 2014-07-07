@@ -1,9 +1,9 @@
 __author__ = 'aleeee'
 
 import sys
-sys.path.append('..')
-from util_kmer import make_upto_kmer_list, make_revcomp_kmer_list, make_kmer_vector
-from util import get_sequence_check_dna
+
+from dnavec.kmer.kmerutil import make_upto_kmer_list, make_revcomp_kmer_list, make_kmer_vector
+from dnavec.util import get_sequence_check_dna
 
 
 class Kmer():
@@ -39,8 +39,7 @@ class Kmer():
 
 
 if __name__ == '__main__':
-    import sys
-    from bioHelper.kmer.kmer import Kmer
+    from dnavec.kmer.kmer import Kmer
 
     k, upto, revcomp, normalize = 1, False, False, False
 
@@ -50,4 +49,3 @@ if __name__ == '__main__':
     vector = kmer.make_kmer_vector("hs.txt")
     for e in vector:
         print e
-

@@ -1,10 +1,9 @@
 __author__ = 'aleeee'
 
 import sys
-sys.path.append('..')
 from math import pow
 
-from util import frequency
+from dnavec.util import frequency
 
 
 U = 6

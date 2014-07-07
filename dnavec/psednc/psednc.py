@@ -1,9 +1,7 @@
 __author__ = 'aleeee'
 
-import sys
-sys.path.append('..')
-from util import get_data
-from util_pseDNC import make_psednc_vector
+from dnavec.util import get_data
+from dnavec.psednc.psedncutil import make_psednc_vector
 
 
 class PseDNC():

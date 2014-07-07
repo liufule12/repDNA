@@ -9,12 +9,3 @@ To install bioHelper, download the source code, go to this directory at the comm
 
     python setup.py sdist
     sudo python setup.py install
-    
-# Dependencies
-- Perl version 5.14.2 or above. http://www.perl.org/
-
-- ViennaRNA version 2.1.6 or above. http://www.tbi.univie.ac.at/~ronny/RNA/index.html
-
-- Sean Eddy's SQUID library. http://selab.janelia.org/software.html
-
-- randfold-2.0. http://bioinformatics.psb.ugent.be/supplementary_data/erbon/nov2003/
