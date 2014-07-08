@@ -28,10 +28,8 @@ def make_kmer_list(k, alphabet):
     alphabet_length = len(alphabet)
 
     # Recursive call.
-    return_value = []
-    for kmer in make_kmer_list(k - 1, alphabet):
-        for i_letter in range(0, alphabet_length):
-            return_value.append(kmer + alphabet[i_letter])
+    return_value = [kmer + alphabet[i_letter] for kmer in make_kmer_list(k - 1, alphabet)
+                    for i_letter in range(alphabet_length)]
 
     return return_value
 
@@ -51,9 +49,7 @@ def normalize_vector(normalize_method, k_values, vector, kmer_list):
         return vector
 
     # Initialize all vector lengths to zeroes.
-    vector_lengths = {}
-    for k in k_values:
-        vector_lengths[k] = 0
+    vector_lengths = {k: 0 for k in k_values}
 
     # Compute sum or sum-of-squares separately for each k.
     num_kmers = len(kmer_list)
@@ -261,7 +257,7 @@ def read_sequence_and_numbers(fasta_file,
                               numbers_file):
     [fasta_id, fasta_sequence] = read_fasta_sequence(0, fasta_file)
 
-    if number_filename != "":
+    if numbers_filename != "":
         [number_id, number_sequence] = read_fasta_sequence(1, number_file)
 
         # Make sure we got the same ID.
@@ -376,12 +372,8 @@ def compute_quantile_boundaries(num_bins,
 
 def make_revcomp_kmer_list(kmer_list):
     revcomp_dictionary = {}
-    new_kmer_list = []
-    for kmer in kmer_list:
-        rev_kmer = find_revcomp(kmer, revcomp_dictionary)
-        if cmp(kmer, rev_kmer) <= 0:
-            new_kmer_list.append(kmer)
-    sys.stderr.write("Reduced to %d kmers.\n" % len(kmer_list))
+    new_kmer_list = [kmer for kmer in kmer_list if cmp(kmer, find_revcomp(kmer, revcomp_dictionary)) <= 0]
+    sys.stderr.write("Reduced to %d kmers.\n" % len(new_kmer_list))
     return new_kmer_list
 
 
@@ -422,7 +414,8 @@ def make_index(k):
 
 
 def make_kmer_vector(seq_list, kmer_list, rev_kmer_list, k, upto, revcomp, normalize):
-    """Generate the vector."""
+    """Generate kmer vector."""
+
     # Generate the alphabet index.
     if upto:
         index = make_index_upto_k(k)
@@ -460,26 +453,22 @@ def make_kmer_vector(seq_list, kmer_list, rev_kmer_list, k, upto, revcomp, norma
                 sum[i] += temp_count
 
         # Store the kmer frequency vector.
-        temp_vec = []
         if revcomp:
-            for kmer in rev_kmer_list:
-                temp_vec.append(kmer_count[kmer])
+            temp_vec = [kmer_count[kmer] for kmer in rev_kmer_list]
         else:
-            for kmer in kmer_list:
-                temp_vec.append(kmer_count[kmer])
-        print temp_vec
+            temp_vec = [kmer_count[kmer] for kmer in kmer_list]
+
         # Normalize.
         if normalize:
-            i, j = 0, 0
+            i = 0
             if not upto:
-                for e in temp_vec:
-                    temp_vec[j] = float(e) / sum[i]
-                    j += 1
+                temp_vec = [float(e)/sum[i] for e in temp_vec]
             if upto:
                 if revcomp:
                     upto_index = make_index_upto_k_revcomp(k)
                 else:
                     upto_index = make_index_upto_k(k)
+                j = 0
                 for e in temp_vec:
                     if j >= upto_index[i + 1]:
                         i += 1
@@ -487,6 +476,10 @@ def make_kmer_vector(seq_list, kmer_list, rev_kmer_list, k, upto, revcomp, norma
                     j += 1
 
         vector.append(temp_vec)
+    if 0 != len(rev_kmer_list):
+        print "The kmer is", rev_kmer_list
+    else:
+        print "The kmer is", kmer_list
     return vector
 
 ##############################################################################
@@ -496,9 +489,8 @@ def make_kmer_vector(seq_list, kmer_list, rev_kmer_list, k, upto, revcomp, norma
 ##############################################################################
 # MAIN
 ##############################################################################
+if __name__ == '__main__':
 
-
-def main():
     # Define the command line usage.
     usage = """Usage: fasta2matrix [options] <k> <fasta file>
 
@@ -557,7 +549,7 @@ def main():
             sys.argv = sys.argv[1:]
             if (normalize_method != "unitsphere") and (normalize_method != "frequency"):
                 sys.stderr.write("Invalid normalization method (%s).\n"
-                                 % normalize_method)
+                                 % normalize_method);
                 sys.exit(1)
         elif next_arg == "-protein":
             alphabet = "ACDEFGHIKLMNPQRSTVWY"
@@ -602,7 +594,6 @@ def main():
     boundaries = compute_quantile_boundaries(num_bins, k_values, number_filename)
 
     # Make a list of all k-mers.
-    print k_values, alphabet, type(alphabet)
     kmer_list = make_upto_kmer_list(k_values, alphabet)
     sys.stderr.write("Considering %d kmers.\n" % len(kmer_list))
 
@@ -676,7 +667,3 @@ def main():
 
     # Close the file.
     fasta_file.close()
-
-
-if __name__ == '__main__':
-    main()
