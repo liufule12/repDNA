@@ -14,7 +14,7 @@ class Seq:
 
     def __str__(self):
         """Output seq when 'print' method is called."""
-        return ">%s\tNo:%s\tlength:%s\n%s" % (self.name, str(self.no), str(self.length), self.seq)
+        return "%s\tNo:%s\tlength:%s\n%s" % (self.name, str(self.no), str(self.length), self.seq)
 
 
 def frequency(tol_str, tar_str):
@@ -210,7 +210,7 @@ def get_sequence_check_dna(f):
         if res is not True:
             error_info = 'Sorry, sequence ' + str(e.no) \
                          + ' has character ' + str(res) + '.(The character must be A, C, G or T)'
-            sys.stderr(error_info)
+            sys.stderr.write(error_info)
             sys.exit(0)
         else:
             sequence_list.append(e.seq)
@@ -219,22 +219,23 @@ def get_sequence_check_dna(f):
 
 
 def is_sequence_list(sequence_list):
-    """Judge the sequence list is within the scope of alphabet."""
+    """Judge the sequence list is within the scope of alphabet and change the lowercase to capital."""
     count = 0
     new_sequence_list = []
 
     for e in sequence_list:
+        e = e.upper()
         count += 1
         res = is_under_alphabet(e, ALPHABET)
         if res is not True:
             error_info = 'Sorry, sequence ' + str(count) \
-                         + ' has character ' + str(res) + '.(The character must be A, C, G or T)'
+                         + ' has illegal character ' + str(res) + '.(The character must be A, C, G or T)'
             sys.stderr.write(error_info)
             return False
         else:
             new_sequence_list.append(e.upper())
 
-    return True
+    return new_sequence_list
 
 
 def get_data(data):
@@ -246,7 +247,8 @@ def get_data(data):
     if isinstance(data, file):
         return get_sequence_check_dna(data)
     elif isinstance(data, list):
-        if is_sequence_list(data):
+        data = is_sequence_list(data)
+        if data is not False:
             return data
         else:
             sys.exit(0)
@@ -261,7 +263,11 @@ if __name__ == '__main__':
     for e in temp_seq:
         print e
 
-    test_file = ['AAAAAAAAAAAAAAAAAAA', 'CCCCCCCCCCCCCCCCCCCCCCCCC']
+    test_file = ['AAAAAAAAAAaaaaAAAAA', 'CCCCCCCCCCCCCCCCCCCCCCCCC']
     temp_seq = get_data(test_file)
+    for e in temp_seq:
+        print e
+
+    temp_seq = read_fasta_check_dna(open('hs.txt'))
     for e in temp_seq:
         print e
