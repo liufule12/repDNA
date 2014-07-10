@@ -5,10 +5,9 @@ from dnavec.psednc.psedncutil import make_psednc_vector
 
 
 class PseDNC():
-    def __init__(self, lamada, w, alphabet="ACGT"):
+    def __init__(self, lamada=3, w=0.05):
         self.lamada = lamada
         self.w = w
-        self.alphabet = alphabet
 
     def make_vector(self, data):
         sequence_list = get_data(data)
@@ -21,8 +20,9 @@ class PseDNC():
 if __name__ == '__main__':
     import time
     start_time = time.time()
-    psednc = PseDNC(1, 0.05)
+    psednc = PseDNC()
     vector = psednc.make_vector(open('hs.txt'))
     for e in vector:
         print e
+        print len(e)
     print 'Time:', time.time() - start_time

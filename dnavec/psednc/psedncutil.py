@@ -64,8 +64,7 @@ def make_psednc_vector(sequence_list, lamada, w):
         fre_sum = float(sum(fre_list))
 
         # Get the normalized occurrence frequency of dinucleotide in the DNA sequence.
-        fre_len = len(fre_list)
-        fre_list = [fre_list[i]/fre_sum for i in range(fre_len)]
+        fre_list = [e / fre_sum for e in fre_list]
 
         # Get the theta_list according the Equation 5.
         theta_list = get_cor_factor(lamada, sequence)
