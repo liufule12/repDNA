@@ -55,15 +55,14 @@ def write_libsvm(vector_list, label_list, write_file):
         sys.stderr.write("The length of vector and label is different.")
         sys.exit(1)
 
-    f = open(write_file, 'w')
-    len_vector = len(vector_list[0])
-    for i in range(0, len_vector_list):
-        temp_write = str(label_list[i])
-        for j in range(0, len_vector):
-            temp_write += ' ' + str(j + 1) + ':' + str(vector_list[i][j])
-        f.write(temp_write)
-        f.write('\n')
-    f.close()
+    with open(write_file, 'w') as f:
+        len_vector = len(vector_list[0])
+        for i in range(len_vector_list):
+            temp_write = str(label_list[i])
+            for j in range(0, len_vector):
+                temp_write += ' ' + str(j + 1) + ':' + str(vector_list[i][j])
+            f.write(temp_write)
+            f.write('\n')
 
 
 def is_under_alphabet(s, alphabet):
