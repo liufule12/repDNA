@@ -373,7 +373,7 @@ def compute_quantile_boundaries(num_bins,
 def make_revcomp_kmer_list(kmer_list):
     revcomp_dictionary = {}
     new_kmer_list = [kmer for kmer in kmer_list if cmp(kmer, find_revcomp(kmer, revcomp_dictionary)) <= 0]
-    sys.stderr.write("Reduced to %d kmers.\n" % len(new_kmer_list))
+    # sys.stderr.write("Reduced to %d kmers.\n" % len(new_kmer_list))
     return new_kmer_list
 
 
@@ -476,10 +476,10 @@ def make_kmer_vector(seq_list, kmer_list, rev_kmer_list, k, upto, revcomp, norma
                     j += 1
 
         vector.append(temp_vec)
-    if 0 != len(rev_kmer_list):
-        print "The kmer is", rev_kmer_list
-    else:
-        print "The kmer is", kmer_list
+    # if 0 != len(rev_kmer_list):
+    #     print "The kmer is", rev_kmer_list
+    # else:
+    #     print "The kmer is", kmer_list
     return vector
 
 ##############################################################################

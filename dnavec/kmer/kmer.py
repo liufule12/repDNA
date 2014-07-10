@@ -97,4 +97,9 @@ if __name__ == '__main__':
     print "The vector is ", vec
     print
 
+    kmer = Kmer(k=3, upto=True, revcomp=True, normalize=True)
+    vec = kmer.make_kmer_vector(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
+    print "The vector is ", vec
+    print
+
     print get_data(open('hs.txt'))
