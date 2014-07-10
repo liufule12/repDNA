@@ -13,13 +13,12 @@ class INucPseKNC():
         :param k: k-tuple.
         :param lamada: The number of the total counted ranks(or tiers) of the correlations along a DNA sequence.
         :param w: The weight factor.
-        :param alphabet: The sequence alphabet.
         """
         self.k = k
         self.lamada = lamada
         self.w = w
 
-    def make_vector(self, data):
+    def make_vector(self, data, upto=False, revcomp=False):
         """Make iNucPseKNC vector.
 
         :param data: The fasta file path or single DNA sequence or DNA sequence list.
@@ -27,16 +26,16 @@ class INucPseKNC():
         """
 
         sequence_list = get_data(data)
-        print sequence_list
 
-        vector = make_pseknc_vector(sequence_list, self.k, self.lamada, self.w)
+        vector = make_pseknc_vector(sequence_list, self.k, self.lamada, self.w, upto, revcomp)
 
         return vector
 
 
 if __name__ == '__main__':
     iNuPseKNC = INucPseKNC(3, 1, 0.05)
-    res = iNuPseKNC.make_vector(['AAAAACCC'])
+    # res = iNuPseKNC.make_vector(open('hs.txt'), upto=False, revcomp=True)
+    res = iNuPseKNC.make_vector(open('hs.txt'))
     for e in res:
         print e
         print len(e)

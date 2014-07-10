@@ -3,9 +3,7 @@ __author__ = 'aleeee'
 from math import pow
 import sys
 
-from dnavec.util import frequency
-from dnavec.kmer.kmerutil import make_kmer_list
-
+from dnavec.kmer.kmer import Kmer
 
 ALPHABET = 'ACGT'
 U = 6
@@ -37,6 +35,9 @@ def cor_function(dinuleotide1, dinuleotide2):
 
 def get_cor_factor(lamada, sequence):
     """Get the corresponding factor theta list."""
+    if lamada <= 0:
+        return []
+
     theta = []
     l = len(sequence)
     for i in range(1, lamada+1):
@@ -51,9 +52,8 @@ def get_cor_factor(lamada, sequence):
     return theta
 
 
-def make_pseknc_vector(sequence_list, k, lamada, w):
-    """Generate the psednc vector."""
-    kmer_list = make_kmer_list(k, ALPHABET)
+def make_pseknc_vector(sequence_list, k, lamada, w, upto=False, revcomp=False):
+    """Generate the pseknc vector."""
 
     vector = []
     for sequence in sequence_list:
@@ -62,13 +62,10 @@ def make_pseknc_vector(sequence_list, k, lamada, w):
             sys.stderr.write(error_info)
             sys.exit(0)
 
-        # Get the dinucleotide frequency in the DNA sequence.
-        fre_list = [frequency(sequence, str(kmer)) for kmer in kmer_list]
-        fre_sum = float(sum(fre_list))
-
-        # Get the normalized occurrence frequency of dinucleotide in the DNA sequence.
-        fre_len = len(fre_list)
-        fre_list = [fre_list[i]/fre_sum for i in range(fre_len)]
+        # Get the kmer normalize vector.
+        kmer = Kmer(k, upto, revcomp, normalize=True)
+        fre_list = kmer.make_kmer_vector([sequence])
+        fre_list = fre_list[0]
 
         # Get the theta_list according the Equation 6.
         theta_list = get_cor_factor(lamada, sequence)
