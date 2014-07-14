@@ -1,8 +1,7 @@
 __author__ = 'aleeee'
 
+import os
 import sys
-sys.path.append('..')
-sys.path.append('../kmer')
 import cPickle
 from math import pow
 
@@ -11,10 +10,13 @@ from dnavec.kmer.kmerutil import make_kmer_list
 
 
 def get_phyche_factor_dic(k):
+    full_path = os.path.realpath(__file__)
     if 2 == k:
-        f = open('mmc3.data', 'rb')
+        file_path = "%s/mmc3.data" % os.path.dirname(full_path)
+        f = open(file_path)
     elif 3 == k:
-        f = open('mmc4.data', 'rb')
+        file_path = "%s/mmc4.data" % os.path.dirname(full_path)
+        f = open(file_path)
     else:
         sys.stderr.write("The k can just be 2 or 3.")
         sys.exit(0)
