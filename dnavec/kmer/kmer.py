@@ -7,13 +7,11 @@ from dnavec.util import get_data
 class Kmer():
     def __init__(self,
                  k=1,
-                 upto=False,
-                 revcomp=False,
                  normalize=False,
+                 upto=False,
                  alphabet="ACGT"):
         self.k = k
         self.upto = upto
-        self.revcomp = revcomp
         self.normalize = normalize
         self.alphabet = alphabet
 
@@ -64,42 +62,65 @@ class Kmer():
             k_list = range(self.k, self.k + 1)
         kmer_list = make_upto_kmer_list(k_list, self.alphabet)
 
-        # Use lexicographically first version of {kmer, revcomp(kmer)}.
         rev_kmer_list = []
-        if self.revcomp:
-            rev_kmer_list = make_revcomp_kmer_list(kmer_list)
+        revcomp = False
+        vec = make_kmer_vector(sequence_list, kmer_list, rev_kmer_list, self.k, self.upto, revcomp,
+                               self.normalize)
+        return vec
 
-        vec = make_kmer_vector(sequence_list, kmer_list, rev_kmer_list, self.k, self.upto, self.revcomp,
+
+class RevcKmer(Kmer):
+    def make_revckmer_vector(self, data):
+        """Make a reverse compliment kmer vector with options k, upto, normalize.
+
+        :param data: file object or sequence list.
+        :return: reverse compliment kmer vector.
+        """
+        sequence_list = get_data(data)
+
+        if self.upto:
+            k_list = range(1, self.k + 1)
+        else:
+            k_list = range(self.k, self.k + 1)
+        kmer_list = make_upto_kmer_list(k_list, self.alphabet)
+
+        # Use lexicographically first version of {kmer, revcomp(kmer)}.
+        rev_kmer_list = make_revcomp_kmer_list(kmer_list)
+        revcomp = True
+        vec = make_kmer_vector(sequence_list, kmer_list, rev_kmer_list, self.k, self.upto, revcomp,
                                self.normalize)
         return vec
 
 
 if __name__ == '__main__':
     from dnavec.kmer.kmer import Kmer
-
-    kmer = Kmer(k=2, upto=False, revcomp=False, normalize=False)
+    kmer = Kmer(k=2)
     vec = kmer.make_kmer_vector(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
     print "The vector is ", vec
     print
 
-    kmer = Kmer(k=2, upto=True, revcomp=False, normalize=False)
+    kmer = Kmer(k=2, normalize=True)
     vec = kmer.make_kmer_vector(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
     print "The vector is ", vec
     print
 
-    kmer = Kmer(k=2, upto=False, revcomp=True, normalize=False)
+    kmer = Kmer(k=2, normalize=False, upto=True)
     vec = kmer.make_kmer_vector(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
     print "The vector is ", vec
     print
 
-    kmer = Kmer(k=2, upto=False, revcomp=False, normalize=True)
-    vec = kmer.make_kmer_vector(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
+    from dnavec.kmer.kmer import RevcKmer
+    revckmer = RevcKmer(k=2, normalize=False, upto=False)
+    vec = revckmer.make_revckmer_vector(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
     print "The vector is ", vec
     print
 
-    kmer = Kmer(k=3, upto=True, revcomp=True, normalize=True)
-    vec = kmer.make_kmer_vector(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
+    revckmer = RevcKmer(k=2, normalize=True, upto=False)
+    vec = revckmer.make_revckmer_vector(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
     print "The vector is ", vec
     print
 
-    print get_data(open('hs.txt'))
+    revckmer = RevcKmer(k=2, normalize=True, upto=True)
+    vec = revckmer.make_revckmer_vector(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
+    print "The vector is ", vec
+    print
