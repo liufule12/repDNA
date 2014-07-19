@@ -101,9 +101,241 @@ class PseKNC():
         return vector
 
 
+class PseDNC1():
+    def __init__(self, lamada, w, alphabet='ACGT'):
+        self.lamada = lamada
+        self.w = w
+        self.alphabet = alphabet
+
+    def make_vector(self, data, phyche_list, all_property=False):
+        """Make a PseDNC type1 vector.
+
+        :param data: file object or sequence list.
+        :param phyche_list: physicochemical properties list.
+        :param all_property: choose all physicochemical properties or not.
+        :return: PseDNC type1 vector.
+        """
+        sequence_list = get_data(data)
+
+        # Set and check physicochemical properties.
+        if all_property is True:
+            phyche_list = DIPYHYCHE_LIST
+        else:
+            for e in phyche_list:
+                if e not in DIPYHYCHE_LIST:
+                    error_info = 'Sorry, the physicochemical properties ' + e + ' is not exit.'
+                    sys.stderr.write(error_info)
+                    sys.exit(0)
+
+        # Set type and make vector.
+        k = 2
+        from dnavec.pseknc.psekncutil import make_type1_vector
+        vector = make_type1_vector(sequence_list, k, self.lamada, self.w, self.alphabet, phyche_list)
+
+        return vector
+
+
+class PseDNC2():
+    def __init__(self, lamada, w, alphabet='ACGT'):
+        self.lamada = lamada
+        self.w = w
+        self.alphabet = alphabet
+
+    def make_vector(self, data, phyche_list, all_property=False):
+        """Make a PseDNC type2 vector.
+
+        :param data: file object or sequence list.
+        :param phyche_list: physicochemical properties list.
+        :param all_property: choose all physicochemical properties or not.
+        :return: PseDNC type2 vector.
+        """
+        sequence_list = get_data(data)
+
+        # Set and check physicochemical properties.
+        if all_property is True:
+            phyche_list = DIPYHYCHE_LIST
+        else:
+            for e in phyche_list:
+                if e not in DIPYHYCHE_LIST:
+                    error_info = 'Sorry, the physicochemical properties ' + e + ' is not exit.'
+                    sys.stderr.write(error_info)
+                    sys.exit(0)
+
+        # Set type and make vector.
+        k = 2
+        from dnavec.pseknc.psekncutil import make_type2_vector
+        vector = make_type2_vector(sequence_list, k, self.lamada, self.w, self.alphabet, phyche_list)
+
+        return vector
+
+
+class PseTNC1():
+    def __init__(self, lamada, w, alphabet='ACGT'):
+        self.lamada = lamada
+        self.w = w
+        self.alphabet = alphabet
+
+    def make_vector(self, data, phyche_list, all_property=False):
+        """Make a PseDNC type1 vector.
+
+        :param data: file object or sequence list.
+        :param phyche_list: physicochemical properties list.
+        :param all_property: choose all physicochemical properties or not.
+        :return: PseDNC type1 vector.
+        """
+        sequence_list = get_data(data)
+
+        # Set and check physicochemical properties.
+        if all_property is True:
+            phyche_list = TRIPHYCHE_LIST
+        else:
+            for e in phyche_list:
+                if e not in TRIPHYCHE_LIST:
+                    error_info = 'Sorry, the physicochemical properties ' + e + ' is not exit.'
+                    sys.stderr.write(error_info)
+                    sys.exit(0)
+
+        # Set type and make vector.
+        k = 3
+        from dnavec.pseknc.psekncutil import make_type1_vector
+        vector = make_type1_vector(sequence_list, k, self.lamada, self.w, self.alphabet, phyche_list)
+
+        return vector
+
+
+class PseTNC2():
+    def __init__(self, lamada, w, alphabet='ACGT'):
+        self.lamada = lamada
+        self.w = w
+        self.alphabet = alphabet
+
+    def make_vector(self, data, phyche_list, all_property=False):
+        """Make a PseTNC type2 vector.
+
+        :param data: file object or sequence list.
+        :param phyche_list: physicochemical properties list.
+        :param all_property: choose all physicochemical properties or not.
+        :return: PseTNC type2 vector.
+        """
+        sequence_list = get_data(data)
+
+        # Set and check physicochemical properties.
+        if all_property is True:
+            phyche_list = TRIPHYCHE_LIST
+        else:
+            for e in phyche_list:
+                if e not in TRIPHYCHE_LIST:
+                    error_info = 'Sorry, the physicochemical properties ' + e + ' is not exit.'
+                    sys.stderr.write(error_info)
+                    sys.exit(0)
+
+        # Set type and make vector.
+        k = 3
+        from dnavec.pseknc.psekncutil import make_type2_vector
+        vector = make_type2_vector(sequence_list, k, self.lamada, self.w, self.alphabet, phyche_list)
+
+        return vector
+
+
 if __name__ == '__main__':
-    pseKNC = PseKNC(k=2, lamada=1, w=0.05)
-    vector = pseKNC.make_vector(data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=['Twist', 'Tilt'])
+    # pseKNC = PseKNC(k=2, lamada=1, w=0.05)
+    # vector = pseKNC.make_vector(data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=['Twist', 'Tilt'])
+    # for e in vector:
+    #     print e
+    #     print len(e)
+    # print len(vector)
+    #
+    # vector = pseKNC.make_vector(data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=['Twist', 'Tilt'], all_property=True)
+    # for e in vector:
+    #     print e
+    #     print len(e)
+    # print len(vector)
+
+    from dnavec.pseknc.pseknc import PseDNC1
+    pseDNC1 = PseDNC1(lamada=1, w=0.05)
+    vector = pseDNC1.make_vector(data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=['Twist', 'Tilt'])
+    for e in vector:
+        print e
+        print len(e)
+    print len(vector)
+
+    vector = pseDNC1.make_vector(data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=[], all_property=True)
+    for e in vector:
+        print e
+        print len(e)
+    print len(vector)
+
+
+    # pseKNC = PseKNC(k=3, lamada=1, w=0.05)
+    # vector = pseKNC.make_vector(data=['AAAC'], phyche_list=['Dnase I'])
+    # for e in vector:
+    #     print e
+    #     print len(e)
+    # print len(vector)
+    #
+    # vector = pseKNC.make_vector(data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], vec_type=2, phyche_list=['Dnase I'])
+    # for e in vector:
+    #     print e
+    #     print len(e)
+    # print len(vector)
+
+    # vector = pseKNC.make_vector(data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], vec_type=2, phyche_list=['Twist', 'Tilt'], all_property=False)
+    # for e in vector:
+    #     print e
+    #     print len(e)
+    # print len(vector)
+    #
+    # vector = pseKNC.make_vector(data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], vec_type=2, phyche_list=[], all_property=True)
+    # for e in vector:
+    #     print e
+    #     print len(e)
+    # print len(vector)
+
+    from dnavec.pseknc.pseknc import PseDNC2
+    pseDNC2 = PseDNC2(lamada=1, w=0.05)
+    vector = pseDNC2.make_vector(data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=['Twist', 'Tilt'])
+    for e in vector:
+        print e
+        print len(e)
+    print len(vector)
+
+    vector = pseDNC2.make_vector(data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=[], all_property=True)
+    for e in vector:
+        print e
+        print len(e)
+    print len(vector)
+
+    # pseKNC = PseKNC(k=3, lamada=1, w=0.05)
+    # vector = pseKNC.make_vector(data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=['Dnase I'])
+    # for e in vector:
+    #     print e
+    #     print len(e)
+    # print len(vector)
+    #
+    # vector = pseKNC.make_vector(data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=[], all_property=True)
+    # for e in vector:
+    #     print e
+    #     print len(e)
+    # print len(vector)
+
+    from dnavec.pseknc.pseknc import PseTNC1
+    pseTNC1 = PseTNC1(lamada=1, w=0.05)
+    vector = pseTNC1.make_vector(data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=['Dnase I'])
+    for e in vector:
+        print e
+        print len(e)
+    print len(vector)
+
+    vector = pseTNC1.make_vector(data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=[], all_property=True)
+    for e in vector:
+        print e
+        print len(e)
+    print len(vector)
+
+
+    pseKNC = PseKNC(k=3, lamada=1, w=0.05)
+
+    vector = pseKNC.make_vector(data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], vec_type=2, phyche_list=['Dnase I'])
     for e in vector:
         print e
         print len(e)
@@ -115,14 +347,15 @@ if __name__ == '__main__':
         print len(e)
     print len(vector)
 
-    pseKNC = PseKNC(k=3, lamada=1, w=0.05)
-    vector = pseKNC.make_vector(data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=['Dnase I'])
+    from dnavec.pseknc.pseknc import PseTNC2
+    pseTNC2 = PseTNC2(lamada=1, w=0.05)
+    vector = pseTNC2.make_vector(data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=['Dnase I'])
     for e in vector:
         print e
         print len(e)
     print len(vector)
 
-    vector = pseKNC.make_vector(data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], vec_type=2, phyche_list=['Dnase I'])
+    vector = pseTNC2.make_vector(data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=[], all_property=True)
     for e in vector:
         print e
         print len(e)
