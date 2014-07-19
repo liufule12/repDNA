@@ -430,7 +430,7 @@ def make_kmer_vector(seq_list, kmer_list, rev_kmer_list, k, upto, revcomp, norma
     for seq in seq_list:
         kmer_count = {}
         # Generate the kmer frequency vector.
-        for i in range(0, len_k):
+        for i in range(len_k):
             sum[i] = 0
             for j in range(index[i], index[i + 1]):
                 kmer = kmer_list[j]
@@ -481,6 +481,40 @@ def make_kmer_vector(seq_list, kmer_list, rev_kmer_list, k, upto, revcomp, norma
     # else:
     #     print "The kmer is", kmer_list
     return vector
+
+
+def diversity(vec):
+    """Calculate diversity.
+
+    :param vec: kmer vec
+    :return: Diversity(X)
+    """
+    m_sum = sum(vec)
+    from math import log
+    temp = 0.0
+    for m in vec:
+        if 0 == m:
+            continue
+        else:
+            temp += m * log(m, 2)
+
+    return m_sum*log(m_sum, 2) - temp
+
+
+def id_x_s(vec_x, vec_s, diversity_s):
+    """Calculate ID(X, S)
+
+    :param vec_x: kmer X
+    :param vec_s: kmer S
+    :return: ID(X, S) = Diversity(X + S) - Diversity(X) - Diversity(S)
+    """
+    # print 'vec_x', vec_x
+    # print 'vec_s', vec_s
+    vec_x_s = [sum(e) for e in zip(vec_x, vec_s)]
+    # print 'vec_x_s', vec_x_s
+    # print diversity(vec_x_s), diversity(vec_x), diversity_s
+    return diversity(vec_x_s) - diversity(vec_x) - diversity_s
+
 
 ##############################################################################
 # End of aleeee's change.
