@@ -52,7 +52,7 @@ def get_cor_factor(lamada, sequence):
     return theta
 
 
-def make_pseknc_vector(sequence_list, k, lamada, w, upto=False, revcomp=False):
+def make_pseknc_vector(sequence_list, k, lamada, w, upto=False):
     """Generate the pseknc vector."""
 
     vector = []
@@ -63,7 +63,7 @@ def make_pseknc_vector(sequence_list, k, lamada, w, upto=False, revcomp=False):
             sys.exit(0)
 
         # Get the kmer normalize vector.
-        kmer = Kmer(k, upto, revcomp, normalize=True)
+        kmer = Kmer(k, True, upto)
         fre_list = kmer.make_kmer_vector([sequence])
         fre_list = fre_list[0]
 

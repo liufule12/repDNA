@@ -18,7 +18,7 @@ class INucPseKNC():
         self.lamada = lamada
         self.w = w
 
-    def make_vector(self, data, upto=False, revcomp=False):
+    def make_vector(self, data, upto=False):
         """Make iNucPseKNC vector.
 
         :param data: The fasta file path or single DNA sequence or DNA sequence list.
@@ -27,15 +27,14 @@ class INucPseKNC():
 
         sequence_list = get_data(data)
 
-        vector = make_pseknc_vector(sequence_list, self.k, self.lamada, self.w, upto, revcomp)
+        vector = make_pseknc_vector(sequence_list, self.k, self.lamada, self.w, upto)
 
         return vector
 
 
 if __name__ == '__main__':
     iNuPseKNC = INucPseKNC(3, 1, 0.05)
-    # res = iNuPseKNC.make_vector(open('hs.txt'), upto=False, revcomp=True)
-    res = iNuPseKNC.make_vector(open('hs.txt'))
+    res = iNuPseKNC.make_vector(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
     for e in res:
         print e
         print len(e)
