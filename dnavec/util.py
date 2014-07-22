@@ -232,19 +232,23 @@ def is_sequence_list(sequence_list):
             sys.stderr.write(error_info)
             return False
         else:
-            new_sequence_list.append(e.upper())
+            new_sequence_list.append(e)
 
     return new_sequence_list
 
 
-def get_data(data):
+def get_data(data, desc=False):
     """Get sequence data from file or list with check.
 
     :param data: type file or list
+    :param desc: with this option, the return value will be a Seq object list(it only works in file object).
     :return: sequence data or shutdown.
     """
     if isinstance(data, file):
-        return get_sequence_check_dna(data)
+        if desc is False:
+            return get_sequence_check_dna(data)
+        else:
+            return read_fasta_check_dna(data)
     elif isinstance(data, list):
         data = is_sequence_list(data)
         if data is not False:
@@ -262,11 +266,11 @@ if __name__ == '__main__':
     for e in temp_seq:
         print e
 
-    test_file = ['AAAAAAAAAAaaaaAAAAA', 'CCCCCCCCCCCCCCCCCCCCCCCCC']
-    temp_seq = get_data(test_file)
+    temp_seq = get_data(open('hs.txt'), desc=True)
     for e in temp_seq:
         print e
 
-    temp_seq = read_fasta_check_dna(open('hs.txt'))
+    test_file = ['AAAAAAAAAAaaaaAAAAA', 'CCCCCCCCCCCCCCCCCCCCCCCCC']
+    temp_seq = get_data(test_file)
     for e in temp_seq:
         print e
