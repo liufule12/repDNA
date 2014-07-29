@@ -91,6 +91,7 @@ def is_fasta(seq):
     """
     if not seq.name:
         error_info = 'Error, sequence ' + str(seq.no) + ' has no sequence name.'
+        print seq
         sys.stderr.write(error_info)
         return False
     if -1 != seq.name.find('>'):
@@ -259,6 +260,49 @@ def get_data(data, desc=False):
         error_info = 'Sorry, the parameter in get_data method must be list or file type.'
         sys.stderr.write(error_info)
         sys.exit(0)
+
+
+def generate_phyche_value(k, phyche_list=[], all_property=False, extra_phyche_index={}):
+    diphyche_list = ['Base stacking', 'Protein induced deformability', 'B-DNA twist', 'Dinucleotide GC Content',
+                         'A-philicity', 'Propeller twist', 'Duplex stability:(freeenergy)',
+                         'Duplex tability(disruptenergy)', 'DNA denaturation', 'Bending stiffness', 'Protein DNA twist',
+                         'Stabilising energy of Z-DNA', 'Aida_BA_transition', 'Breslauer_dG', 'Breslauer_dH',
+                         'Breslauer_dS', 'Electron_interaction', 'Hartman_trans_free_energy', 'Helix-Coil_transition',
+                         'Ivanov_BA_transition', 'Lisser_BZ_transition', 'Polar_interaction', 'SantaLucia_dG',
+                         'SantaLucia_dH', 'SantaLucia_dS', 'Sarai_flexibility', 'Stability', 'Stacking_energy',
+                         'Sugimoto_dG', 'Sugimoto_dH', 'Sugimoto_dS', 'Watson-Crick_interaction', 'Twist', 'Tilt',
+                         'Roll', 'Shift', 'Slide', 'Rise']
+    triphyche_list = ['Dnase I', 'Bendability (DNAse)', 'Bendability (consensus)', 'Trinucleotide GC Content',
+                          'Nucleosome positioning', 'Consensus_roll', 'Consensus-Rigid', 'Dnase I-Rigid', 'MW-Daltons',
+                          'MW-kg', 'Nucleosome', 'Nucleosome-Rigid']
+
+    # Set and check physicochemical properties.
+    if 2 == k:
+        if all_property is True:
+            phyche_list = diphyche_list
+        else:
+            print(phyche_list)
+            for e in phyche_list:
+                if e not in diphyche_list:
+                    error_info = 'Sorry, the physicochemical properties ' + e + ' is not exit.'
+                    import sys
+                    sys.stderr.write(error_info)
+                    sys.exit(0)
+    elif 3 == k:
+        if all_property is True:
+            phyche_list = triphyche_list
+        else:
+            for e in phyche_list:
+                if e not in triphyche_list:
+                    error_info = 'Sorry, the physicochemical properties ' + e + ' is not exit.'
+                    import sys
+                    sys.stderr.write(error_info)
+                    sys.exit(0)
+
+    # Generate phyche_value.
+    from dnavec.psenac.psenacutil import get_phyche_index, extend_phyche_index
+
+    return extend_phyche_index(get_phyche_index(k, phyche_list), extra_phyche_index)
 
 
 if __name__ == '__main__':
