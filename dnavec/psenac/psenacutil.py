@@ -72,8 +72,6 @@ def parallel_cor_function(nucleotide1, nucleotide2, phyche_index):
 
 def series_cor_function(nucleotide1, nucleotide2, big_lamada, phyche_value):
     """Get the series correlation Factor(Type 2)."""
-    # print nucleotide1, nucleotide2, big_lamada
-    # print phyche_value
     return phyche_value[nucleotide1][big_lamada] * phyche_value[nucleotide2][big_lamada]
 
 
@@ -85,14 +83,8 @@ def get_parallel_factor(k, lamada, sequence, phyche_value):
     for i in range(1, lamada + 1):
         temp_sum = 0.0
         for j in range(0, l - 1 - lamada):
-            nucleotide1 = ''
-            nucleotide2 = ''
-            for u in range(k):
-                nucleotide1 += sequence[j+u-1]
-                nucleotide2 += sequence[j+i+u-1]
-            # print nucleotide1, nucleotide2
-            # nucleotide1 = sequence[j] + sequence[j + 1]
-            # nucleotide2 = sequence[j + i] + sequence[j + i + 1]
+            nucleotide1 = sequence[j: j+k]
+            nucleotide2 = sequence[j: j+i+k]
             temp_sum += parallel_cor_function(nucleotide1, nucleotide2, phyche_value)
 
         theta.append(temp_sum / (l - i - 1))
@@ -111,11 +103,8 @@ def get_series_factor(k, lamada, sequence, phyche_value):
         for big_lamada in range(max_big_lamada):
             temp_sum = 0.0
             for i in range(0, l_seq - k - 1):
-                nucleotide1 = ''
-                nucleotide2 = ''
-                for u in range(k):
-                    nucleotide1 += sequence[i+u-1]
-                    nucleotide2 += sequence[i+small_lamada+u-1]
+                nucleotide1 = sequence[i: i+k]
+                nucleotide2 = sequence[i: i+small_lamada+k]
                 temp_sum += series_cor_function(nucleotide1, nucleotide2, big_lamada, phyche_value)
             theta.append(temp_sum / (l_seq - k - small_lamada))
 
@@ -231,5 +220,6 @@ if __name__ == '__main__':
                           'TC': [-0.08, 0.5, 0.27, 0.13, -0.39, 0.71, 1],
                           'TG': [-1.38, -1.36, -0.27, -0.86, -0.62, -1.25, 1],
                           'TT': [0.06, 0.5, 0.27, 1.59, 0.11, -0.11, 1]}
-    phyche_index = extend_phyche_index(get_phyche_index(k=2, phyche_list=['Base stacking', 'DNA denaturation']), extra_phyche_index)
+    phyche_index = extend_phyche_index(get_phyche_index(k=2, phyche_list=['Base stacking', 'DNA denaturation']),
+                                       extra_phyche_index)
     print phyche_index
