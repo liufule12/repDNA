@@ -5,7 +5,7 @@
 import sys
 import math
 
-from dnavec.util import frequency
+from repDNA.util import frequency
 
 sys.setrecursionlimit(99999999)
 
@@ -462,7 +462,7 @@ def make_kmer_vector(seq_list, kmer_list, rev_kmer_list, k, upto, revcomp, norma
         if normalize:
             i = 0
             if not upto:
-                temp_vec = [float(e)/sum[i] for e in temp_vec]
+                temp_vec = [round(float(e)/sum[i], 3) for e in temp_vec]
             if upto:
                 if revcomp:
                     upto_index = make_index_upto_k_revcomp(k)
@@ -472,7 +472,7 @@ def make_kmer_vector(seq_list, kmer_list, rev_kmer_list, k, upto, revcomp, norma
                 for e in temp_vec:
                     if j >= upto_index[i + 1]:
                         i += 1
-                    temp_vec[j] = float(e) / sum[i]
+                    temp_vec[j] = round(float(e) / sum[i], 3)
                     j += 1
 
         vector.append(temp_vec)

@@ -5,8 +5,9 @@ import os
 import cPickle
 from math import pow
 
-from dnavec.util import frequency
-from dnavec.nac.kmerutil import make_kmer_list
+from repDNA.util import frequency
+from repDNA.nacutil import make_kmer_list
+
 
 ALPHABET = 'ACGT'
 
@@ -82,9 +83,9 @@ def get_parallel_factor(k, lamada, sequence, phyche_value):
 
     for i in range(1, lamada + 1):
         temp_sum = 0.0
-        for j in range(0, l - 1 - lamada):
+        for j in range(0, l - k - lamada + 1):
             nucleotide1 = sequence[j: j+k]
-            nucleotide2 = sequence[j: j+i+k]
+            nucleotide2 = sequence[j+i: j+i+k]
             temp_sum += parallel_cor_function(nucleotide1, nucleotide2, phyche_value)
 
         theta.append(temp_sum / (l - i - 1))
@@ -102,9 +103,9 @@ def get_series_factor(k, lamada, sequence, phyche_value):
     for small_lamada in range(1, lamada + 1):
         for big_lamada in range(max_big_lamada):
             temp_sum = 0.0
-            for i in range(0, l_seq - k - 1):
+            for i in range(0, l_seq - k - small_lamada + 1):
                 nucleotide1 = sequence[i: i+k]
-                nucleotide2 = sequence[i: i+small_lamada+k]
+                nucleotide2 = sequence[i+small_lamada: i+small_lamada+k]
                 temp_sum += series_cor_function(nucleotide1, nucleotide2, big_lamada, phyche_value)
             theta.append(temp_sum / (l_seq - k - small_lamada))
 

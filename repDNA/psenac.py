@@ -1,16 +1,17 @@
 __author__ = 'aleeee'
 
-from dnavec.util import get_data
-from dnavec.psenac.psenacutil import extend_phyche_index
+from repDNA.util import get_data
+from repDNA.psenacutil import extend_phyche_index
 
 
 class PseDNC():
     def __init__(self, lamada=3, w=0.05):
         self.lamada = lamada
         self.w = w
+        self.k = 2
 
     def make_psednc_vector(self, input_data, extra_phyche_value={}):
-        from dnavec.psenac.psenacutil import make_pseknc_vector
+        from repDNA.psenacutil import make_pseknc_vector
 
         original_phyche_value = {'AA': [0.06, 0.5, 0.27, 1.59, 0.11, -0.11],
                                  'AC': [1.50, 0.50, 0.80, 0.13, 1.29, 1.04],
@@ -31,7 +32,7 @@ class PseDNC():
 
         sequence_list = get_data(input_data)
         phyche_value = extend_phyche_index(original_phyche_value, extra_phyche_value)
-        vector = make_pseknc_vector(sequence_list, self.lamada, self.w, 2, phyche_value, theta_type=1)
+        vector = make_pseknc_vector(sequence_list, self.lamada, self.w, self.k, phyche_value, theta_type=1)
 
         return vector
 
@@ -53,7 +54,7 @@ class PseKNC():
         :param input_data: The fasta file path or single DNA sequence or DNA sequence list.
         :return: vector: The iNucPseKNC vector.
         """
-        from dnavec.psenac.psenacutil import make_old_pseknc_vector
+        from repDNA.psenacutil import make_old_pseknc_vector
 
         original_phyche_value = {'AA': [0.06, 0.5, 0.27, 1.59, 0.11, -0.11],
                                  'AC': [1.50, 0.50, 0.80, 0.13, 1.29, 1.04],
@@ -116,8 +117,8 @@ class PCPseDNC():
                     sys.exit(0)
 
         # Generate phyche_value.
-        from dnavec.psenac.psenacutil import make_pseknc_vector
-        from dnavec.psenac.psenacutil import get_phyche_index
+        from repDNA.psenacutil import make_pseknc_vector
+        from repDNA.psenacutil import get_phyche_index
 
         phyche_value = extend_phyche_index(get_phyche_index(self.k, phyche_list), extra_phyche_index)
         # print phyche_value
@@ -160,8 +161,8 @@ class PCPseTNC():
                     sys.exit(0)
 
         # Generate phyche_value.
-        from dnavec.psenac.psenacutil import make_pseknc_vector
-        from dnavec.psenac.psenacutil import get_phyche_index
+        from repDNA.psenacutil import make_pseknc_vector
+        from repDNA.psenacutil import get_phyche_index
 
         phyche_value = extend_phyche_index(get_phyche_index(self.k, phyche_list), extra_phyche_index)
         print phyche_value
@@ -211,11 +212,11 @@ class SCPseDNC():
                     sys.exit(0)
 
         # Generate phyche_value.
-        from dnavec.psenac.psenacutil import make_pseknc_vector
-        from dnavec.psenac.psenacutil import get_phyche_index
+        from repDNA.psenacutil import make_pseknc_vector
+        from repDNA.psenacutil import get_phyche_index
 
         phyche_value = extend_phyche_index(get_phyche_index(self.k, phyche_list), extra_phyche_index)
-        print phyche_value
+        # print phyche_value
         # Make vector.
         vector = make_pseknc_vector(sequence_list, self.lamada, self.w, self.k, phyche_value, theta_type=2)
 
@@ -255,8 +256,8 @@ class SCPseTNC():
                     sys.exit(0)
 
         # Generate phyche_value.
-        from dnavec.psenac.psenacutil import make_pseknc_vector
-        from dnavec.psenac.psenacutil import get_phyche_index
+        from repDNA.psenacutil import make_pseknc_vector
+        from repDNA.psenacutil import get_phyche_index
 
         phyche_value = extend_phyche_index(get_phyche_index(self.k, phyche_list), extra_phyche_index)
         # print phyche_value
