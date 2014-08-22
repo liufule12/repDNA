@@ -8,11 +8,16 @@ class DAC():
         self.lag = lag
         self.k = 2
 
-    def make_dac_vec(self, input_data, phyche_index=[], all_property=False, extra_phyche_index={}):
+    def make_dac_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
+        if phyche_index is None:
+            phyche_index = []
+        if extra_phyche_value is None:
+            extra_phyche_index = {}
+
         sequence_list = get_data(input_data)
 
         phyche_value = generate_phyche_value(self.k, phyche_index, all_property, extra_phyche_index)
-        # print phyche_value
+        print phyche_value
 
         from repDNA.acutil import make_ac_vector
 
@@ -24,7 +29,12 @@ class DCC():
         self.lag = lag
         self.k = 2
 
-    def make_dcc_vec(self, input_data, phyche_index=[], all_property=False, extra_phyche_index={}):
+    def make_dcc_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
+        if phyche_index is None:
+            phyche_index = []
+        if extra_phyche_value is None:
+            extra_phyche_index = {}
+
         sequence_list = get_data(input_data)
 
         phyche_value = generate_phyche_value(self.k, phyche_index, all_property, extra_phyche_index)
@@ -40,7 +50,12 @@ class DACC():
         self.lag = lag
         self.k = 2
 
-    def make_dacc_vec(self, input_data, phyche_index=[], all_property=False, extra_phyche_index={}):
+    def make_dacc_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
+        if phyche_index is None:
+            phyche_index = []
+        if extra_phyche_value is None:
+            extra_phyche_index = {}
+
         sequence_list = get_data(input_data)
 
         phyche_value = generate_phyche_value(self.k, phyche_index, all_property, extra_phyche_index)
@@ -60,7 +75,12 @@ class TAC():
         self.lag = lag
         self.k = 3
 
-    def make_tac_vec(self, input_data, phyche_index=[], all_property=False, extra_phyche_index={}):
+    def make_tac_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
+        if phyche_index is None:
+            phyche_index = []
+        if extra_phyche_value is None:
+            extra_phyche_index = {}
+
         sequence_list = get_data(input_data)
 
         phyche_value = generate_phyche_value(self.k, phyche_index, all_property, extra_phyche_index)
@@ -76,7 +96,12 @@ class TCC():
         self.lag = lag
         self.k = 3
 
-    def make_tcc_vec(self, input_data, phyche_index=[], all_property=False, extra_phyche_index={}):
+    def make_tcc_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
+        if phyche_index is None:
+            phyche_index = []
+        if extra_phyche_value is None:
+            extra_phyche_index = {}
+
         sequence_list = get_data(input_data)
 
         phyche_value = generate_phyche_value(self.k, phyche_index, all_property, extra_phyche_index)
@@ -92,7 +117,12 @@ class TACC():
         self.lag = lag
         self.k = 3
 
-    def make_tacc_vec(self, input_data, phyche_index=[], all_property=False, extra_phyche_index={}):
+    def make_tacc_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
+        if phyche_index is None:
+            phyche_index = []
+        if extra_phyche_value is None:
+            extra_phyche_index = {}
+
         sequence_list = get_data(input_data)
 
         phyche_value = generate_phyche_value(self.k, phyche_index, all_property, extra_phyche_index)
@@ -125,49 +155,65 @@ if __name__ == '__main__':
                           'TC': [-0.08, 0.5, 0.27, 0.13, -0.39, 0.71],
                           'TG': [-1.38, -1.36, -0.27, -0.86, -0.62, -1.25],
                           'TT': [0.06, 0.5, 0.27, 1.59, 0.11, -0.11]}
+    phyche_index = \
+        [[0.026, 0.036, 0.031, 0.033, 0.016, 0.026, 0.014, 0.031, 0.025, 0.025, 0.026, 0.036, 0.017, 0.025, 0.016,
+          0.026],
+         [0.038, 0.038, 0.037, 0.036, 0.025, 0.042, 0.026, 0.037, 0.038, 0.036, 0.042, 0.038, 0.018, 0.038, 0.025,
+          0.038]]
+
+    from repDNA.util import normalize_index
 
     ac = DAC(1)
     vec = ac.make_dac_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], [], all_property=True)
     print(vec)
     print len(vec[0])
 
+    ac = DAC(2)
+    vec = ac.make_dac_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], ['Twist', 'Tilt'], all_property=False,
+                          extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True))
+    print vec
+    print len(vec[0])
+
     cc = DCC(2)
     vec = cc.make_dcc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC', 'GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], [],
-                             all_property=True)
+                          all_property=True)
     print(vec)
     print len(vec[0]), len(vec[1])
 
     acc = DACC(1)
     vec = acc.make_dacc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC', 'GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], [],
-                               all_property=True)
+                            all_property=True)
     for e in vec:
         print e
     print len(vec[0]), len(vec[1])
 
     acc = DACC(2)
     vec = acc.make_dacc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC', 'GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], [],
-                               all_property=True, extra_phyche_index=extra_phyche_value)
+                            all_property=True, extra_phyche_index=extra_phyche_value)
     for e in vec:
         print e
     print len(vec[0]), len(vec[1])
 
     print 'Begin TAC'
     dac = TAC(1)
-    vec = dac.make_tac_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC', 'GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], [], all_property=True)
+    vec = dac.make_tac_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC', 'GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], [],
+                           all_property=True)
     for e in vec:
         print vec
     print len(vec[0]), len(vec[1])
 
     print 'Begin TCC'
     tcc = TCC(3)
-    vec = tcc.make_tcc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC', 'GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], [], all_property=True)
+    vec = tcc.make_tcc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC', 'GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], [],
+                           all_property=True)
     for e in vec:
         print vec
     print len(vec[0]), len(vec[1])
 
     print 'Bengin TACC'
     tacc = TACC(3)
-    vec = tacc.make_tacc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC', 'GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], [], all_property=True)
+    vec = tacc.make_tacc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC', 'GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], [],
+                             all_property=True)
     for e in vec:
         print vec
     print len(vec[0]), len(vec[1])
