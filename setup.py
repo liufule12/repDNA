@@ -1,6 +1,5 @@
 __author__ = 'aleeee'
 
-import os
 from distutils.core import setup
 
 setup(name='repDNA',
@@ -9,4 +8,6 @@ setup(name='repDNA',
       long_description=open('README.md').read(),
       author='Fule Liu',
       author_email='liufule12@gmail.com',
-      packages=['repDNA'],)
+      packages=['repDNA'],
+      package_data={'repDNA': ['*.data']},
+      )
