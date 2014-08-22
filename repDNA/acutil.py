@@ -38,7 +38,7 @@ def make_ac_vector(sequence_list, lag, phyche_value, k):
                     nucleotide2 = sequence[i+temp_lag: i+temp_lag+k]
                     temp_sum += (phyche_value[nucleotide1][j] - ave_phyche_value) * (phyche_value[nucleotide2][j])
 
-                each_vec.append(temp_sum / (len_seq - temp_lag))
+                each_vec.append(round(temp_sum / (len_seq - temp_lag), 3))
         vec_ac.append(each_vec)
 
     return vec_ac
@@ -76,7 +76,7 @@ def make_cc_vector(sequence_list, lag, phyche_value, k):
                             nucleotide2 = sequence[j+temp_lag: j+temp_lag+k]
                             temp_sum += (phyche_value[nucleotide1][i1] - ave_phyche_value1) * \
                                         (phyche_value[nucleotide2][i2] - ave_phyche_value2)
-                        each_vec.append(temp_sum / (len_seq - temp_lag))
+                        each_vec.append(round(temp_sum / (len_seq - temp_lag), 3))
                         # print temp_lag, i1, i2, each_vec
                         # print len(each_vec)
 
