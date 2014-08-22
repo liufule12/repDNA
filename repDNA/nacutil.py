@@ -491,14 +491,15 @@ def diversity(vec):
     """
     m_sum = sum(vec)
     from math import log
-    temp = 0.0
-    for m in vec:
-        if 0 == m:
-            continue
-        else:
-            temp += m * log(m, 2)
-
-    return m_sum*log(m_sum, 2) - temp
+    return m_sum*log(m_sum, 2) - sum([e*log(e, 2) for e in vec if e != 0])
+    # temp = 0.0
+    # for m in vec:
+    #     if 0 == m:
+    #         continue
+    #     else:
+    #         temp += m * log(m, 2)
+    #
+    # return m_sum*log(m_sum, 2) - temp
 
 
 def id_x_s(vec_x, vec_s, diversity_s):
