@@ -193,22 +193,22 @@ def is_sequence_list(sequence_list):
     return new_sequence_list
 
 
-def get_data(data, desc=False):
+def get_data(input_data, desc=False):
     """Get sequence data from file or list with check.
 
-    :param data: type file or list
+    :param input_data: type file or list
     :param desc: with this option, the return value will be a Seq object list(it only works in file object).
     :return: sequence data or shutdown.
     """
-    if isinstance(data, file):
+    if isinstance(input_data, file):
         if desc is False:
-            return get_sequence_check_dna(data)
+            return get_sequence_check_dna(input_data)
         else:
-            return read_fasta_check_dna(data)
-    elif isinstance(data, list):
-        data = is_sequence_list(data)
-        if data is not False:
-            return data
+            return read_fasta_check_dna(input_data)
+    elif isinstance(input_data, list):
+        input_data = is_sequence_list(input_data)
+        if input_data is not False:
+            return input_data
         else:
             sys.exit(0)
     else:
