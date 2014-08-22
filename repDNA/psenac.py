@@ -10,7 +10,10 @@ class PseDNC():
         self.w = w
         self.k = 2
 
-    def make_psednc_vector(self, input_data, extra_phyche_value={}):
+    def make_psednc_vec(self, input_data, extra_phyche_index=None):
+        if extra_phyche_index is None:
+            extra_phyche_index = {}
+
         from repDNA.psenacutil import make_pseknc_vector
 
         original_phyche_value = {'AA': [0.06, 0.5, 0.27, 1.59, 0.11, -0.11],
@@ -31,7 +34,7 @@ class PseDNC():
                                  'TT': [0.06, 0.5, 0.27, 1.59, 0.11, -0.11]}
 
         sequence_list = get_data(input_data)
-        phyche_value = extend_phyche_index(original_phyche_value, extra_phyche_value)
+        phyche_value = extend_phyche_index(original_phyche_value, extra_phyche_index)
         vector = make_pseknc_vector(sequence_list, self.lamada, self.w, self.k, phyche_value, theta_type=1)
 
         return vector
@@ -48,12 +51,15 @@ class PseKNC():
         self.lamada = lamada
         self.w = w
 
-    def make_pseknc_vector(self, input_data, extra_phyche_value={}):
+    def make_pseknc_vec(self, input_data, extra_phyche_index=None):
         """Make PseKNC vector.
 
         :param input_data: The fasta file path or single DNA sequence or DNA sequence list.
         :return: vector: The iNucPseKNC vector.
         """
+        if extra_phyche_index is None:
+            extra_phyche_index = {}
+
         from repDNA.psenacutil import make_old_pseknc_vector
 
         original_phyche_value = {'AA': [0.06, 0.5, 0.27, 1.59, 0.11, -0.11],
@@ -74,7 +80,7 @@ class PseKNC():
                                  'TT': [0.06, 0.5, 0.27, 1.59, 0.11, -0.11]}
 
         sequence_list = get_data(input_data)
-        phyche_value = extend_phyche_index(original_phyche_value, extra_phyche_value)
+        phyche_value = extend_phyche_index(original_phyche_value, extra_phyche_index)
         return make_old_pseknc_vector(sequence_list, self.lamada, self.w, self.k, phyche_value, theta_type=1)
 
 
@@ -84,7 +90,7 @@ class PCPseDNC():
         self.w = w
         self.k = 2
 
-    def make_pcpsednc_vector(self, input_data, phyche_list, all_property=False, extra_phyche_index={}):
+    def make_pcpsednc_vec(self, input_data, phyche_list, all_property=False, extra_phyche_index=None):
         """Make a PseDNC type1 vector.
 
         :param input_data: file object or sequence list.
@@ -92,6 +98,9 @@ class PCPseDNC():
         :param all_property: choose all physicochemical properties or not.
         :return: PseDNC type1 vector.
         """
+        if extra_phyche_index is None:
+            extra_phyche_index = {}
+
         diphyche_list = ['Base stacking', 'Protein induced deformability', 'B-DNA twist', 'Dinucleotide GC Content',
                          'A-philicity', 'Propeller twist', 'Duplex stability:(freeenergy)',
                          'Duplex tability(disruptenergy)',
@@ -134,7 +143,7 @@ class PCPseTNC():
         self.w = w
         self.k = 3
 
-    def make_pcpsetnc_vector(self, input_data, phyche_list, all_property=False, extra_phyche_index={}):
+    def make_pcpsetnc_vec(self, input_data, phyche_list, all_property=False, extra_phyche_index=None):
         """Make a PseDNC type1 vector.
 
         :param input_data: file object or sequence list.
@@ -142,6 +151,9 @@ class PCPseTNC():
         :param all_property: choose all physicochemical properties or not.
         :return: PseDNC type1 vector.
         """
+        if extra_phyche_index is None:
+            extra_phyche_index = {}
+
         triphyche_list = ['Dnase I', 'Bendability (DNAse)', 'Bendability (consensus)', 'Trinucleotide GC Content',
                           'Nucleosome positioning', 'Consensus_roll', 'Consensus-Rigid', 'Dnase I-Rigid', 'MW-Daltons',
                           'MW-kg', 'Nucleosome', 'Nucleosome-Rigid']
@@ -178,7 +190,7 @@ class SCPseDNC():
         self.w = w
         self.k = 2
 
-    def make_scpsednc_vector(self, input_data, phyche_list, all_property=False, extra_phyche_index={}):
+    def make_scpsednc_vec(self, input_data, phyche_list, all_property=False, extra_phyche_index=None):
         """Make a PseDNC type2 vector.
 
         :param input_data: file object or sequence list.
@@ -186,6 +198,9 @@ class SCPseDNC():
         :param all_property: choose all physicochemical properties or not.
         :return: PseDNC type2 vector.
         """
+        if extra_phyche_index is None:
+            extra_phyche_index = {}
+
         diphyche_list = ['Base stacking', 'Protein induced deformability', 'B-DNA twist', 'Dinucleotide GC Content',
                          'A-philicity', 'Propeller twist', 'Duplex stability:(freeenergy)',
                          'Duplex tability(disruptenergy)',
@@ -229,7 +244,7 @@ class SCPseTNC():
         self.w = w
         self.k = 3
 
-    def make_scpsetnc_vector(self, input_data, phyche_list, all_property=False, extra_phyche_index={}):
+    def make_scpsetnc_vec(self, input_data, phyche_list, all_property=False, extra_phyche_index=None):
         """Make a PseDNC type2 vector.
 
         :param input_data: file object or sequence list.
@@ -237,6 +252,9 @@ class SCPseTNC():
         :param all_property: choose all physicochemical properties or not.
         :return: PseDNC type2 vector.
         """
+        if extra_phyche_index is None:
+            extra_phyche_index = {}
+
         triphyche_list = ['Dnase I', 'Bendability (DNAse)', 'Bendability (consensus)', 'Trinucleotide GC Content',
                           'Nucleosome positioning', 'Consensus_roll', 'Consensus-Rigid', 'Dnase I-Rigid', 'MW-Daltons',
                           'MW-kg', 'Nucleosome', 'Nucleosome-Rigid']
@@ -273,7 +291,7 @@ if __name__ == '__main__':
     start_time = time.time()
 
     psednc = PseDNC(lamada=1, w=0.05)
-    res = psednc.make_psednc_vector(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
+    res = psednc.make_psednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
     for e in res:
         print e
     print len(e)
@@ -304,25 +322,25 @@ if __name__ == '__main__':
                           'TA': [1.60, 0.42, 1], 'TC': [-0.65, -0.14, 1], 'TG': [0.57, 1.51, 1], 'TT': [1.02, -0.64, 1]}
 
     psednc = PseDNC(lamada=1, w=0.05)
-    vector = psednc.make_psednc_vector(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], extra_phyche_index)
+    vector = psednc.make_psednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], extra_phyche_index)
     for e in vector:
         print e
         print len(e)
 
     pseknc = PseKNC()
-    res = pseknc.make_pseknc_vector(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
+    res = pseknc.make_pseknc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
     for e in res:
         print e
         print len(e)
 
     pseknc = PseKNC(k=2, lamada=1, w=0.05)
-    res = pseknc.make_pseknc_vector(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
+    res = pseknc.make_pseknc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
     for e in res:
         print e
         print len(e)
 
     pseknc = PseKNC(k=2, lamada=1, w=0.05)
-    res = pseknc.make_pseknc_vector(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], extra_phyche_index)
+    res = pseknc.make_pseknc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], extra_phyche_index)
     for e in res:
         print e
         print len(e)
@@ -349,22 +367,22 @@ if __name__ == '__main__':
                           'TT': [0.06, 0.5, 0.27, 1.59, 0.11, -0.11, 1]}
 
     pc_psednc = PCPseDNC(1, 0.05)
-    print 'This is PC-PseDNC', pc_psednc.make_pcpsednc_vector(input_data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'],
+    print 'This is PC-PseDNC', pc_psednc.make_pcpsednc_vec(input_data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'],
                                                               phyche_list=['Base stacking'],
                                                               all_property=False)
-    print 'This is extra PC-PseDNC', pc_psednc.make_pcpsednc_vector(input_data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'],
+    print 'This is extra PC-PseDNC', pc_psednc.make_pcpsednc_vec(input_data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'],
                                                                     phyche_list=['Base stacking'], all_property=False,
                                                                     extra_phyche_index=extra_phyche_index)
 
     pc_psetnc = PCPseTNC(1, 0.05)
     print 'This is PC-PseTNC'
-    print pc_psetnc.make_pcpsetnc_vector(input_data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=['Dnase I'])
+    print pc_psetnc.make_pcpsetnc_vec(input_data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=['Dnase I'])
 
     sc_psednc = SCPseDNC(lamada=1, w=0.05)
     print 'This is SC-PseDNC'
-    print sc_psednc.make_scpsednc_vector(input_data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=['Base stacking'])
+    print sc_psednc.make_scpsednc_vec(input_data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=['Base stacking'])
 
     sc_psetnc = SCPseTNC(lamada=1, w=0.05)
     print 'This is SC-PseTNC'
-    print sc_psetnc.make_scpsetnc_vector(input_data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=['Dnase I'])
+    print sc_psetnc.make_scpsetnc_vec(input_data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=['Dnase I'])
 
