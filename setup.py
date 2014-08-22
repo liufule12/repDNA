@@ -9,4 +9,4 @@ setup(name='repDNA',
       long_description=open('README.md').read(),
       author='Fule Liu',
       author_email='liufule12@gmail.com',
-      packages=['repDNA', 'repDNA.nac', 'repDNA.psenac', 'repDNA.ac'],)
+      packages=['repDNA'],)
