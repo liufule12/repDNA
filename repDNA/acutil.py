@@ -47,7 +47,6 @@ def make_ac_vector(sequence_list, lag, phyche_value, k):
 def make_cc_vector(sequence_list, lag, phyche_value, k):
     phyche_values = phyche_value.values()
     len_phyche_value = len(phyche_values[0])
-    print len_phyche_value
 
     vec_cc = []
     for sequence in sequence_list:
