@@ -268,8 +268,13 @@ def write_libsvm(vector_list, label_list, write_file):
             f.write('\n')
 
 
-def generate_phyche_value(k, phyche_list=[], all_property=False, extra_phyche_index={}):
+def generate_phyche_value(k, phyche_index=None, all_property=False, extra_phyche_index=None):
     """Combine the user selected phyche_list, is_all_property and extra_phyche_index to a new standard phyche_value."""
+    if phyche_index is None:
+        phyche_index = []
+    if extra_phyche_index is None:
+        extra_phyche_index = {}
+
     diphyche_list = ['Base stacking', 'Protein induced deformability', 'B-DNA twist', 'Dinucleotide GC Content',
                      'A-philicity', 'Propeller twist', 'Duplex stability:(freeenergy)',
                      'Duplex tability(disruptenergy)', 'DNA denaturation', 'Bending stiffness', 'Protein DNA twist',
@@ -286,10 +291,9 @@ def generate_phyche_value(k, phyche_list=[], all_property=False, extra_phyche_in
     # Set and check physicochemical properties.
     if 2 == k:
         if all_property is True:
-            phyche_list = diphyche_list
+            phyche_index = diphyche_list
         else:
-            print(phyche_list)
-            for e in phyche_list:
+            for e in phyche_index:
                 if e not in diphyche_list:
                     error_info = 'Sorry, the physicochemical properties ' + e + ' is not exit.'
                     import sys
@@ -298,9 +302,9 @@ def generate_phyche_value(k, phyche_list=[], all_property=False, extra_phyche_in
                     sys.exit(0)
     elif 3 == k:
         if all_property is True:
-            phyche_list = triphyche_list
+            phyche_index = triphyche_list
         else:
-            for e in phyche_list:
+            for e in phyche_index:
                 if e not in triphyche_list:
                     error_info = 'Sorry, the physicochemical properties ' + e + ' is not exit.'
                     import sys
@@ -311,7 +315,7 @@ def generate_phyche_value(k, phyche_list=[], all_property=False, extra_phyche_in
     # Generate phyche_value.
     from repDNA.psenacutil import get_phyche_index, extend_phyche_index
 
-    return extend_phyche_index(get_phyche_index(k, phyche_list), extra_phyche_index)
+    return extend_phyche_index(get_phyche_index(k, phyche_index), extra_phyche_index)
 
 
 def convert_phyche_index_to_dict(phyche_index):
