@@ -77,13 +77,13 @@ class IDkmer():
 
         pos_s_list = get_data(hs)
         neg_s_list = get_data(non_hs)
-        print self.k
+        # print self.k
         if self.upto is False:
             k_list = [self.k]
         else:
             k_list = range(1, self.k+1)
 
-        print 'k_list =', k_list
+        # print 'k_list =', k_list
 
         # Get all kmer ID from 1-kmer to 6-kmer.
         # Calculate standard source S vector.
@@ -115,16 +115,16 @@ class IDkmer():
                 kmer_list = make_kmer_list(k, alphabet)
                 seq_list = [seq]
                 kmer_vec = make_kmer_vector(seq_list, kmer_list, rev_kmer_list, k, upto, revcomp, normalize)
-                print 'k', k
-                print 'kmer_vec', kmer_vec
+                # print 'k', k
+                # print 'kmer_vec', kmer_vec
 
                 # print diversity_pos_s
                 if upto is False:
                     k = 1
 
-                print 'pos_vec', pos_s_vec
-                print 'neg_vec', neg_s_vec
-                print 'diversity_pos_s', diversity_pos_s
+                # print 'pos_vec', pos_s_vec
+                # print 'neg_vec', neg_s_vec
+                # print 'diversity_pos_s', diversity_pos_s
 
                 temp_vec.append(round(id_x_s(kmer_vec[0], pos_s_vec[k-1], diversity_pos_s[k-1]), 3))
                 temp_vec.append(round(id_x_s(kmer_vec[0], neg_s_vec[k-1], diversity_neg_s[k-1]), 3))
