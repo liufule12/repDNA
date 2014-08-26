@@ -90,14 +90,16 @@ class PCPseDNC():
         self.w = w
         self.k = 2
 
-    def make_pcpsednc_vec(self, input_data, phyche_list, all_property=False, extra_phyche_index=None):
+    def make_pcpsednc_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
         """Make a PseDNC type1 vector.
 
         :param input_data: file object or sequence list.
-        :param phyche_list: physicochemical properties list.
+        :param phyche_index: physicochemical properties list.
         :param all_property: choose all physicochemical properties or not.
         :return: PseDNC type1 vector.
         """
+        if phyche_index is None:
+            phyche_index = []
         if extra_phyche_index is None:
             extra_phyche_index = {}
 
@@ -116,12 +118,13 @@ class PCPseDNC():
 
         # Set and check physicochemical properties.
         if all_property is True:
-            phyche_list = diphyche_list
+            phyche_index = diphyche_list
         else:
-            for e in phyche_list:
+            for e in phyche_index:
                 if e not in diphyche_list:
                     error_info = 'Sorry, the physicochemical properties ' + e + ' is not exit.'
                     import sys
+
                     sys.stderr.write(error_info)
                     sys.exit(0)
 
@@ -129,7 +132,7 @@ class PCPseDNC():
         from repDNA.psenacutil import make_pseknc_vector
         from repDNA.psenacutil import get_phyche_index
 
-        phyche_value = extend_phyche_index(get_phyche_index(self.k, phyche_list), extra_phyche_index)
+        phyche_value = extend_phyche_index(get_phyche_index(self.k, phyche_index), extra_phyche_index)
         # print phyche_value
         # Make vector.
         vector = make_pseknc_vector(sequence_list, self.lamada, self.w, self.k, phyche_value, theta_type=1)
@@ -143,14 +146,16 @@ class PCPseTNC():
         self.w = w
         self.k = 3
 
-    def make_pcpsetnc_vec(self, input_data, phyche_list, all_property=False, extra_phyche_index=None):
+    def make_pcpsetnc_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
         """Make a PseDNC type1 vector.
 
         :param input_data: file object or sequence list.
-        :param phyche_list: physicochemical properties list.
+        :param phyche_index: physicochemical properties list.
         :param all_property: choose all physicochemical properties or not.
         :return: PseDNC type1 vector.
         """
+        if phyche_index is None:
+            phyche_index = []
         if extra_phyche_index is None:
             extra_phyche_index = {}
 
@@ -162,9 +167,9 @@ class PCPseTNC():
 
         # Set and check physicochemical properties.
         if all_property is True:
-            phyche_list = triphyche_list
+            phyche_index = triphyche_list
         else:
-            for e in phyche_list:
+            for e in phyche_index:
                 if e not in triphyche_list:
                     error_info = 'Sorry, the physicochemical properties ' + e + ' is not exit.'
                     import sys
@@ -176,8 +181,8 @@ class PCPseTNC():
         from repDNA.psenacutil import make_pseknc_vector
         from repDNA.psenacutil import get_phyche_index
 
-        phyche_value = extend_phyche_index(get_phyche_index(self.k, phyche_list), extra_phyche_index)
-        print phyche_value
+        phyche_value = extend_phyche_index(get_phyche_index(self.k, phyche_index), extra_phyche_index)
+        # print phyche_value
         # Make vector.
         vector = make_pseknc_vector(sequence_list, self.lamada, self.w, self.k, phyche_value, theta_type=1)
 
@@ -190,14 +195,16 @@ class SCPseDNC():
         self.w = w
         self.k = 2
 
-    def make_scpsednc_vec(self, input_data, phyche_list, all_property=False, extra_phyche_index=None):
+    def make_scpsednc_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
         """Make a PseDNC type2 vector.
 
         :param input_data: file object or sequence list.
-        :param phyche_list: physicochemical properties list.
+        :param phyche_index: physicochemical properties list.
         :param all_property: choose all physicochemical properties or not.
         :return: PseDNC type2 vector.
         """
+        if phyche_index == None:
+            phyche_index = []
         if extra_phyche_index is None:
             extra_phyche_index = {}
 
@@ -216,9 +223,9 @@ class SCPseDNC():
 
         # Set and check physicochemical properties.
         if all_property is True:
-            phyche_list = diphyche_list
+            phyche_index = diphyche_list
         else:
-            for e in phyche_list:
+            for e in phyche_index:
                 if e not in diphyche_list:
                     error_info = 'Sorry, the physicochemical properties ' + e + ' is not exit.'
                     import sys
@@ -230,7 +237,7 @@ class SCPseDNC():
         from repDNA.psenacutil import make_pseknc_vector
         from repDNA.psenacutil import get_phyche_index
 
-        phyche_value = extend_phyche_index(get_phyche_index(self.k, phyche_list), extra_phyche_index)
+        phyche_value = extend_phyche_index(get_phyche_index(self.k, phyche_index), extra_phyche_index)
         # print phyche_value
         # Make vector.
         vector = make_pseknc_vector(sequence_list, self.lamada, self.w, self.k, phyche_value, theta_type=2)
@@ -244,14 +251,16 @@ class SCPseTNC():
         self.w = w
         self.k = 3
 
-    def make_scpsetnc_vec(self, input_data, phyche_list, all_property=False, extra_phyche_index=None):
+    def make_scpsetnc_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
         """Make a PseDNC type2 vector.
 
         :param input_data: file object or sequence list.
-        :param phyche_list: physicochemical properties list.
+        :param phyche_index: physicochemical properties list.
         :param all_property: choose all physicochemical properties or not.
         :return: PseDNC type2 vector.
         """
+        if phyche_index is None:
+            phyche_index = []
         if extra_phyche_index is None:
             extra_phyche_index = {}
 
@@ -263,9 +272,9 @@ class SCPseTNC():
 
         # Set and check physicochemical properties.
         if all_property is True:
-            phyche_list = triphyche_list
+            phyche_index = triphyche_list
         else:
-            for e in phyche_list:
+            for e in phyche_index:
                 if e not in triphyche_list:
                     error_info = 'Sorry, the physicochemical properties ' + e + ' is not exit.'
                     import sys
@@ -277,7 +286,7 @@ class SCPseTNC():
         from repDNA.psenacutil import make_pseknc_vector
         from repDNA.psenacutil import get_phyche_index
 
-        phyche_value = extend_phyche_index(get_phyche_index(self.k, phyche_list), extra_phyche_index)
+        phyche_value = extend_phyche_index(get_phyche_index(self.k, phyche_index), extra_phyche_index)
         # print phyche_value
         # Make vector.
         vector = make_pseknc_vector(sequence_list, self.lamada, self.w, self.k, phyche_value, theta_type=2)
@@ -287,102 +296,130 @@ class SCPseTNC():
 
 if __name__ == '__main__':
     import time
+    from repDNA.util import normalize_index
 
     start_time = time.time()
 
-    psednc = PseDNC(lamada=1, w=0.05)
-    res = psednc.make_psednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
-    for e in res:
-        print e
-    print len(e)
-    print '-----------------------------------------------------------------'
+    phyche_index = [[1.019, -0.918, 0.488, 0.567, 0.567, -0.070, -0.579, 0.488, -0.654, -2.455, -0.070, -0.918, 1.603,
+                     -0.654, 0.567, 1.019]]
 
-    extra_phyche_index = {'AA': [0.06, 0.5, 0.27, 1.59, 0.11, -0.11, 1],
-    'AC': [1.50, 0.50, 0.80, 0.13, 1.29, 1.04, 1],
-    'AG': [0.78, 0.36, 0.09, 0.68, -0.24, -0.62, 1],
-                          'AT': [1.07, 0.22, 0.62, -1.02, 2.51, 1.17, 1],
-                          'CA': [-1.38, -1.36, -0.27, -0.86, -0.62, -1.25, 1],
-                          'CC': [0.06, 1.08, 0.09, 0.56, -0.82, 0.24, 1],
-                          'CG': [-1.66, -1.22, -0.44, -0.82, -0.29, -1.39, 1],
-                          'CT': [0.78, 0.36, 0.09, 0.68, -0.24, -0.62, 1],
-                          'GA': [-0.08, 0.5, 0.27, 0.13, -0.39, 0.71, 1],
-                          'GC': [-0.08, 0.22, 1.33, -0.35, 0.65, 1.59, 1],
-                          'GG': [0.06, 1.08, 0.09, 0.56, -0.82, 0.24, 1],
-                          'GT': [1.50, 0.50, 0.80, 0.13, 1.29, 1.04, 1],
-                          'TA': [-1.23, -2.37, -0.44, -2.24, -1.51, -1.39, 1],
-                          'TC': [-0.08, 0.5, 0.27, 0.13, -0.39, 0.71, 1],
-                          'TG': [-1.38, -1.36, -0.27, -0.86, -0.62, -1.25, 1],
-                          'TT': [0.06, 0.5, 0.27, 1.59, 0.11, -0.11, 1]}
+    print 'Begin PseDNC'
 
-    extra_phyche_index = {'AA': [1.02, -0.64, 111], 'AC': [-0.92, -0.83, 1], 'AG': [0.49, -0.89, 1],
-                          'AT': [0.57, -1.05, 1],
-                          'CA': [0.57, 1.51, 1], 'CC': [-0.07, 0.36, 1], 'CG': [-0.58, 2.23, 1], 'CT': [0.49, -0.89, 1],
-                          'GA': [-0.65, -0.14, 1], 'GC': [-2.46, -0.30, 1], 'GG': [-0.07, 0.36, 1],
-                          'GT': [-0.92, -0.83, 1],
-                          'TA': [1.60, 0.42, 1], 'TC': [-0.65, -0.14, 1], 'TG': [0.57, 1.51, 1], 'TT': [1.02, -0.64, 1]}
+    psednc = PseDNC()
+    vec = psednc.make_psednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
+    print vec
+    print len(vec[0])
 
-    psednc = PseDNC(lamada=1, w=0.05)
-    vector = psednc.make_psednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], extra_phyche_index)
-    for e in vector:
-        print e
-        print len(e)
+    psednc = PseDNC(lamada=2, w=0.1)
+    vec = psednc.make_psednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
+    print vec
+    print len(vec[0])
+
+    vec = psednc.make_psednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'],
+                                 extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True))
+    print vec
+    print len(vec[0])
+
+    print 'Begin PseKNC'
 
     pseknc = PseKNC()
-    res = pseknc.make_pseknc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
-    for e in res:
-        print e
-        print len(e)
+    vec = pseknc.make_pseknc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
+    print vec
+    print len(vec[0])
 
     pseknc = PseKNC(k=2, lamada=1, w=0.05)
-    res = pseknc.make_pseknc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
-    for e in res:
-        print e
-        print len(e)
+    vec = pseknc.make_pseknc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
+    print vec
+    print len(vec[0])
 
-    pseknc = PseKNC(k=2, lamada=1, w=0.05)
-    res = pseknc.make_pseknc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], extra_phyche_index)
-    for e in res:
-        print e
-        print len(e)
-
-    print 'Time:', time.time() - start_time
-
+    vec = pseknc.make_pseknc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'],
+                                 extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True))
+    print vec
+    print len(vec[0])
     print
 
-    extra_phyche_index = {'AA': [0.06, 0.5, 0.27, 1.59, 0.11, -0.11, 1],
-                          'AC': [1.50, 0.50, 0.80, 0.13, 1.29, 1.04, 1],
-                          'AG': [0.78, 0.36, 0.09, 0.68, -0.24, -0.62, 1],
-                          'AT': [1.07, 0.22, 0.62, -1.02, 2.51, 1.17, 1],
-                          'CA': [-1.38, -1.36, -0.27, -0.86, -0.62, -1.25, 1],
-                          'CC': [0.06, 1.08, 0.09, 0.56, -0.82, 0.24, 1],
-                          'CG': [-1.66, -1.22, -0.44, -0.82, -0.29, -1.39, 1],
-                          'CT': [0.78, 0.36, 0.09, 0.68, -0.24, -0.62, 1],
-                          'GA': [-0.08, 0.5, 0.27, 0.13, -0.39, 0.71, 1],
-                          'GC': [-0.08, 0.22, 1.33, -0.35, 0.65, 1.59, 1],
-                          'GG': [0.06, 1.08, 0.09, 0.56, -0.82, 0.24, 1],
-                          'GT': [1.50, 0.50, 0.80, 0.13, 1.29, 1.04, 1],
-                          'TA': [-1.23, -2.37, -0.44, -2.24, -1.51, -1.39, 1],
-                          'TC': [-0.08, 0.5, 0.27, 0.13, -0.39, 0.71, 1],
-                          'TG': [-1.38, -1.36, -0.27, -0.86, -0.62, -1.25, 1],
-                          'TT': [0.06, 0.5, 0.27, 1.59, 0.11, -0.11, 1]}
+    print 'PC-PseDNC'
+    pc_psednc = PCPseDNC()
+    vec = pc_psednc.make_pcpsednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt'])
+    print vec
+    print len(vec[0])
 
-    pc_psednc = PCPseDNC(1, 0.05)
-    print 'This is PC-PseDNC', pc_psednc.make_pcpsednc_vec(input_data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'],
-                                                              phyche_list=['Base stacking'],
-                                                              all_property=False)
-    print 'This is extra PC-PseDNC', pc_psednc.make_pcpsednc_vec(input_data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'],
-                                                                    phyche_list=['Base stacking'], all_property=False,
-                                                                    extra_phyche_index=extra_phyche_index)
+    pc_psednc = PCPseDNC(lamada=2, w=0.05)
+    vec = pc_psednc.make_pcpsednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
+    print vec
+    print len(vec[0])
 
-    pc_psetnc = PCPseTNC(1, 0.05)
-    print 'This is PC-PseTNC'
-    print pc_psetnc.make_pcpsetnc_vec(input_data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=['Dnase I'])
+    vec = pc_psednc.make_pcpsednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt'],
+                                      extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True))
+    print vec
+    print len(vec[0])
+    print
 
-    sc_psednc = SCPseDNC(lamada=1, w=0.05)
-    print 'This is SC-PseDNC'
-    print sc_psednc.make_scpsednc_vec(input_data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=['Base stacking'])
+    print 'PC-PseTNC'
+    pc_psetnc = PCPseTNC()
+    vec = pc_psetnc.make_pcpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome'])
+    print vec
+    print len(vec[0])
 
-    sc_psetnc = SCPseTNC(lamada=1, w=0.05)
-    print 'This is SC-PseTNC'
-    print sc_psetnc.make_scpsetnc_vec(input_data=['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_list=['Dnase I'])
+    pc_psetnc = PCPseTNC(lamada=2, w=0.05)
+    vec = pc_psetnc.make_pcpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
+    print vec
+    print len(vec[0])
+
+    phyche_index = [
+        [7.176, 6.272, 4.736, 7.237, 3.810, 4.156, 4.156, 6.033, 3.410, 3.524, 4.445, 6.033, 1.613, 5.087, 2.169, 7.237,
+         3.581, 3.239, 1.668, 2.169, 6.813, 3.868, 5.440, 4.445, 3.810, 4.678, 5.440, 4.156, 2.673, 3.353, 1.668, 4.736,
+         4.214, 3.925, 3.353, 5.087, 2.842, 2.448, 4.678, 3.524, 3.581, 2.448, 3.868, 4.156, 3.467, 3.925, 3.239, 6.272,
+         2.955, 3.467, 2.673, 1.613, 1.447, 3.581, 3.810, 3.410, 1.447, 2.842, 6.813, 3.810, 2.955, 4.214, 3.581, 7.176]
+    ]
+    from repDNA.util import normalize_index
+
+    vec = pc_psetnc.make_pcpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome'],
+                                      extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True))
+    print vec
+    print len(vec[0])
+    print
+
+    print 'SC-PseDNC'
+    sc_psednc = SCPseDNC()
+    vec = sc_psednc.make_scpsednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt'])
+    print vec
+    print len(vec[0])
+
+    sc_psednc = SCPseDNC(lamada=2, w=0.05)
+    vec = sc_psednc.make_scpsednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
+    print vec
+    print len(vec[0])
+
+    phyche_index = [[1.019, -0.918, 0.488, 0.567, 0.567, -0.070, -0.579, 0.488, -0.654, -2.455, -0.070, -0.918, 1.603,
+                     -0.654, 0.567, 1.019]]
+    from repDNA.util import normalize_index
+    vec = sc_psednc.make_scpsednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt'],
+                                      extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True))
+    print vec
+    print len(vec[0])
+    print
+
+    print 'SC-PseTNC'
+    sc_psetnc = SCPseTNC()
+    vec = sc_psetnc.make_scpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome'])
+    print vec
+    print len(vec[0])
+
+    sc_psetnc = SCPseTNC(lamada=2, w=0.05)
+    vec = sc_psetnc.make_scpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
+    print vec
+    print len(vec[0])
+
+    phyche_index = [
+        [7.176, 6.272, 4.736, 7.237, 3.810, 4.156, 4.156, 6.033, 3.410, 3.524, 4.445, 6.033, 1.613, 5.087, 2.169, 7.237,
+         3.581, 3.239, 1.668, 2.169, 6.813, 3.868, 5.440, 4.445, 3.810, 4.678, 5.440, 4.156, 2.673, 3.353, 1.668, 4.736,
+         4.214, 3.925, 3.353, 5.087, 2.842, 2.448, 4.678, 3.524, 3.581, 2.448, 3.868, 4.156, 3.467, 3.925, 3.239, 6.272,
+         2.955, 3.467, 2.673, 1.613, 1.447, 3.581, 3.810, 3.410, 1.447, 2.842, 6.813, 3.810, 2.955, 4.214, 3.581, 7.176]
+    ]
+    from repDNA.util import normalize_index
+    vec = sc_psetnc.make_scpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome'],
+                                      extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True))
+    print vec
+    print len(vec[0])
 
