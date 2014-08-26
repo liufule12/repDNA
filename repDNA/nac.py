@@ -174,19 +174,19 @@ if __name__ == '__main__':
 
     print 'Test: default mod.'
     idkmer = IDkmer()
-    vec = idkmer.make_idkmer_vec(open('test.txt'), open('hs.txt'), open('non-hs.txt'))
+    vec = idkmer.make_idkmer_vec(open('test/test.txt'), open('test/hs.txt'), open('test/non-hs.txt'))
     print vec
     print
 
     print 'Test: k=2.'
     idkmer = IDkmer(k=2)
-    vec = idkmer.make_idkmer_vec(open('test.txt'), open('hs.txt'), open('non-hs.txt'))
+    vec = idkmer.make_idkmer_vec(open('test/test.txt'), open('test/hs.txt'), open('test/non-hs.txt'))
     print vec
     print
 
     print 'Test: k=2, upto=False'
     idkmer = IDkmer(k=2, upto=False)
-    vec = idkmer.make_idkmer_vec(open('test.txt'), open('hs.txt'), open('non-hs.txt'))
+    vec = idkmer.make_idkmer_vec(open('test/test.txt'), open('test/hs.txt'), open('test/non-hs.txt'))
     print vec
     print
 
