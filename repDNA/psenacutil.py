@@ -14,7 +14,7 @@ ALPHABET = 'ACGT'
 
 def extend_phyche_index(original_index, extend_index):
     """Extend {phyche:[value, ... ]}"""
-    if 0 == len(extend_index):
+    if extend_index is None or len(extend_index) == 0:
         return original_index
     for key in original_index.keys():
         original_index[key].extend(extend_index[key])
@@ -149,8 +149,9 @@ def make_pseknc_vector(sequence_list, lamada, w, k, phyche_value, theta_type):
     return vector
 
 
-def get_parallel_factor_old_pseknc(k, lamada, sequence, phyche_value):
-    """Get the corresponding factor theta list."""
+def get_parallel_factor_psednc(lamada, sequence, phyche_value):
+    """Get the corresponding factor theta list.
+       This def is just for dinucleotide."""
     theta = []
     l = len(sequence)
 
@@ -186,7 +187,7 @@ def make_old_pseknc_vector(sequence_list, lamada, w, k, phyche_value, theta_type
 
         # Get the theta_list according the Equation 5.
         if 1 == theta_type:
-            theta_list = get_parallel_factor_old_pseknc(k, lamada, sequence, phyche_value)
+            theta_list = get_parallel_factor_psednc(lamada, sequence, phyche_value)
         elif 2 == theta_type:
             theta_list = get_series_factor(k, lamada, sequence, phyche_value)
         theta_sum = sum(theta_list)
