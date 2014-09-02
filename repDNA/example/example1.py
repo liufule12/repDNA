@@ -58,8 +58,6 @@ if __name__ == '__main__':
         fpr, tpr, thresholds = roc_curve(vec_label[test], probas_[:, 1])
         mean_tpr += interp(mean_fpr, fpr, tpr)
         mean_tpr[0] = 0.0
-        roc_auc = auc(fpr, tpr)
-        plt.plot(fpr, tpr, lw=1, label='ROC fold %d (area = %0.2f)' % (i, roc_auc))
 
     # Plot ROC curve.
     plt.plot([0, 1], [0, 1], '--', color=(0.6, 0.6, 0.6), label='Luck')
@@ -67,7 +65,7 @@ if __name__ == '__main__':
     mean_tpr /= len(cv)
     mean_tpr[-1] = 1.0
     mean_auc = auc(mean_fpr, mean_tpr)
-    plt.plot(mean_fpr, mean_tpr, 'k--', label='Mean ROC (area = %0.2f)' % mean_auc, lw=2)
+    plt.plot(mean_fpr, mean_tpr, '-', label='Mean ROC (area = %0.2f)' % mean_auc, lw=2)
 
     plt.xlim([-0.05, 1.05])
     plt.ylim([-0.05, 1.05])
