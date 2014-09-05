@@ -53,7 +53,8 @@ if __name__ == '__main__':
     all_tpr = []
 
     for i, (train, test) in enumerate(cv):
-        probas_ = classifier.fit(vec[train], vec_label[train]).predict_proba(vec[test])
+        probas_ = classifier.fit(vec[train],
+                                 vec_label[train]).predict_proba(vec[test])
         # Compute ROC curve and area the curve
         fpr, tpr, thresholds = roc_curve(vec_label[test], probas_[:, 1])
         mean_tpr += interp(mean_fpr, fpr, tpr)
@@ -65,13 +66,14 @@ if __name__ == '__main__':
     mean_tpr /= len(cv)
     mean_tpr[-1] = 1.0
     mean_auc = auc(mean_fpr, mean_tpr)
-    plt.plot(mean_fpr, mean_tpr, '-', label='Mean ROC (area = %0.2f)' % mean_auc, lw=2)
+    plt.plot(mean_fpr, mean_tpr, '-',
+             label='Mean ROC (area = %0.2f)' % mean_auc, lw=2)
 
     plt.xlim([0, 1.0])
     plt.ylim([0, 1.0])
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
-    plt.title('ROC curve for the 10-fold cross-validation of example1')
+    # plt.title('ROC curve for the 10-fold cross-validation of example1')
     plt.legend(loc="lower right")
     plt.show()
 

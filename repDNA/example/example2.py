@@ -2,7 +2,7 @@ __author__ = 'liufule12'
 
 import time
 
-from repDNA.psenac import PseDNC
+from repDNA.ac import DAC
 import numpy as np
 from sklearn import svm
 from sklearn import cross_validation
@@ -19,13 +19,20 @@ if __name__ == '__main__':
     # ##############################################################################
     # Data IO and generation.
 
-    # Generate the PseDNC feature vector.
-    psednc = PseDNC(lamada=3, w=0.05)
-    pos_vec = psednc.make_psednc_vec(open('hotspots.fasta'))
-    neg_vec = psednc.make_psednc_vec(open('coldspots.fasta'))
+    # Generate the corresponding feature vector.
+    ac = DAC(lag=6)
+    pos_vec = ac.make_dac_vec(open('H_sapiens_pos.fasta'), all_property=True)
+    neg_vec = ac.make_dac_vec(open('H_sapiens_neg.fasta'), all_property=True)
 
+    print 'The number of positive and negative vectors.'
     print len(pos_vec)
     print len(neg_vec)
+
+    print 'The dimension of per positive and negative vector'
+    print len(pos_vec[0])
+    print len(neg_vec[0])
+
+    # write_libsvm(pos_vec, neg_vec, write_filename)
 
     # Merge feature vector and generate corresponding vector label.
     vec = np.array(pos_vec + neg_vec)
@@ -35,7 +42,7 @@ if __name__ == '__main__':
     # Classification and accurate analysis.
 
     # Run classifier with 10 folds cross-validation and generate accuracy.
-    clf = svm.LinearSVC(C=32)
+    clf = svm.SVC(C=32768.0)
     scores = cross_validation.cross_val_score(clf, vec, y=vec_label, cv=5)
     print 'Per accuracy in 5-fold CV:'
     print scores
@@ -46,7 +53,7 @@ if __name__ == '__main__':
 
     # Run classifier with cross-validation and plot ROC curves
     cv = StratifiedKFold(vec_label, n_folds=5)
-    classifier = svm.SVC(C=32, kernel='linear', gamma=0.5,
+    classifier = svm.SVC(C=32768.0, kernel='rbf', gamma=0.001953125,
                          probability=True)
 
     mean_tpr = 0.0
@@ -54,7 +61,8 @@ if __name__ == '__main__':
     all_tpr = []
 
     for i, (train, test) in enumerate(cv):
-        probas_ = classifier.fit(vec[train], vec_label[train]).predict_proba(vec[test])
+        probas_ = classifier.fit(vec[train],
+                                 vec_label[train]).predict_proba(vec[test])
         # Compute ROC curve and area the curve
         fpr, tpr, thresholds = roc_curve(vec_label[test], probas_[:, 1])
         mean_tpr += interp(mean_fpr, fpr, tpr)
@@ -73,11 +81,11 @@ if __name__ == '__main__':
     plt.ylim([0, 1.0])
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
-    # plt.title('ROC curve for the 5-fold cross-validation of example3')
+    # plt.title('ROC curve for the 5-fold cross-validation of DAC')
     plt.legend(loc="lower right")
     plt.show()
 
-    print 'Example3 End.'
+    print 'Example2 End.'
 
     total_time = time.time() - begin_time
     print 'Total running time of the example: %.2f seconds ( %i minutes %.2f seconds )' % (
