@@ -2,7 +2,7 @@ __author__ = 'aleeee'
 
 import sys
 import os
-import cPickle
+import pickle
 from math import pow
 
 from repDNA.util import frequency
@@ -16,7 +16,7 @@ def extend_phyche_index(original_index, extend_index):
     """Extend {phyche:[value, ... ]}"""
     if extend_index is None or len(extend_index) == 0:
         return original_index
-    for key in original_index.keys():
+    for key in list(original_index.keys()):
         original_index[key].extend(extend_index[key])
     return original_index
 
@@ -34,7 +34,7 @@ def get_phyche_factor_dic(k):
         sys.stderr.write("The k can just be 2 or 3.")
         sys.exit(0)
 
-    phyche_factor_dic = cPickle.load(f)
+    phyche_factor_dic = pickle.load(f)
     f.close()
 
     return phyche_factor_dic
@@ -62,7 +62,7 @@ def get_phyche_index(k, phyche_list):
 def parallel_cor_function(nucleotide1, nucleotide2, phyche_index):
     """Get the cFactor.(Type1)"""
     temp_sum = 0.0
-    phyche_index_values = phyche_index.values()
+    phyche_index_values = list(phyche_index.values())
     len_phyche_index = len(phyche_index_values[0])
     # print len_phyche_index
     for u in range(len_phyche_index):
@@ -97,7 +97,7 @@ def get_series_factor(k, lamada, sequence, phyche_value):
     """Get the corresponding series factor theta list."""
     theta = []
     l_seq = len(sequence)
-    temp_values = phyche_value.values()
+    temp_values = list(phyche_value.values())
     max_big_lamada = len(temp_values[0])
 
     for small_lamada in range(1, lamada + 1):
@@ -224,4 +224,4 @@ if __name__ == '__main__':
                           'TT': [0.06, 0.5, 0.27, 1.59, 0.11, -0.11, 1]}
     phyche_index = extend_phyche_index(get_phyche_index(k=2, phyche_list=['Base stacking', 'DNA denaturation']),
                                        extra_phyche_index)
-    print phyche_index
+    print(phyche_index)

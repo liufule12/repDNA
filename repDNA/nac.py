@@ -22,9 +22,9 @@ class Kmer():
         sequence_list = get_data(data)
 
         if self.upto:
-            k_list = range(1, self.k + 1)
+            k_list = list(range(1, self.k + 1))
         else:
-            k_list = range(self.k, self.k + 1)
+            k_list = list(range(self.k, self.k + 1))
         kmer_list = make_upto_kmer_list(k_list, self.alphabet)
 
         rev_kmer_list = []
@@ -43,9 +43,9 @@ class RevcKmer(Kmer):
         sequence_list = get_data(data)
 
         if self.upto:
-            k_list = range(1, self.k + 1)
+            k_list = list(range(1, self.k + 1))
         else:
-            k_list = range(self.k, self.k + 1)
+            k_list = list(range(self.k, self.k + 1))
         kmer_list = make_upto_kmer_list(k_list, self.alphabet)
 
         # Use lexicographically first version of {kmer, revcomp(kmer)}.
@@ -81,7 +81,7 @@ class IDkmer():
         if self.upto is False:
             k_list = [self.k]
         else:
-            k_list = range(1, self.k+1)
+            k_list = list(range(1, self.k+1))
 
         # print 'k_list =', k_list
 
@@ -139,56 +139,56 @@ if __name__ == '__main__':
 
     kmer = Kmer(k=2)
     vec = kmer.make_kmer_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
-    print "The vector is ", vec
-    print
+    print("The vector is ", vec)
+    print()
 
     kmer = Kmer(k=2, normalize=True)
     vec = kmer.make_kmer_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
-    print "The vector is ", vec
-    print
+    print("The vector is ", vec)
+    print()
 
     kmer = Kmer(k=2, normalize=False, upto=True)
     vec = kmer.make_kmer_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
-    print "The vector is ", vec
-    print
+    print("The vector is ", vec)
+    print()
 
     from repDNA.nac import RevcKmer
 
     revckmer = RevcKmer(k=2, normalize=False, upto=False)
     vec = revckmer.make_revckmer_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
-    print "The vector is ", vec
-    print
+    print("The vector is ", vec)
+    print()
 
     revckmer = RevcKmer(k=2, normalize=True, upto=False)
     vec = revckmer.make_revckmer_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
-    print "The vector is ", vec
-    print
+    print("The vector is ", vec)
+    print()
 
     revckmer = RevcKmer(k=2, normalize=True, upto=True)
     vec = revckmer.make_revckmer_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
-    print "The vector is ", vec
-    print
+    print("The vector is ", vec)
+    print()
 
-    print 'Begin IDkmer.'
+    print('Begin IDkmer.')
     from repDNA.nac import IDkmer
 
-    print 'Test: default mod.'
+    print('Test: default mod.')
     idkmer = IDkmer()
     vec = idkmer.make_idkmer_vec(open('test/test.txt'), open('test/hs.txt'), open('test/non-hs.txt'))
-    print vec
-    print
+    print(vec)
+    print()
 
-    print 'Test: k=2.'
+    print('Test: k=2.')
     idkmer = IDkmer(k=2)
     vec = idkmer.make_idkmer_vec(open('test/test.txt'), open('test/hs.txt'), open('test/non-hs.txt'))
-    print vec
-    print
+    print(vec)
+    print()
 
-    print 'Test: k=2, upto=False'
+    print('Test: k=2, upto=False')
     idkmer = IDkmer(k=2, upto=False)
     vec = idkmer.make_idkmer_vec(open('test/test.txt'), open('test/hs.txt'), open('test/non-hs.txt'))
-    print vec
-    print
+    print(vec)
+    print()
 
 
     # x = [11, 20, 13, 9, 27, 17, 1, 16, 9, 9, 14, 10, 6, 16, 13, 41]

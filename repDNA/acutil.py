@@ -7,13 +7,13 @@ def extend_phyche_index(original_index, extend_index):
     """Extend {phyche:[value, ... ]}"""
     if 0 == len(extend_index):
         return original_index
-    for key in original_index.keys():
+    for key in list(original_index.keys()):
         original_index[key].extend(extend_index[key])
     return original_index
 
 
 def make_ac_vector(sequence_list, lag, phyche_value, k):
-    phyche_values = phyche_value.values()
+    phyche_values = list(phyche_value.values())
     len_phyche_value = len(phyche_values[0])
 
     vec_ac = []
@@ -45,7 +45,7 @@ def make_ac_vector(sequence_list, lag, phyche_value, k):
 
 
 def make_cc_vector(sequence_list, lag, phyche_value, k):
-    phyche_values = phyche_value.values()
+    phyche_values = list(phyche_value.values())
     len_phyche_value = len(phyche_values[0])
 
     vec_cc = []

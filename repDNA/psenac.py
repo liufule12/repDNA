@@ -303,68 +303,68 @@ if __name__ == '__main__':
     phyche_index = [[1.019, -0.918, 0.488, 0.567, 0.567, -0.070, -0.579, 0.488, -0.654, -2.455, -0.070, -0.918, 1.603,
                      -0.654, 0.567, 1.019]]
 
-    print 'Begin PseDNC'
+    print('Begin PseDNC')
 
     psednc = PseDNC()
     vec = psednc.make_psednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
-    print vec
-    print len(vec[0])
+    print(vec)
+    print(len(vec[0]))
 
     psednc = PseDNC(lamada=2, w=0.1)
     vec = psednc.make_psednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
-    print vec
-    print len(vec[0])
+    print(vec)
+    print(len(vec[0]))
 
     vec = psednc.make_psednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'],
                                  extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True))
-    print vec
-    print len(vec[0])
+    print(vec)
+    print(len(vec[0]))
 
-    print 'Begin PseKNC'
+    print('Begin PseKNC')
 
     pseknc = PseKNC()
     vec = pseknc.make_pseknc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
-    print vec
-    print len(vec[0])
+    print(vec)
+    print(len(vec[0]))
 
     pseknc = PseKNC(k=2, lamada=1, w=0.05)
     vec = pseknc.make_pseknc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
-    print vec
-    print len(vec[0])
+    print(vec)
+    print(len(vec[0]))
 
     vec = pseknc.make_pseknc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'],
                                  extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True))
-    print vec
-    print len(vec[0])
-    print
+    print(vec)
+    print(len(vec[0]))
+    print()
 
-    print 'PC-PseDNC'
+    print('PC-PseDNC')
     pc_psednc = PCPseDNC()
     vec = pc_psednc.make_pcpsednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt'])
-    print vec
-    print len(vec[0])
+    print(vec)
+    print(len(vec[0]))
 
     pc_psednc = PCPseDNC(lamada=2, w=0.05)
     vec = pc_psednc.make_pcpsednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
-    print vec
-    print len(vec[0])
+    print(vec)
+    print(len(vec[0]))
 
     vec = pc_psednc.make_pcpsednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt'],
                                       extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True))
-    print vec
-    print len(vec[0])
-    print
+    print(vec)
+    print(len(vec[0]))
+    print()
 
-    print 'PC-PseTNC'
+    print('PC-PseTNC')
     pc_psetnc = PCPseTNC()
     vec = pc_psetnc.make_pcpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome'])
-    print vec
-    print len(vec[0])
+    print(vec)
+    print(len(vec[0]))
 
     pc_psetnc = PCPseTNC(lamada=2, w=0.05)
     vec = pc_psetnc.make_pcpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
-    print vec
-    print len(vec[0])
+    print(vec)
+    print(len(vec[0]))
 
     phyche_index = [
         [7.176, 6.272, 4.736, 7.237, 3.810, 4.156, 4.156, 6.033, 3.410, 3.524, 4.445, 6.033, 1.613, 5.087, 2.169, 7.237,
@@ -376,40 +376,40 @@ if __name__ == '__main__':
 
     vec = pc_psetnc.make_pcpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome'],
                                       extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True))
-    print vec
-    print len(vec[0])
-    print
+    print(vec)
+    print(len(vec[0]))
+    print()
 
-    print 'SC-PseDNC'
+    print('SC-PseDNC')
     sc_psednc = SCPseDNC()
     vec = sc_psednc.make_scpsednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt'])
-    print vec
-    print len(vec[0])
+    print(vec)
+    print(len(vec[0]))
 
     sc_psednc = SCPseDNC(lamada=2, w=0.05)
     vec = sc_psednc.make_scpsednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
-    print vec
-    print len(vec[0])
+    print(vec)
+    print(len(vec[0]))
 
     phyche_index = [[1.019, -0.918, 0.488, 0.567, 0.567, -0.070, -0.579, 0.488, -0.654, -2.455, -0.070, -0.918, 1.603,
                      -0.654, 0.567, 1.019]]
     from repDNA.util import normalize_index
     vec = sc_psednc.make_scpsednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt'],
                                       extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True))
-    print vec
-    print len(vec[0])
-    print
+    print(vec)
+    print(len(vec[0]))
+    print()
 
-    print 'SC-PseTNC'
+    print('SC-PseTNC')
     sc_psetnc = SCPseTNC()
     vec = sc_psetnc.make_scpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome'])
-    print vec
-    print len(vec[0])
+    print(vec)
+    print(len(vec[0]))
 
     sc_psetnc = SCPseTNC(lamada=2, w=0.05)
     vec = sc_psetnc.make_scpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
-    print vec
-    print len(vec[0])
+    print(vec)
+    print(len(vec[0]))
 
     phyche_index = [
         [7.176, 6.272, 4.736, 7.237, 3.810, 4.156, 4.156, 6.033, 3.410, 3.524, 4.445, 6.033, 1.613, 5.087, 2.169, 7.237,
@@ -420,6 +420,6 @@ if __name__ == '__main__':
     from repDNA.util import normalize_index
     vec = sc_psetnc.make_scpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome'],
                                       extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True))
-    print vec
-    print len(vec[0])
+    print(vec)
+    print(len(vec[0]))
 
