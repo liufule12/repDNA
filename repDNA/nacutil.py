@@ -152,7 +152,7 @@ def make_sequence_vector(sequence,
                     kmer = rev_kmer
 
             # Increment the count.
-            if kmer_counts[bin_num].has_key(kmer):
+            if kmer in kmer_counts[bin_num]:
                 kmer_counts[bin_num][kmer] += 1
             else:
                 kmer_counts[bin_num][kmer] = 1
@@ -179,7 +179,7 @@ def make_sequence_vector(sequence,
                                     kmer = rev_kmer
 
                             # Increment the neighboring sequence.
-                            if kmer_counts[bin_num].has_key(neighbor):
+                            if neighbor in kmer_counts[bin_num]:
                                 kmer_counts[bin_num][neighbor] += mismatch
                             else:
                                 kmer_counts[bin_num][neighbor] = mismatch
@@ -188,7 +188,7 @@ def make_sequence_vector(sequence,
     sequence_vector = []
     for i_bin in range(0, num_bins):
         for kmer in kmer_list:
-            if kmer_counts[i_bin].has_key(kmer):
+            if kmer in kmer_counts[i_bin]:
                 sequence_vector.append(kmer_counts[i_bin][kmer] + pseudocount)
             else:
                 sequence_vector.append(pseudocount)
@@ -273,8 +273,8 @@ def read_sequence_and_numbers(fasta_file,
         if len(fasta_sequence) != len(number_list):
             sys.stderr.write("Found sequence of length %d with %d numbers.\n"
                              % (len(sequence), len(number_list)))
-            print sequence
-            print numbers
+            print(sequence)
+            print(numbers)
             sys.exit(1)
     else:
         number_list = ""
@@ -285,7 +285,7 @@ def read_sequence_and_numbers(fasta_file,
 def find_revcomp(sequence,
                  revcomp_dictionary):
     # Save time by storing reverse complements in a hash.
-    if revcomp_dictionary.has_key(sequence):
+    if sequence in revcomp_dictionary:
         return revcomp_dictionary[sequence]
 
     # Make a reversed version of the string.
@@ -368,6 +368,10 @@ def compute_quantile_boundaries(num_bins,
         sys.stderr.write("\n")
 
     return boundaries
+
+
+def cmp(a, b):
+    return (a > b) - (a < b)
 
 
 def make_revcomp_kmer_list(kmer_list):
@@ -622,7 +626,7 @@ if __name__ == '__main__':
         start_i_k = 1
     else:
         start_i_k = k
-    k_values = range(start_i_k, k + 1)
+    k_values = list(range(start_i_k, k + 1))
 
     # If numeric binning is turned on, compute quantile boundaries for various
     # values of k.
