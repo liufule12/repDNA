@@ -46,7 +46,7 @@ def is_fasta(seq):
     """
     if not seq.name:
         error_info = 'Error, sequence ' + str(seq.no) + ' has no sequence name.'
-        print seq
+        print(seq)
         sys.stderr.write(error_info)
         return False
     if -1 != seq.name.find('>'):
@@ -200,7 +200,7 @@ def get_data(input_data, desc=False):
     :param desc: with this option, the return value will be a Seq object list(it only works in file object).
     :return: sequence data or shutdown.
     """
-    if isinstance(input_data, file):
+    if hasattr(input_data, 'read'):
         if desc is False:
             return get_sequence_check_dna(input_data)
         else:
@@ -340,7 +340,7 @@ def convert_phyche_index_to_dict(phyche_index):
     for kmer in kmer_list:
         phyche_index_dict[kmer] = []
     # print phyche_index_dict
-    phyche_index = zip(*phyche_index)
+    phyche_index = list(zip(*phyche_index))
     for i in range(len_kmer):
         phyche_index_dict[kmer_list[i]] = list(phyche_index[i])
 
@@ -373,18 +373,18 @@ def normalize_index(phyche_index, is_convert_dict=False):
 if __name__ == '__main__':
     temp_seq = get_data(open('hs.txt'))
     for e in temp_seq:
-        print e
+        print(e)
 
     temp_seq = get_data(open('hs.txt'), desc=True)
     for e in temp_seq:
-        print e
+        print(e)
 
     test_file = ['AAAAAAAAAAaaaaAAAAA', 'CCCCCCCCCCCCCCCCCCCCCCCCC']
     temp_seq = get_data(test_file)
     for e in temp_seq:
-        print e
+        print(e)
 
-    print standard_deviation([5, 6, 8, 9])
+    print(standard_deviation([5, 6, 8, 9]))
 
     # phyche_index = \
     #     [[0.026, 0.036, 0.031, 0.033, 0.016, 0.026, 0.014, 0.031, 0.025, 0.025, 0.026, 0.036, 0.017, 0.025, 0.016, 0.026],
@@ -399,9 +399,9 @@ if __name__ == '__main__':
          [0.038, 0.038, 0.037, 0.036, 0.025, 0.042, 0.026, 0.037, 0.038, 0.036, 0.042, 0.038, 0.018, 0.038, 0.025, 0.038]]
 
     for e in (normalize_index(phyche_index)):
-        print e
+        print(e)
 
     phyche_index_dict = convert_phyche_index_to_dict(normalize_index(phyche_index))
-    print phyche_index_dict
+    print(phyche_index_dict)
 
-    print normalize_index(phyche_index, True)
+    print(normalize_index(phyche_index, True))
