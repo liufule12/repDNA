@@ -25,17 +25,19 @@ def get_phyche_factor_dic(k):
     """Get all {nucleotide: [(phyche, value), ...]} dict."""
     full_path = os.path.realpath(__file__)
     if 2 == k:
-        file_path = "%s/data/mmc3.data" % os.path.dirname(full_path)
-        f = open(file_path)
+        file_path = "%s\data\mmc3.data" % os.path.dirname(full_path)
     elif 3 == k:
-        file_path = "%s/data/mmc4.data" % os.path.dirname(full_path)
-        f = open(file_path)
+        file_path = "%s\data\mmc4.data" % os.path.dirname(full_path)
     else:
         sys.stderr.write("The k can just be 2 or 3.")
         sys.exit(0)
 
-    phyche_factor_dic = pickle.load(f)
-    f.close()
+    try:
+        with open(file_path, 'rb') as f:
+            phyche_factor_dic = pickle.load(f)
+    except:
+        with open(file_path, 'r') as f:
+            phyche_factor_dic = pickle.load(f)
 
     return phyche_factor_dic
 
@@ -66,14 +68,14 @@ def parallel_cor_function(nucleotide1, nucleotide2, phyche_index):
     len_phyche_index = len(phyche_index_values[0])
     # print len_phyche_index
     for u in range(len_phyche_index):
-        temp_sum += pow(phyche_index[nucleotide1][u] - phyche_index[nucleotide2][u], 2)
+        temp_sum += pow(float(phyche_index[nucleotide1][u]) - float(phyche_index[nucleotide2][u]), 2)
 
     return temp_sum / len_phyche_index
 
 
 def series_cor_function(nucleotide1, nucleotide2, big_lamada, phyche_value):
     """Get the series correlation Factor(Type 2)."""
-    return phyche_value[nucleotide1][big_lamada] * phyche_value[nucleotide2][big_lamada]
+    return float(phyche_value[nucleotide1][big_lamada]) * float(phyche_value[nucleotide2][big_lamada])
 
 
 def get_parallel_factor(k, lamada, sequence, phyche_value):
