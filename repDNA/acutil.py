@@ -27,16 +27,17 @@ def make_ac_vector(sequence_list, lag, phyche_value, k):
                 # Calculate average phyche_value for a nucleotide.
                 ave_phyche_value = 0.0
                 for i in range(len_seq - temp_lag - k + 1):
-                    nucleotide = sequence[i: i+k]
+                    nucleotide = sequence[i: i + k]
                     ave_phyche_value += float(phyche_value[nucleotide][j])
                 ave_phyche_value /= len_seq
 
                 # Calculate the vector.
                 temp_sum = 0.0
                 for i in range(len_seq - temp_lag - k + 1):
-                    nucleotide1 = sequence[i: i+k]
-                    nucleotide2 = sequence[i+temp_lag: i+temp_lag+k]
-                    temp_sum += (float(phyche_value[nucleotide1][j]) - ave_phyche_value) * (float(phyche_value[nucleotide2][j]))
+                    nucleotide1 = sequence[i: i + k]
+                    nucleotide2 = sequence[i + temp_lag: i + temp_lag + k]
+                    temp_sum += (float(phyche_value[nucleotide1][j]) - ave_phyche_value) * (
+                        float(phyche_value[nucleotide2][j]))
 
                 each_vec.append(round(temp_sum / (len_seq - temp_lag), 3))
         vec_ac.append(each_vec)
@@ -62,19 +63,19 @@ def make_cc_vector(sequence_list, lag, phyche_value, k):
                         ave_phyche_value1 = 0.0
                         ave_phyche_value2 = 0.0
                         for j in range(len_seq - temp_lag - k + 1):
-                            nucleotide = sequence[j: j+k]
-                            ave_phyche_value1 += phyche_value[nucleotide][i1]
-                            ave_phyche_value2 += phyche_value[nucleotide][i2]
+                            nucleotide = sequence[j: j + k]
+                            ave_phyche_value1 += float(phyche_value[nucleotide][i1])
+                            ave_phyche_value2 += float(phyche_value[nucleotide][i2])
                         ave_phyche_value1 /= len_seq
                         ave_phyche_value2 /= len_seq
 
                         # Calculate the vector.
                         temp_sum = 0.0
                         for j in range(len_seq - temp_lag - k + 1):
-                            nucleotide1 = sequence[j: j+k]
-                            nucleotide2 = sequence[j+temp_lag: j+temp_lag+k]
-                            temp_sum += (phyche_value[nucleotide1][i1] - ave_phyche_value1) * \
-                                        (phyche_value[nucleotide2][i2] - ave_phyche_value2)
+                            nucleotide1 = sequence[j: j + k]
+                            nucleotide2 = sequence[j + temp_lag: j + temp_lag + k]
+                            temp_sum += (float(phyche_value[nucleotide1][i1]) - ave_phyche_value1) * \
+                                        (float(phyche_value[nucleotide2][i2]) - ave_phyche_value2)
                         each_vec.append(round(temp_sum / (len_seq - temp_lag), 3))
                         # print temp_lag, i1, i2, each_vec
                         # print len(each_vec)
