@@ -25,9 +25,9 @@ def get_phyche_factor_dic(k):
     """Get all {nucleotide: [(phyche, value), ...]} dict."""
     full_path = os.path.realpath(__file__)
     if 2 == k:
-        file_path = "%s\data\mmc3.data" % os.path.dirname(full_path)
+        file_path = "%s/data/mmc3.data" % os.path.dirname(full_path)
     elif 3 == k:
-        file_path = "%s\data\mmc4.data" % os.path.dirname(full_path)
+        file_path = "%s/data/mmc4.data" % os.path.dirname(full_path)
     else:
         sys.stderr.write("The k can just be 2 or 3.")
         sys.exit(0)
