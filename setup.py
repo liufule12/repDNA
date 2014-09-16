@@ -9,5 +9,5 @@ setup(name='repDNA',
       author='Fule Liu',
       author_email='liufule12@gmail.com',
       packages=['repDNA'],
-      package_data={'repDNA': ['*.data', 'example/*.fasta', 'example/*.py']},
+      package_data={'repDNA': ['data/*.data', 'example/*.fasta', 'example/*.py']},
       )
