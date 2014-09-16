@@ -1,4 +1,4 @@
-__author__ = 'liufule12'
+__author__ = 'Fule Liu'
 
 ALPHABET = 'ACGT'
 

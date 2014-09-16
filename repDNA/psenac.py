@@ -1,4 +1,4 @@
-__author__ = 'aleeee'
+__author__ = 'Fule Liu'
 
 from repDNA.util import get_data
 from repDNA.psenacutil import extend_phyche_index

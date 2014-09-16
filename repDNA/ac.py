@@ -1,4 +1,4 @@
-__author__ = 'liufule12'
+__author__ = 'Fule Liu'
 
 from repDNA.util import get_data, generate_phyche_value
 from functools import reduce
