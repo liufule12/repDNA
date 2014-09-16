@@ -56,7 +56,6 @@ def make_cc_vector(sequence_list, lag, phyche_value, k):
 
         for temp_lag in range(1, lag + 1):
             for i1 in range(len_phyche_value):
-                # print 'i1', i1
                 for i2 in range(len_phyche_value):
                     if i1 != i2:
                         # Calculate average phyche_value for a nucleotide.
@@ -77,8 +76,6 @@ def make_cc_vector(sequence_list, lag, phyche_value, k):
                             temp_sum += (float(phyche_value[nucleotide1][i1]) - ave_phyche_value1) * \
                                         (float(phyche_value[nucleotide2][i2]) - ave_phyche_value2)
                         each_vec.append(round(temp_sum / (len_seq - temp_lag), 3))
-                        # print temp_lag, i1, i2, each_vec
-                        # print len(each_vec)
 
         vec_cc.append(each_vec)
 
