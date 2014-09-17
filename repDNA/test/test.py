@@ -1,6 +1,8 @@
 __author__ = 'Fule Liu'
 # -*- coding: UTF-8 -*-
 
+import sys
+
 if __name__ == '__main__':
     """This a test script for repDNA_manual.
     """
@@ -13,17 +15,22 @@ if __name__ == '__main__':
 
     if get_data(open('example.fasta')) != ['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC']:
         print("Error, the basic function get_data1")
+        sys.exit(0)
     if get_data(['GACTGAACTGCACTTTGGTTTCATATTATTTGctc']) != ['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC']:
         print("Error, the basic function get_data2")
+        sys.exit(0)
 
     seqs = get_data(open('example.fasta'), desc=True)
     seq = seqs[0]
     if seq.name != 'misc_ppid_3700':
         print("Error, the basic function get_data3")
+        sys.exit(0)
     if seq.seq != 'GACTGAACTGCACTTTGGTTTCATATTATTTGCTC':
         print("Error, the basic function get_data4")
+        sys.exit(0)
     if seq.no != 1:
         print("Error, the basic function get_data5")
+        sys.exit(0)
 
     # Normalization of physicochemical index.
     from repDNA.util import normalize_index
@@ -37,6 +44,7 @@ if __name__ == '__main__':
             != [[0.06, 1.5, 0.78, 1.07, -1.38, 0.06, -1.66, 0.78, -0.08, -0.08, 0.06, 1.5, -1.23, -0.08, -1.38, 0.06],
                 [0.5, 0.5, 0.36, 0.22, -1.36, 1.08, -1.22, 0.36, 0.5, 0.22, 1.08, 0.5, -2.37, 0.5, -1.36, 0.5]]:
         print("Error, the basic function normalize_index")
+        sys.exit(0)
 
     print("Basic function test end!")
 
@@ -50,20 +58,24 @@ if __name__ == '__main__':
     if kmer.make_kmer_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC']) \
             != [[1, 3, 0, 3, 2, 0, 0, 4, 2, 2, 1, 1, 2, 2, 4, 7]]:
         print("Error, Nucleic acid composition basic kmer1")
+        sys.exit(0)
     kmer = Kmer(k=2, upto=True)
     if kmer.make_kmer_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC']) \
             != [[7, 7, 6, 15, 1, 3, 0, 3, 2, 0, 0, 4, 2, 2, 1, 1, 2, 2, 4, 7]]:
         print("Error, Nucleic acid composition basic kmer2")
+        sys.exit(0)
     kmer = Kmer(k=2, normalize=True)
     if kmer.make_kmer_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC']) \
             != [[0.029, 0.088, 0.0, 0.088, 0.059, 0.0, 0.0, 0.118, 0.059, 0.059, 0.029, 0.029, 0.059, 0.059, 0.118,
                  0.206]]:
         print("Error, Nucleic acid composition basic kmer3")
+        sys.exit(0)
     kmer = Kmer(k=2, normalize=True, upto=True)
     if kmer.make_kmer_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC']) \
             != [[0.2, 0.2, 0.171, 0.429, 0.029, 0.088, 0.0, 0.088, 0.059, 0.0, 0.0, 0.118, 0.059, 0.059, 0.029, 0.029,
                  0.059, 0.059, 0.118, 0.206]]:
         print("Error, Nucleic acid composition basic kmer4")
+        sys.exit(0)
 
     print("Basic kmer test end!")
 
@@ -73,17 +85,21 @@ if __name__ == '__main__':
     revckmer = RevcKmer(k=2)
     if revckmer.make_revckmer_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC']) != [[8, 4, 4, 3, 6, 1, 0, 4, 2, 2]]:
         print("Error, Nucleic acid composition revckmer1")
+        sys.exit(0)
     revckmer = RevcKmer(k=2, upto=True)
     if revckmer.make_revckmer_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC']) != [[22, 13, 8, 4, 4, 3, 6, 1, 0, 4, 2, 2]]:
         print("Error, Nucleic acid composition revckmer2")
+        sys.exit(0)
     revckmer = RevcKmer(k=2, normalize=True)
     if revckmer.make_revckmer_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC']) \
             != [[0.235, 0.118, 0.118, 0.088, 0.176, 0.029, 0.0, 0.118, 0.059, 0.059]]:
         print("Error, Nucleic acid composition revckmer3")
+        sys.exit(0)
     revckmer = RevcKmer(k=2, normalize=True, upto=True)
     if revckmer.make_revckmer_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC']) \
             != [[0.629, 0.371, 0.235, 0.118, 0.118, 0.088, 0.176, 0.029, 0.0, 0.118, 0.059, 0.059]]:
         print("Error, Nucleic acid composition revckmer4")
+        sys.exit(0)
 
     print("RevcKmer test end!")
 
@@ -95,13 +111,16 @@ if __name__ == '__main__':
             != [[4.54, 29.19, -103.245, -92.99, -144.589, -145.351, -154.0, -154.0, -153.58, -153.58, -147.207,
                  -147.207]]:
         print("Error, Nucleic acid composition IDkmer1")
+        sys.exit(0)
     idkmer = IDkmer(k=2)
     if idkmer.make_idkmer_vec(open('example.fasta'), open('pos.fasta'), open('neg.fasta')) \
             != [[4.54, 29.19, -103.245, -92.99]]:
         print("Error, Nucleic acid composition IDkmer2")
+        sys.exit(0)
     idkmer = IDkmer(k=2, upto=False)
     if idkmer.make_idkmer_vec(open('example.fasta'), open('pos.fasta'), open('neg.fasta')) != [[16.288, 62.27]]:
         print("Error, Nucleic acid composition IDkmer3")
+        sys.exit(0)
 
     print("IDkmer test end!")
 
@@ -115,9 +134,11 @@ if __name__ == '__main__':
     if dac.make_dac_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt']) \
             != [[-0.17, -0.18, -0.168, -0.004]]:
         print("Error, Autocorrelation DAC1")
+        sys.exit(0)
     vec = dac.make_dac_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
     if len(vec[0]) != 76:
         print("Error, Autocorrelation DAC2")
+        sys.exit(0)
 
     from repDNA.util import normalize_index
 
@@ -128,6 +149,7 @@ if __name__ == '__main__':
                         extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True)) \
             != [[-0.17, -0.18, -0.485, -0.489, -0.168, -0.004, 0.009, 0.103]]:
         print("Error, Autocorrelation DAC3")
+        sys.exit(0)
 
     print("DAC test end!")
 
@@ -138,9 +160,11 @@ if __name__ == '__main__':
     if dcc.make_dcc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt']) \
             != [[-0.137, -0.231, -0.062, -0.045]]:
         print("Error, Autocorrelation DCC1")
+        sys.exit(0)
     vec = dcc.make_dcc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
     if len(vec[0]) != 2812:
         print("Error, Autocorrelation DCC2")
+        sys.exit(0)
 
     from repDNA.util import normalize_index
 
@@ -152,6 +176,7 @@ if __name__ == '__main__':
             != [[-0.137, -0.451, -0.52, -0.231, -0.506, -0.497, -0.175, -0.125, -0.463, -0.094, -0.128, -0.392, -0.062,
                  0.026, 0.04, -0.045, 0.099, 0.137, -0.148, -0.209, -0.059, 0.039, -0.021, 0.157]]:
         print("Error, Autocorrelation DCC3")
+        sys.exit(0)
 
     print("DCC test end!")
 
@@ -162,9 +187,11 @@ if __name__ == '__main__':
     if dacc.make_dacc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt']) \
             != [[-0.17, -0.18, -0.168, -0.004, -0.137, -0.231, -0.062, -0.045]]:
         print("Error, Autocorrelation DACC1")
+        sys.exit(0)
     vec = dacc.make_dacc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
     if len(vec[0]) != 2888:
         print("Error, Autocorrelation DACC2")
+        sys.exit(0)
 
     from repDNA.util import normalize_index
 
@@ -177,6 +204,7 @@ if __name__ == '__main__':
                  -0.497, -0.175, -0.125, -0.463, -0.094, -0.128, -0.392, -0.062, 0.026, 0.04, -0.045, 0.099, 0.137,
                  -0.148, -0.209, -0.059, 0.039, -0.021, 0.157]]:
         print("Error, Autocorrelation DACC3")
+        sys.exit(0)
 
     print("DACC test end!")
 
@@ -187,9 +215,11 @@ if __name__ == '__main__':
     if tac.make_tac_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome']) \
             != [[-0.313, 0.464, 0.3, 0.011]]:
         print("Error, Autocorrelation TAC1")
+        sys.exit(0)
     vec = tac.make_tac_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
     if len(vec[0]) != 24:
         print("Error, Autocorrelation TAC2")
+        sys.exit(0)
 
     from repDNA.util import normalize_index
 
@@ -203,6 +233,7 @@ if __name__ == '__main__':
                         extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True)) \
             != [[-0.313, 0.464, 0.278, 0.3, 0.011, -0.289]]:
         print("Error, Autocorrelation TAC3")
+        sys.exit(0)
 
     print("TAC test end!")
 
@@ -213,9 +244,11 @@ if __name__ == '__main__':
     if tcc.make_tcc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome']) \
             != [[-0.281, -0.103, -0.225, 0.001]]:
         print("Error, Autocorrelation TCC1")
+        sys.exit(0)
     vec = tcc.make_tcc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
     if len(vec[0]) != 264:
         print("Error, Autocorrelation TCC2")
+        sys.exit(0)
 
     from repDNA.util import normalize_index
 
@@ -229,6 +262,7 @@ if __name__ == '__main__':
                         extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True)) \
             != [[-0.281, 0.335, -0.103, -0.146, -0.528, -0.289, -0.225, 0.187, 0.001, 0.003, 0.002, 0.241]]:
         print("Error, Autocorrelation TCC3")
+        sys.exit(0)
 
     print("TCC test end!")
 
@@ -239,9 +273,11 @@ if __name__ == '__main__':
     if tacc.make_tacc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome']) \
             != [[-0.313, 0.464, 0.3, 0.011, -0.281, -0.103, -0.225, 0.001]]:
         print("Error, Autocorrelation TACC1")
+        sys.exit(0)
     vec = tacc.make_tacc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
     if len(vec[0]) != 288:
         print("Error, Autocorrelation TACC2")
+        sys.exit(0)
 
     from repDNA.util import normalize_index
 
@@ -256,6 +292,7 @@ if __name__ == '__main__':
             != [[-0.313, 0.464, 0.278, 0.3, 0.011, -0.289, -0.281, 0.335, -0.103, -0.146, -0.528, -0.289, -0.225, 0.187,
                  0.001, 0.003, 0.002, 0.241]]:
         print("Error, Autocorrelation TACC3")
+        sys.exit(0)
 
     print("TACC test end!")
 
@@ -271,16 +308,20 @@ if __name__ == '__main__':
         [0.023, 0.069, 0.0, 0.069, 0.046, 0.0, 0.0, 0.092, 0.046, 0.046, 0.023, 0.023, 0.046, 0.046, 0.092, 0.161,
          0.0802, 0.07, 0.0696]]:
         print("Error, Pseudo Nucleic acid Composition PseDNC1")
+        sys.exit(0)
     if len(vec[0]) != 19:
         print("Error, Pseudo Nucleic acid Composition PseDNC2")
+        sys.exit(0)
     psednc = PseDNC(lamada=2, w=0.1)
     vec = psednc.make_psednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
     if vec != [
         [0.021, 0.063, 0.0, 0.063, 0.042, 0.0, 0.0, 0.085, 0.042, 0.042, 0.021, 0.021, 0.042, 0.042, 0.085, 0.148,
          0.1511, 0.1303]]:
         print("Error, Pseudo Nucleic acid Composition PseDNC3")
+        sys.exit(0)
     if len(vec[0]) != 18:
         print("Error, Pseudo Nucleic acid Composition PseDNC4")
+        sys.exit(0)
 
     from repDNA.util import normalize_index
 
@@ -293,8 +334,10 @@ if __name__ == '__main__':
         [0.021, 0.064, 0.0, 0.064, 0.042, 0.0, 0.0, 0.085, 0.042, 0.042, 0.021, 0.021, 0.042, 0.042, 0.085, 0.148,
          0.1504, 0.1294]]:
         print("Error, Pseudo Nucleic acid Composition PseDNC5")
+        sys.exit(0)
     if len(vec[0]) != 18:
         print("Error, Pseudo Nucleic acid Composition PseDNC6")
+        sys.exit(0)
 
     print("PseDNC test end!")
 
@@ -309,15 +352,19 @@ if __name__ == '__main__':
          0.015, 0.0, 0.0, 0.0, 0.015, 0.0, 0.0, 0.0, 0.015, 0.0, 0.0, 0.0, 0.029, 0.015, 0.0, 0.0, 0.0, 0.015, 0.029,
          0.015, 0.0, 0.015, 0.015, 0.029, 0.044, 0.5142]]:
         print("Error, Pseudo Nucleic acid Composition PsekNC1")
+        sys.exit(0)
     if len(vec[0]) != 65:
         print("Error, Pseudo Nucleic acid Composition PsekNC2")
+        sys.exit(0)
     pseknc = PseKNC(k=2, lamada=1, w=0.05)
     vec = pseknc.make_pseknc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
     if vec != [[0.027, 0.08, 0.0, 0.08, 0.053, 0.0, 0.0, 0.106, 0.053, 0.053, 0.027, 0.027, 0.053, 0.053, 0.106, 0.186,
                 0.0957]]:
         print("Error, Pseudo Nucleic acid Composition PsekNC3")
+        sys.exit(0)
     if len(vec[0]) != 17:
         print("Error, Pseudo Nucleic acid Composition PsekNC4")
+        sys.exit(0)
 
     phyche_index = [
         [1.019, -0.918, 0.488, 0.567, 0.567, -0.070, -0.579, 0.488, -0.654, -2.455, -0.070, -0.918, 1.603, -0.654,
@@ -329,8 +376,10 @@ if __name__ == '__main__':
     if vec != [[0.027, 0.08, 0.0, 0.08, 0.053, 0.0, 0.0, 0.106, 0.053, 0.053, 0.027, 0.027, 0.053, 0.053, 0.106, 0.186,
                 0.0953]]:
         print("Error, Pseudo Nucleic acid Composition PsekNC5")
+        sys.exit(0)
     if len(vec[0]) != 17:
         print("Error, Pseudo Nucleic acid Composition PsekNC6")
+        sys.exit(0)
 
     print("PseKNC test end!")
 
@@ -342,15 +391,19 @@ if __name__ == '__main__':
     if vec != [[0.027, 0.08, 0.0, 0.08, 0.053, 0.0, 0.0, 0.106, 0.053, 0.053, 0.027, 0.027, 0.053, 0.053, 0.106, 0.186,
                 0.0948]]:
         print("Error, Pseudo Nucleic acid Composition PCPseDNC1")
+        sys.exit(0)
     if len(vec[0]) != 17:
         print("Error, Pseudo Nucleic acid Composition PCPseDNC2")
+        sys.exit(0)
     pc_psednc = PCPseDNC(lamada=2, w=0.05)
     vec = pc_psednc.make_pcpsednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
     if vec != [[0.025, 0.075, 0.0, 0.075, 0.05, 0.0, 0.0, 0.1, 0.05, 0.05, 0.025, 0.025, 0.05, 0.05, 0.1, 0.176, 0.071,
                 0.0758]]:
         print("Error, Pseudo Nucleic acid Composition PCPseDNC3")
+        sys.exit(0)
     if len(vec[0]) != 18:
         print("Error, Pseudo Nucleic acid Composition PCPseDNC4")
+        sys.exit(0)
 
     from repDNA.util import normalize_index
 
@@ -363,8 +416,10 @@ if __name__ == '__main__':
         [0.025, 0.074, 0.0, 0.074, 0.049, 0.0, 0.0, 0.098, 0.049, 0.049, 0.025, 0.025, 0.049, 0.049, 0.098, 0.172,
          0.0861, 0.0772]]:
         print("Error, Pseudo Nucleic acid Composition PCPseDNC5")
+        sys.exit(0)
     if len(vec[0]) != 18:
         print("Error, Pseudo Nucleic acid Composition PCPseDNC6")
+        sys.exit(0)
 
     print("PC-PseDNC test end!")
 
@@ -380,8 +435,10 @@ if __name__ == '__main__':
          0.027, 0.0, 0.0, 0.0, 0.027, 0.0, 0.0, 0.0, 0.027, 0.0, 0.0, 0.0, 0.053, 0.027, 0.0, 0.0, 0.0, 0.027, 0.053,
          0.027, 0.0, 0.027, 0.027, 0.053, 0.08, 0.1196]]:
         print("Error, Pseudo Nucleic acid Composition PCPseTNC1")
+        sys.exit(0)
     if len(vec[0]) != 65:
         print("Error, Pseudo Nucleic acid Composition PCPseTNC2")
+        sys.exit(0)
     pc_psetnc = PCPseTNC(lamada=2, w=0.05)
     vec = pc_psetnc.make_pcpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
     if vec != [
@@ -390,8 +447,10 @@ if __name__ == '__main__':
          0.024, 0.0, 0.0, 0.0, 0.024, 0.0, 0.0, 0.0, 0.024, 0.0, 0.0, 0.0, 0.049, 0.024, 0.0, 0.0, 0.0, 0.024, 0.049,
          0.024, 0.0, 0.024, 0.024, 0.049, 0.073, 0.0819, 0.1119]]:
         print("Error, Pseudo Nucleic acid Composition PCPseTNC3")
+        sys.exit(0)
     if len(vec[0]) != 66:
         print("Error, Pseudo Nucleic acid Composition PCPseTNC4")
+        sys.exit(0)
 
     from repDNA.util import normalize_index
 
@@ -409,8 +468,10 @@ if __name__ == '__main__':
          0.023, 0.0, 0.0, 0.0, 0.023, 0.0, 0.0, 0.0, 0.023, 0.0, 0.0, 0.0, 0.047, 0.023, 0.0, 0.0, 0.0, 0.023, 0.047,
          0.023, 0.0, 0.023, 0.023, 0.047, 0.07, 0.1072, 0.12]]:
         print("Error, Pseudo Nucleic acid Composition PCPseTNC5")
+        sys.exit(0)
     if len(vec[0]) != 66:
         print("Error, Pseudo Nucleic acid Composition PCPseTNC6")
+        sys.exit(0)
 
     print("PC-PseTNC test end!")
 
@@ -422,12 +483,15 @@ if __name__ == '__main__':
     if vec != [[0.03, 0.09, 0.0, 0.09, 0.06, 0.0, 0.0, 0.12, 0.06, 0.06, 0.03, 0.03, 0.06, 0.06, 0.12, 0.21, -0.0091,
                 -0.0096]]:
         print("Error, Pseudo Nucleic acid Composition SCPseDNC1")
+        sys.exit(0)
     if len(vec[0]) != 18:
         print("Error, Pseudo Nucleic acid Composition SCPseDNC2")
+        sys.exit(0)
     sc_psednc = SCPseDNC(lamada=2, w=0.05)
     vec = sc_psednc.make_scpsednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
     if len(vec[0]) != 92:
         print("Error, Pseudo Nucleic acid Composition SCPseDNC3")
+        sys.exit(0)
 
     from repDNA.util import normalize_index
 
@@ -440,8 +504,10 @@ if __name__ == '__main__':
         [0.03, 0.09, 0.0, 0.09, 0.06, 0.0, 0.0, 0.12, 0.06, 0.06, 0.03, 0.03, 0.06, 0.06, 0.12, 0.209, -0.009, -0.0095,
          0.0005, -0.0091, 0.0, 0.0103]]:
         print("Error, Pseudo Nucleic acid Composition SCPseDNC4")
+        sys.exit(0)
     if len(vec[0]) != 22:
         print("Error, Pseudo Nucleic acid Composition SCPseDNC5")
+        sys.exit(0)
 
     print("SC-PseDNC test end!")
 
@@ -452,10 +518,12 @@ if __name__ == '__main__':
     vec = sc_psetnc.make_scpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome'])
     if len(vec[0]) != 66:
         print("Error, Pseudo Nucleic acid Composition SCPseTNC1")
+        sys.exit(0)
     sc_psetnc = SCPseTNC(lamada=2, w=0.05)
     vec = sc_psetnc.make_scpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
     if len(vec[0]) != 88:
         print("Error, Pseudo Nucleic acid Composition SCPseTNC2")
+        sys.exit(0)
 
     from repDNA.util import normalize_index
 
@@ -469,6 +537,7 @@ if __name__ == '__main__':
                                       extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True))
     if len(vec[0]) != 70:
         print("Error, Pseudo Nucleic acid Composition SCPseTNC3")
+        sys.exit(0)
 
     print("SC-PseTNC test end!")
 
