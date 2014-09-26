@@ -132,7 +132,7 @@ if __name__ == '__main__':
 
     dac = DAC(2)
     if dac.make_dac_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt']) \
-            != [[-0.17, -0.18, -0.168, -0.004]]:
+            != [[-0.175, -0.185, -0.173, -0.004]]:
         print("Error, Autocorrelation DAC1")
         sys.exit(0)
     vec = dac.make_dac_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
@@ -147,7 +147,7 @@ if __name__ == '__main__':
         [7.65, 8.93, 7.08, 9.07, 6.38, 8.04, 6.23, 7.08, 8.56, 9.53, 8.04, 8.93, 6.23, 8.56, 6.38, 7.65]]
     if dac.make_dac_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt'],
                         extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True)) \
-            != [[-0.17, -0.18, -0.485, -0.489, -0.168, -0.004, 0.009, 0.103]]:
+            != [[-0.175, -0.185, -0.5, -0.504, -0.173, -0.004, 0.009, 0.106]]:
         print("Error, Autocorrelation DAC3")
         sys.exit(0)
 
@@ -158,7 +158,7 @@ if __name__ == '__main__':
 
     dcc = DCC(2)
     if dcc.make_dcc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt']) \
-            != [[-0.137, -0.231, -0.062, -0.045]]:
+            != [[-0.141, -0.238, -0.064, -0.047]]:
         print("Error, Autocorrelation DCC1")
         sys.exit(0)
     vec = dcc.make_dcc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
@@ -173,8 +173,8 @@ if __name__ == '__main__':
         [7.65, 8.93, 7.08, 9.07, 6.38, 8.04, 6.23, 7.08, 8.56, 9.53, 8.04, 8.93, 6.23, 8.56, 6.38, 7.65]]
     if dcc.make_dcc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt'],
                         extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True)) \
-            != [[-0.137, -0.451, -0.52, -0.231, -0.506, -0.497, -0.175, -0.125, -0.463, -0.094, -0.128, -0.392, -0.062,
-                 0.026, 0.04, -0.045, 0.099, 0.137, -0.148, -0.209, -0.059, 0.039, -0.021, 0.157]]:
+            != [[-0.141, -0.464, -0.535, -0.238, -0.521, -0.512, -0.18, -0.128, -0.477, -0.097, -0.132, -0.403, -0.064,
+                 0.027, 0.042, -0.047, 0.103, 0.142, -0.153, -0.216, -0.061, 0.041, -0.021, 0.162]]:
         print("Error, Autocorrelation DCC3")
         sys.exit(0)
 
@@ -185,7 +185,7 @@ if __name__ == '__main__':
 
     dacc = DACC(2)
     if dacc.make_dacc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt']) \
-            != [[-0.17, -0.18, -0.168, -0.004, -0.137, -0.231, -0.062, -0.045]]:
+            != [[-0.175, -0.185, -0.173, -0.004, -0.141, -0.238, -0.064, -0.047]]:
         print("Error, Autocorrelation DACC1")
         sys.exit(0)
     vec = dacc.make_dacc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
@@ -200,9 +200,9 @@ if __name__ == '__main__':
         [7.65, 8.93, 7.08, 9.07, 6.38, 8.04, 6.23, 7.08, 8.56, 9.53, 8.04, 8.93, 6.23, 8.56, 6.38, 7.65]]
     if dacc.make_dacc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt'],
                           extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True)) \
-            != [[-0.17, -0.18, -0.485, -0.489, -0.168, -0.004, 0.009, 0.103, -0.137, -0.451, -0.52, -0.231, -0.506,
-                 -0.497, -0.175, -0.125, -0.463, -0.094, -0.128, -0.392, -0.062, 0.026, 0.04, -0.045, 0.099, 0.137,
-                 -0.148, -0.209, -0.059, 0.039, -0.021, 0.157]]:
+            != [[-0.175, -0.185, -0.5, -0.504, -0.173, -0.004, 0.009, 0.106, -0.141, -0.464, -0.535, -0.238, -0.521,
+                 -0.512, -0.18, -0.128, -0.477, -0.097, -0.132, -0.403, -0.064, 0.027, 0.042, -0.047, 0.103, 0.142,
+                 -0.153, -0.216, -0.061, 0.041, -0.021, 0.162]]:
         print("Error, Autocorrelation DACC3")
         sys.exit(0)
 
@@ -213,7 +213,7 @@ if __name__ == '__main__':
 
     tac = TAC(2)
     if tac.make_tac_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome']) \
-            != [[-0.313, 0.464, 0.3, 0.011]]:
+            != [[-0.332, 0.493, 0.319, 0.012]]:
         print("Error, Autocorrelation TAC1")
         sys.exit(0)
     vec = tac.make_tac_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
@@ -231,7 +231,7 @@ if __name__ == '__main__':
          7.176]]
     if tac.make_tac_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome'],
                         extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True)) \
-            != [[-0.313, 0.464, 0.278, 0.3, 0.011, -0.289]]:
+            != [[-0.332, 0.493, 0.296, 0.319, 0.012, -0.308]]:
         print("Error, Autocorrelation TAC3")
         sys.exit(0)
 
@@ -242,7 +242,7 @@ if __name__ == '__main__':
 
     tcc = TCC(2)
     if tcc.make_tcc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome']) \
-            != [[-0.281, -0.103, -0.225, 0.001]]:
+            != [[-0.299, -0.11, -0.24, 0.001]]:
         print("Error, Autocorrelation TCC1")
         sys.exit(0)
     vec = tcc.make_tcc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
@@ -260,7 +260,7 @@ if __name__ == '__main__':
          7.176]]
     if tcc.make_tcc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome'],
                         extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True)) \
-            != [[-0.281, 0.335, -0.103, -0.146, -0.528, -0.289, -0.225, 0.187, 0.001, 0.003, 0.002, 0.241]]:
+            != [[-0.299, 0.356, -0.11, -0.155, -0.561, -0.307, -0.24, 0.199, 0.001, 0.003, 0.002, 0.257]]:
         print("Error, Autocorrelation TCC3")
         sys.exit(0)
 
@@ -271,7 +271,7 @@ if __name__ == '__main__':
 
     tacc = TACC(2)
     if tacc.make_tacc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome']) \
-            != [[-0.313, 0.464, 0.3, 0.011, -0.281, -0.103, -0.225, 0.001]]:
+            != [[-0.332, 0.493, 0.319, 0.012, -0.299, -0.11, -0.24, 0.001]]:
         print("Error, Autocorrelation TACC1")
         sys.exit(0)
     vec = tacc.make_tacc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
@@ -289,8 +289,8 @@ if __name__ == '__main__':
          7.176]]
     if tacc.make_tacc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome'],
                           extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True)) \
-            != [[-0.313, 0.464, 0.278, 0.3, 0.011, -0.289, -0.281, 0.335, -0.103, -0.146, -0.528, -0.289, -0.225, 0.187,
-                 0.001, 0.003, 0.002, 0.241]]:
+            != [[-0.332, 0.493, 0.296, 0.319, 0.012, -0.308, -0.299, 0.356, -0.11, -0.155, -0.561, -0.307, -0.24, 0.199,
+                 0.001, 0.003, 0.002, 0.257]]:
         print("Error, Autocorrelation TACC3")
         sys.exit(0)
 
