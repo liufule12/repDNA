@@ -11,8 +11,11 @@ setup(name='repDNA',
       url='bioinformatics.hitsz.edu.cn/repDNA/',
       description='a Python package to generate various feature vectors of DNA sequences incorporating physicochemical properties and sequence-order effects',
       download_url='bioinformatics.hitsz.edu.cn/repDNA/download',
-      platforms=['MS Windows', 'Mac OS', 'Unix/Linux'],
+      platforms=['MS Windows', 'Mac X', 'Unix/Linux'],
       license='GPL',
       packages=['repDNA'],
-      package_data={'repDNA': ['data/*.data', 'example/*.fasta', 'example/*.py']},
+      package_data={
+          'repDNA': ['data/*.data', 'example/*.*', 'doc/*.*', 'data/12_trinucleotide_physicochemical_indices/*.txt',
+                     'data/38_dinucleotide_physicochemical_indices/*.txt',
+                     'data/6_dinucleotide_physicochemical_indices/*.txt']},
 )
