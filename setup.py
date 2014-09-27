@@ -15,7 +15,8 @@ setup(name='repDNA',
       license='GPL',
       packages=['repDNA'],
       package_data={
-          'repDNA': ['data/*.data', 'example/*.*', 'doc/*.*', 'data/12_trinucleotide_physicochemical_indices/*.txt',
+          'repDNA': ['data/*.data', 'doc/*.pdf', 'example/*.*', 'test/*.*',
+                     'data/12_trinucleotide_physicochemical_indices/*.txt',
                      'data/38_dinucleotide_physicochemical_indices/*.txt',
                      'data/6_dinucleotide_physicochemical_indices/*.txt']},
 )
