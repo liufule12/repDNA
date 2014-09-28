@@ -18,5 +18,6 @@ setup(name='repDNA',
           'repDNA': ['data/*.data', 'doc/*.pdf', 'example/*.*', 'test/*.*',
                      'data/12_trinucleotide_physicochemical_indices/*.txt',
                      'data/38_dinucleotide_physicochemical_indices/*.txt',
-                     'data/6_dinucleotide_physicochemical_indices/*.txt']},
+                     'data/6_dinucleotide_physicochemical_indices/*.txt'],
+          '': ['LICENSE', 'README.md', 'setup.py']},
 )
