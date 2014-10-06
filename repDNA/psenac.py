@@ -295,6 +295,24 @@ class SCPseTNC():
 
 
 if __name__ == '__main__':
+    # psednc = PseDNC(lamada=2, w=0.05)
+    # print(psednc.make_psednc_vec(['ACCCCA']))
+
+    # PC_psednc = PCPseDNC(lamada=2, w=0.05)
+    # print(PC_psednc.make_pcpsednc_vec(['ACCCCA'], phyche_index=["Tilt", 'Twist', 'Rise', 'Roll', 'Shift', 'Slide']))
+
+    # pc_psetnc = PCPseTNC(lamada=2, w=0.05)
+    # print(pc_psetnc.make_pcpsetnc_vec(['ACCCCA'], phyche_index=['Dnase I', 'Nucleosome']))
+
+    # sc_psednc = SCPseDNC(lamada=2, w=0.05)
+    # print(sc_psednc.make_scpsednc_vec(['ACCCCCA'], phyche_index=['Twist', 'Tilt']))
+
+    # sc_psetnc = SCPseTNC(lamada=1, w=0.05)
+    # print(sc_psetnc.make_scpsetnc_vec(['ACCCCCA'], phyche_index=['Dnase I', 'Nucleosome']))
+
+    # sc_psetnc = SCPseTNC(lamada=2, w=0.05)
+    # print(sc_psetnc.make_scpsetnc_vec(['ACCCCA'], phyche_index=["Dnase I", 'Nucleosome']))
+
     import time
     from repDNA.util import normalize_index
 
