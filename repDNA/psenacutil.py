@@ -66,7 +66,6 @@ def parallel_cor_function(nucleotide1, nucleotide2, phyche_index):
     temp_sum = 0.0
     phyche_index_values = list(phyche_index.values())
     len_phyche_index = len(phyche_index_values[0])
-    # print len_phyche_index
     for u in range(len_phyche_index):
         temp_sum += pow(float(phyche_index[nucleotide1][u]) - float(phyche_index[nucleotide2][u]), 2)
 
@@ -85,12 +84,12 @@ def get_parallel_factor(k, lamada, sequence, phyche_value):
 
     for i in range(1, lamada + 1):
         temp_sum = 0.0
-        for j in range(0, l - k - lamada + 1):
+        for j in range(0, l - k - i + 1):
             nucleotide1 = sequence[j: j+k]
             nucleotide2 = sequence[j+i: j+i+k]
             temp_sum += parallel_cor_function(nucleotide1, nucleotide2, phyche_value)
 
-        theta.append(temp_sum / (l - i - 1))
+        theta.append(temp_sum / (l - k - i + 1))
 
     return theta
 
@@ -109,7 +108,8 @@ def get_series_factor(k, lamada, sequence, phyche_value):
                 nucleotide1 = sequence[i: i+k]
                 nucleotide2 = sequence[i+small_lamada: i+small_lamada+k]
                 temp_sum += series_cor_function(nucleotide1, nucleotide2, big_lamada, phyche_value)
-            theta.append(temp_sum / (l_seq - k - small_lamada))
+
+            theta.append(temp_sum / (l_seq - k - small_lamada + 1))
 
     return theta
 
