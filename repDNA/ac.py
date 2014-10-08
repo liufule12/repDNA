@@ -4,23 +4,38 @@ from repDNA.util import get_data, generate_phyche_value
 from functools import reduce
 
 
+def check_acc(lag, k):
+    try:
+        if not isinstance(lag, int) or lag <= 0:
+            raise ValueError("Error, parameter lag must be an int type and larger than 0.")
+        elif not isinstance(k, int) or lag <= 0:
+            raise ValueError("Error, parameter k must be an int type and larger than 0.")
+    except ValueError:
+        raise
+
+
+def ready_acc(input_data, k, phyche_index=None, all_property=False, extra_phyche_index=None):
+    """Get sequence_list and phyche_value.
+    """
+    sequence_list = get_data(input_data)
+    if phyche_index is None:
+        phyche_index = []
+    if extra_phyche_index is None:
+        extra_phyche_index = {}
+    phyche_value = generate_phyche_value(k, phyche_index, all_property, extra_phyche_index)
+
+    return sequence_list, phyche_value
+
+
 class DAC():
     def __init__(self, lag):
         self.lag = lag
         self.k = 2
+        check_acc(self.lag, self.k)
 
     def make_dac_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
-        if phyche_index is None:
-            phyche_index = []
-        if extra_phyche_index is None:
-            extra_phyche_index = {}
-
-        sequence_list = get_data(input_data)
-
-        phyche_value = generate_phyche_value(self.k, phyche_index, all_property, extra_phyche_index)
-
+        sequence_list, phyche_value = ready_acc(input_data, self.k, phyche_index, all_property, extra_phyche_index)
         from repDNA.acutil import make_ac_vector
-
         return make_ac_vector(sequence_list, self.lag, phyche_value, self.k)
 
 
@@ -28,19 +43,11 @@ class DCC():
     def __init__(self, lag):
         self.lag = lag
         self.k = 2
+        check_acc(self.lag, self.k)
 
     def make_dcc_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
-        if phyche_index is None:
-            phyche_index = []
-        if extra_phyche_index is None:
-            extra_phyche_index = {}
-
-        sequence_list = get_data(input_data)
-
-        phyche_value = generate_phyche_value(self.k, phyche_index, all_property, extra_phyche_index)
-
+        sequence_list, phyche_value = ready_acc(input_data, self.k, phyche_index, all_property, extra_phyche_index)
         from repDNA.acutil import make_cc_vector
-
         return make_cc_vector(sequence_list, self.lag, phyche_value, self.k)
 
 
@@ -48,19 +55,11 @@ class DACC():
     def __init__(self, lag):
         self.lag = lag
         self.k = 2
+        check_acc(self.lag, self.k)
 
     def make_dacc_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
-        if phyche_index is None:
-            phyche_index = []
-        if extra_phyche_index is None:
-            extra_phyche_index = {}
-
-        sequence_list = get_data(input_data)
-
-        phyche_value = generate_phyche_value(self.k, phyche_index, all_property, extra_phyche_index)
-
+        sequence_list, phyche_value = ready_acc(input_data, self.k, phyche_index, all_property, extra_phyche_index)
         from repDNA.acutil import make_ac_vector, make_cc_vector
-
         zipped = list(zip(make_ac_vector(sequence_list, self.lag, phyche_value, self.k),
                      make_cc_vector(sequence_list, self.lag, phyche_value, self.k)))
         vector = [reduce(lambda x, y: x + y, e) for e in zipped]
@@ -72,19 +71,11 @@ class TAC():
     def __init__(self, lag):
         self.lag = lag
         self.k = 3
+        check_acc(self.lag, self.k)
 
     def make_tac_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
-        if phyche_index is None:
-            phyche_index = []
-        if extra_phyche_index is None:
-            extra_phyche_index = {}
-
-        sequence_list = get_data(input_data)
-
-        phyche_value = generate_phyche_value(self.k, phyche_index, all_property, extra_phyche_index)
-
+        sequence_list, phyche_value = ready_acc(input_data, self.k, phyche_index, all_property, extra_phyche_index)
         from repDNA.acutil import make_ac_vector
-
         return make_ac_vector(sequence_list, self.lag, phyche_value, self.k)
 
 
@@ -92,19 +83,11 @@ class TCC():
     def __init__(self, lag):
         self.lag = lag
         self.k = 3
+        check_acc(self.lag, self.k)
 
     def make_tcc_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
-        if phyche_index is None:
-            phyche_index = []
-        if extra_phyche_index is None:
-            extra_phyche_index = {}
-
-        sequence_list = get_data(input_data)
-
-        phyche_value = generate_phyche_value(self.k, phyche_index, all_property, extra_phyche_index)
-
+        sequence_list, phyche_value = ready_acc(input_data, self.k, phyche_index, all_property, extra_phyche_index)
         from repDNA.acutil import make_cc_vector
-
         return make_cc_vector(sequence_list, self.lag, phyche_value, self.k)
 
 
@@ -112,16 +95,10 @@ class TACC():
     def __init__(self, lag):
         self.lag = lag
         self.k = 3
+        check_acc(self.lag, self.k)
 
     def make_tacc_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
-        if phyche_index is None:
-            phyche_index = []
-        if extra_phyche_index is None:
-            extra_phyche_index = {}
-
-        sequence_list = get_data(input_data)
-
-        phyche_value = generate_phyche_value(self.k, phyche_index, all_property, extra_phyche_index)
+        sequence_list, phyche_value = ready_acc(input_data, self.k, phyche_index, all_property, extra_phyche_index)
 
         from repDNA.acutil import make_ac_vector, make_cc_vector
 
@@ -240,7 +217,7 @@ if __name__ == '__main__':
     print(len(vec[0]))
     print('\n')
 
-    print('Bengin TACC')
+    print('Begin TACC')
     tacc = TACC(2)
     vec = tacc.make_tacc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome'])
     print(vec)
