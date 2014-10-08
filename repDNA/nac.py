@@ -6,6 +6,8 @@ from repDNA.util import get_data
 
 
 def check_nac_para(k, normalize=False, upto=False, alphabet='ACGT'):
+    """Check the nac parameter's validation.
+    """
     try:
         if not isinstance(k, int) or k <= 0:
             raise ValueError("Error, parameter k must be an integer and larger than 0.")
@@ -21,6 +23,12 @@ def check_nac_para(k, normalize=False, upto=False, alphabet='ACGT'):
 
 class Kmer():
     def __init__(self, k=1, normalize=False, upto=False, alphabet="ACGT"):
+        """
+        :param k: int, the k value of kmer, it should be larger than 0.
+        :param normalize: bool, normalize the result vector or not.
+        :param upto: bool, whether to generate 1-kmer, 2-kmer, ..., k-mer.
+        :param alphabet: string.
+        """
         self.k = k
         self.upto = upto
         self.normalize = normalize
@@ -71,12 +79,23 @@ class RevcKmer(Kmer):
 
 class IDkmer():
     def __init__(self, k=6, upto=True, alphabet='ACGT'):
+        """
+        :param k: int, the k value of kmer, it should be larger than 0.
+        :param upto: bool, whether to generate 1-kmer, 2-kmer, ..., k-mer.
+        :param alphabet: string.
+        """
         self.k = k
         self.upto = upto
         self.alphabet = alphabet
         check_nac_para(k=self.k, upto=self.upto, alphabet=self.alphabet)
 
     def make_idkmer_vec(self, data, hs, non_hs):
+        """Make IDKmer vector.
+
+        :param data: Need to processed FASTA file.
+        :param hs: Positive FASTA file.
+        :param non_hs: Negative FASTA file.
+        """
         from repDNA.nacutil import make_kmer_list
         from repDNA.nacutil import diversity
         from repDNA.nacutil import id_x_s

@@ -5,6 +5,8 @@ from functools import reduce
 
 
 def check_acc(lag, k):
+    """Check ACC parameter validation.
+    """
     try:
         if not isinstance(lag, int) or lag <= 0:
             raise ValueError("Error, parameter lag must be an int type and larger than 0.")
@@ -15,7 +17,7 @@ def check_acc(lag, k):
 
 
 def ready_acc(input_data, k, phyche_index=None, all_property=False, extra_phyche_index=None):
-    """Get sequence_list and phyche_value.
+    """Public function for get sequence_list and phyche_value.
     """
     sequence_list = get_data(input_data)
     if phyche_index is None:
@@ -34,6 +36,14 @@ class DAC():
         check_acc(self.lag, self.k)
 
     def make_dac_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
+        """Make DAC vector.
+
+        :param input_data: file object or sequence list.
+        :param phyche_index: physicochemical properties list.
+        :param all_property: bool, choose all physicochemical properties or not.
+        :param extra_phyche_index: dict, the key is the dinucleotide (string), and its corresponding value is a list.
+                                   It means user-defined phyche_index.
+        """
         sequence_list, phyche_value = ready_acc(input_data, self.k, phyche_index, all_property, extra_phyche_index)
         from repDNA.acutil import make_ac_vector
         return make_ac_vector(sequence_list, self.lag, phyche_value, self.k)
@@ -46,6 +56,14 @@ class DCC():
         check_acc(self.lag, self.k)
 
     def make_dcc_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
+        """Make DCC vector.
+
+        :param input_data: file object or sequence list.
+        :param phyche_index: physicochemical properties list.
+        :param all_property: bool, choose all physicochemical properties or not.
+        :param extra_phyche_index: dict, the key is the dinucleotide (string), and its corresponding value is a list.
+                                   It means user-defined phyche_index.
+        """
         sequence_list, phyche_value = ready_acc(input_data, self.k, phyche_index, all_property, extra_phyche_index)
         from repDNA.acutil import make_cc_vector
         return make_cc_vector(sequence_list, self.lag, phyche_value, self.k)
@@ -58,6 +76,14 @@ class DACC():
         check_acc(self.lag, self.k)
 
     def make_dacc_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
+        """Make DACC vector.
+
+        :param input_data: file object or sequence list.
+        :param phyche_index: physicochemical properties list.
+        :param all_property: bool, choose all physicochemical properties or not.
+        :param extra_phyche_index: dict, the key is the dinucleotide (string), and its corresponding value is a list.
+                                   It means user-defined phyche_index.
+        """
         sequence_list, phyche_value = ready_acc(input_data, self.k, phyche_index, all_property, extra_phyche_index)
         from repDNA.acutil import make_ac_vector, make_cc_vector
         zipped = list(zip(make_ac_vector(sequence_list, self.lag, phyche_value, self.k),
@@ -74,6 +100,14 @@ class TAC():
         check_acc(self.lag, self.k)
 
     def make_tac_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
+        """Make TAC vector.
+
+        :param input_data: file object or sequence list.
+        :param phyche_index: physicochemical properties list.
+        :param all_property: bool, choose all physicochemical properties or not.
+        :param extra_phyche_index: dict, the key is the dinucleotide (string), and its corresponding value is a list.
+                                   It means user-defined phyche_index.
+        """
         sequence_list, phyche_value = ready_acc(input_data, self.k, phyche_index, all_property, extra_phyche_index)
         from repDNA.acutil import make_ac_vector
         return make_ac_vector(sequence_list, self.lag, phyche_value, self.k)
@@ -86,6 +120,14 @@ class TCC():
         check_acc(self.lag, self.k)
 
     def make_tcc_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
+        """Make DAC vector.
+
+        :param input_data: file object or sequence list.
+        :param phyche_index: physicochemical properties list.
+        :param all_property: bool, choose all physicochemical properties or not.
+        :param extra_phyche_index: dict, the key is the dinucleotide (string), and its corresponding value is a list.
+                                   It means user-defined phyche_index.
+        """
         sequence_list, phyche_value = ready_acc(input_data, self.k, phyche_index, all_property, extra_phyche_index)
         from repDNA.acutil import make_cc_vector
         return make_cc_vector(sequence_list, self.lag, phyche_value, self.k)
@@ -98,6 +140,14 @@ class TACC():
         check_acc(self.lag, self.k)
 
     def make_tacc_vec(self, input_data, phyche_index=None, all_property=False, extra_phyche_index=None):
+        """Make DAC vector.
+
+        :param input_data: file object or sequence list.
+        :param phyche_index: physicochemical properties list.
+        :param all_property: bool, choose all physicochemical properties or not.
+        :param extra_phyche_index: dict, the key is the dinucleotide (string), and its corresponding value is a list.
+                                   It means user-defined phyche_index.
+        """
         sequence_list, phyche_value = ready_acc(input_data, self.k, phyche_index, all_property, extra_phyche_index)
 
         from repDNA.acutil import make_ac_vector, make_cc_vector

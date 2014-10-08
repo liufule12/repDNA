@@ -370,6 +370,9 @@ def compute_quantile_boundaries(num_bins,
     return boundaries
 
 
+#########################################################################
+# The start of Changing by aleeee.
+#########################################################################
 def cmp(a, b):
     return (a > b) - (a < b)
 
@@ -377,13 +380,9 @@ def cmp(a, b):
 def make_revcomp_kmer_list(kmer_list):
     revcomp_dictionary = {}
     new_kmer_list = [kmer for kmer in kmer_list if cmp(kmer, find_revcomp(kmer, revcomp_dictionary)) <= 0]
-    # sys.stderr.write("Reduced to %d kmers.\n" % len(new_kmer_list))
     return new_kmer_list
 
 
-#########################################################################
-# The start of Changing by aleeee.
-#########################################################################
 def make_index_upto_k_revcomp(k):
     """Generate the index for revcomp and from 1 to k."""
     sum = 0
@@ -496,14 +495,6 @@ def diversity(vec):
     m_sum = sum(vec)
     from math import log
     return m_sum*log(m_sum, 2) - sum([e*log(e, 2) for e in vec if e != 0])
-    # temp = 0.0
-    # for m in vec:
-    #     if 0 == m:
-    #         continue
-    #     else:
-    #         temp += m * log(m, 2)
-    #
-    # return m_sum*log(m_sum, 2) - temp
 
 
 def id_x_s(vec_x, vec_s, diversity_s):
