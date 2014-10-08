@@ -3,7 +3,7 @@ __author__ = 'Fule Liu'
 from distutils.core import setup
 
 setup(name='repDNA',
-      version='1.0',
+      version='1.1',
       author='Bin Liu and Fule Liu',
       author_email='bliu@insun.hit.edu.cn and liufule12@gmail.com',
       maintainer='Fule Liu',
