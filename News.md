@@ -4,6 +4,6 @@
 - Optimize the code and add some comments.
 - Add the News file.
 
-# Version 1.0 (2014-9-17)
+# Version 1.0 (2014-09-17)
 
 - repDNA package release.
