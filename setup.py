@@ -19,4 +19,5 @@ setup(name='repDNA',
                      'data/12_trinucleotide_physicochemical_indices/*.txt',
                      'data/38_dinucleotide_physicochemical_indices/*.txt',
                      'data/6_dinucleotide_physicochemical_indices/*.txt']},
+      data_files = [('', ['LICENSE', 'README.md', 'News.md'])]
 )
