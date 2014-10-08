@@ -23,7 +23,11 @@ The repDNA was tested to work under Python 2.7, 3.3 and 3.4 on Windows, Mac and 
 Installation
 ============
 
-Download and unzip the repDNA package, go to the directory, and type:
+If the user had installed *pip* (A tool for installing and managing Python packages), just type:
+
+`pip install repDNA`
+
+Otherwise, download and unzip the repDNA package, go to the directory, and type:
 
 `python setup.py install`
 
