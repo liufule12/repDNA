@@ -21,6 +21,22 @@ def check_nac_para(k, normalize=False, upto=False, alphabet='ACGT'):
         raise
 
 
+def get_kmer_list(k, upto, alphabet):
+    """Get the kmer list.
+
+    :param k: int, the k value of kmer, it should be larger than 0.
+    :param upto: bool, whether to generate 1-kmer, 2-kmer, ..., k-mer.
+    :param alphabet: string.
+    """
+    if upto:
+        k_list = list(range(1, k + 1))
+    else:
+        k_list = list(range(k, k + 1))
+    kmer_list = make_upto_kmer_list(k_list, alphabet)
+
+    return kmer_list
+
+
 class Kmer():
     def __init__(self, k=1, normalize=False, upto=False, alphabet="ACGT"):
         """
@@ -43,11 +59,7 @@ class Kmer():
         """
         sequence_list = get_data(data)
 
-        if self.upto:
-            k_list = list(range(1, self.k + 1))
-        else:
-            k_list = list(range(self.k, self.k + 1))
-        kmer_list = make_upto_kmer_list(k_list, self.alphabet)
+        kmer_list = get_kmer_list(self.k, self.upto, self.alphabet)
 
         rev_kmer_list = []
         revcomp = False
@@ -64,11 +76,7 @@ class RevcKmer(Kmer):
         """
         sequence_list = get_data(data)
 
-        if self.upto:
-            k_list = list(range(1, self.k + 1))
-        else:
-            k_list = list(range(self.k, self.k + 1))
-        kmer_list = make_upto_kmer_list(k_list, self.alphabet)
+        kmer_list = get_kmer_list(self.k, self.upto, self.alphabet)
 
         # Use lexicographically first version of {kmer, revcomp(kmer)}.
         rev_kmer_list = make_revcomp_kmer_list(kmer_list)
