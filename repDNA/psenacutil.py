@@ -114,7 +114,7 @@ def get_series_factor(k, lamada, sequence, phyche_value):
     return theta
 
 
-def make_pseknc_vector(sequence_list, lamada, w, k, phyche_value, theta_type):
+def make_pseknc_vector(sequence_list, lamada, w, k, phyche_value, theta_type=1):
     """Generate the pseknc vector."""
     kmer = make_kmer_list(k, ALPHABET)
     vector = []
@@ -169,7 +169,7 @@ def get_parallel_factor_psednc(lamada, sequence, phyche_value):
     return theta
 
 
-def make_old_pseknc_vector(sequence_list, lamada, w, k, phyche_value, theta_type):
+def make_old_pseknc_vector(sequence_list, lamada, w, k, phyche_value, theta_type=1):
     """Generate the pseknc vector."""
     kmer = make_kmer_list(k, ALPHABET)
     vector = []
