@@ -3,13 +3,14 @@ __author__ = 'Fule Liu'
 from distutils.core import setup
 
 setup(name='repDNA',
-      version='1.1',
+      version='1.1.1',
       author='Bin Liu and Fule Liu',
       author_email='bliu@insun.hit.edu.cn and liufule12@gmail.com',
       maintainer='Fule Liu',
       maintainer_email='liufule12@gmail.com',
       url='bioinformatics.hitsz.edu.cn/repDNA/',
-      description='a Python package to generate various feature vectors of DNA sequences incorporating physicochemical properties and sequence-order effects',
+      description='a Python package to generate various modes of feature vectors for DNA sequences '
+                  'by incorporating user-defined physicochemical properties and sequence-order effects',
       download_url='bioinformatics.hitsz.edu.cn/repDNA/download',
       platforms=['MS Windows', 'Mac X', 'Unix/Linux'],
       license='GPL',
