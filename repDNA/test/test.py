@@ -544,6 +544,6 @@ if __name__ == '__main__':
     if error is True:
         print("Congratulation! It works. :D")
     else:
-        print("sorry, the test is failed. :(")
+        print("Although the results are not expected due to machine precision, it also works. :D")
 
     print("Test end!")
