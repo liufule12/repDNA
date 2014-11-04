@@ -29,7 +29,7 @@ if __name__ == '__main__':
 
     # Merge positive and negative feature vectors and generate their corresponding labels.
     vec = np.array(pos_vec + neg_vec)
-    vec_label = np.array([0] * len(pos_vec) + [1] * len(neg_vec))
+    vec_label = np.array([1] * len(pos_vec) + [0] * len(neg_vec))
 
     # ##############################################################################
     # Classification and accurate analysis.
