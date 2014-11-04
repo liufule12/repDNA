@@ -1,7 +1,7 @@
 repDNA
 ======
 
-repDNA is a Python package to generate various features of DNA sequences incorporating physicochemical properties and sequence-order effects.
+repDNA is a Python package to generate various modes of feature vectors for DNA sequences by incorporating user-defined physicochemical properties and sequence-order effects.
 
 This repDNA package is open source software made available under GPL license. Please see the LICENSE file for further details.
 
