@@ -1,9 +1,13 @@
-# Version 1.1 (2014-10-08)
+# Version 1.1.1 (2014-11-04)
+
+- Update the repDNA_example, repDNA_manual and repDNA_paper_Bioinformatics.pd document for Bioinformatics reviewer.
+
+# Version 1.1.0 (2014-10-08)
 
 - Fix the denominator(l - k - lambda + 1) bug in calculating theta in psenacutil module and change the test file and documents.
 - Optimize the code and add some comments.
 - Add the News file.
 
-# Version 1.0 (2014-09-17)
+# Version 1.0.0 (2014-09-17)
 
 - repDNA package release.
