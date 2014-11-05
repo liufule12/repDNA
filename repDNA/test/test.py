@@ -541,7 +541,7 @@ if __name__ == '__main__':
 
     print("SC-PseTNC test end!")
 
-    if error is True:
+    if error is False:
         print("Congratulation! It works. :D")
     else:
         print("Although the results are not expected due to machine precision, it also works. :D")
