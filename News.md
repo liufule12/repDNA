@@ -1,6 +1,6 @@
 # Version 1.1.1 (2014-11-04)
 
-- Update the repDNA_example, repDNA_manual and repDNA_paper_Bioinformatics.pd document for Bioinformatics reviewer.
+- Update the repDNA_example, repDNA_manual and repDNA_paper_Bioinformatics document for Bioinformatics reviewer.
 
 # Version 1.1.0 (2014-10-08)
 
