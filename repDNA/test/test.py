@@ -308,20 +308,20 @@ if __name__ == '__main__':
         [0.023, 0.069, 0.0, 0.069, 0.046, 0.0, 0.0, 0.092, 0.046, 0.046, 0.023, 0.023, 0.046, 0.046, 0.092, 0.16,
          0.0823, 0.0705, 0.0694]]:
         print("Error, Pseudo Nucleic acid Composition PseDNC1")
-    error = True
+        error = True
     if len(vec[0]) != 19:
         print("Error, Pseudo Nucleic acid Composition PseDNC2")
-    error = True
+        error = True
     psednc = PseDNC(lamada=2, w=0.1)
     vec = psednc.make_psednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
     if vec != [
         [0.021, 0.063, 0.0, 0.063, 0.042, 0.0, 0.0, 0.084, 0.042, 0.042, 0.021, 0.021, 0.042, 0.042, 0.084, 0.148,
          0.152, 0.1301]]:
         print("Error, Pseudo Nucleic acid Composition PseDNC3")
-    error = True
+        error = True
     if len(vec[0]) != 18:
         print("Error, Pseudo Nucleic acid Composition PseDNC4")
-    error = True
+        error = True
 
     from repDNA.util import normalize_index
 
@@ -334,10 +334,10 @@ if __name__ == '__main__':
         [0.021, 0.063, 0.0, 0.063, 0.042, 0.0, 0.0, 0.085, 0.042, 0.042, 0.021, 0.021, 0.042, 0.042, 0.085, 0.148,
          0.1515, 0.1292]]:
         print("Error, Pseudo Nucleic acid Composition PseDNC5")
-    error = True
+        error = True
     if len(vec[0]) != 18:
         print("Error, Pseudo Nucleic acid Composition PseDNC6")
-    error = True
+        error = True
 
     print("PseDNC test end!")
 
@@ -352,19 +352,19 @@ if __name__ == '__main__':
          0.015, 0.0, 0.0, 0.0, 0.015, 0.0, 0.0, 0.0, 0.015, 0.0, 0.0, 0.0, 0.029, 0.015, 0.0, 0.0, 0.0, 0.015, 0.029,
          0.015, 0.0, 0.015, 0.015, 0.029, 0.044, 0.5142]]:
         print("Error, Pseudo Nucleic acid Composition PsekNC1")
-    error = True
+        error = True
     if len(vec[0]) != 65:
         print("Error, Pseudo Nucleic acid Composition PsekNC2")
-    error = True
+        error = True
     pseknc = PseKNC(k=2, lamada=1, w=0.05)
     vec = pseknc.make_pseknc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
     if vec != [[0.027, 0.08, 0.0, 0.08, 0.053, 0.0, 0.0, 0.106, 0.053, 0.053, 0.027, 0.027, 0.053, 0.053, 0.106, 0.186,
                 0.0957]]:
         print("Error, Pseudo Nucleic acid Composition PsekNC3")
-    error = True
+        error = True
     if len(vec[0]) != 17:
         print("Error, Pseudo Nucleic acid Composition PsekNC4")
-    error = True
+        error = True
 
     phyche_index = [
         [1.019, -0.918, 0.488, 0.567, 0.567, -0.070, -0.579, 0.488, -0.654, -2.455, -0.070, -0.918, 1.603, -0.654,
@@ -376,10 +376,10 @@ if __name__ == '__main__':
     if vec != [[0.027, 0.08, 0.0, 0.08, 0.053, 0.0, 0.0, 0.106, 0.053, 0.053, 0.027, 0.027, 0.053, 0.053, 0.106, 0.186,
                 0.0953]]:
         print("Error, Pseudo Nucleic acid Composition PsekNC5")
-    error = True
+        error = True
     if len(vec[0]) != 17:
         print("Error, Pseudo Nucleic acid Composition PsekNC6")
-    error = True
+        error = True
 
     print("PseKNC test end!")
 
@@ -391,19 +391,19 @@ if __name__ == '__main__':
     if vec != [[0.027, 0.08, 0.0, 0.08, 0.053, 0.0, 0.0, 0.106, 0.053, 0.053, 0.027, 0.027, 0.053, 0.053, 0.106, 0.186,
                 0.0948]]:
         print("Error, Pseudo Nucleic acid Composition PCPseDNC1")
-    error = True
+        error = True
     if len(vec[0]) != 17:
         print("Error, Pseudo Nucleic acid Composition PCPseDNC2")
-    error = True
+        error = True
     pc_psednc = PCPseDNC(lamada=2, w=0.05)
     vec = pc_psednc.make_pcpsednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
     if vec != [[0.025, 0.075, 0.0, 0.075, 0.05, 0.0, 0.0, 0.1, 0.05, 0.05, 0.025, 0.025, 0.05, 0.05, 0.1, 0.175, 0.072,
                 0.0757]]:
         print("Error, Pseudo Nucleic acid Composition PCPseDNC3")
-    error = True
+        error = True
     if len(vec[0]) != 18:
         print("Error, Pseudo Nucleic acid Composition PCPseDNC4")
-    error = True
+        error = True
 
     from repDNA.util import normalize_index
 
@@ -416,10 +416,10 @@ if __name__ == '__main__':
         [0.025, 0.074, 0.0, 0.074, 0.049, 0.0, 0.0, 0.098, 0.049, 0.049, 0.025, 0.025, 0.049, 0.049, 0.098, 0.172,
          0.0869, 0.0771]]:
         print("Error, Pseudo Nucleic acid Composition PCPseDNC5")
-    error = True
+        error = True
     if len(vec[0]) != 18:
         print("Error, Pseudo Nucleic acid Composition PCPseDNC6")
-    error = True
+        error = True
 
     print("PC-PseDNC test end!")
 
@@ -435,10 +435,10 @@ if __name__ == '__main__':
          0.027, 0.0, 0.0, 0.0, 0.027, 0.0, 0.0, 0.0, 0.027, 0.0, 0.0, 0.0, 0.053, 0.027, 0.0, 0.0, 0.0, 0.027, 0.053,
          0.027, 0.0, 0.027, 0.027, 0.053, 0.08, 0.1229]]:
         print("Error, Pseudo Nucleic acid Composition PCPseTNC1")
-    error = True
+        error = True
     if len(vec[0]) != 65:
         print("Error, Pseudo Nucleic acid Composition PCPseTNC2")
-    error = True
+        error = True
     pc_psetnc = PCPseTNC(lamada=2, w=0.05)
     vec = pc_psetnc.make_pcpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
     if vec != [
@@ -447,10 +447,10 @@ if __name__ == '__main__':
          0.024, 0.0, 0.0, 0.0, 0.024, 0.0, 0.0, 0.0, 0.024, 0.0, 0.0, 0.0, 0.048, 0.024, 0.0, 0.0, 0.0, 0.024, 0.048,
          0.024, 0.0, 0.024, 0.024, 0.048, 0.073, 0.0851, 0.1147]]:
         print("Error, Pseudo Nucleic acid Composition PCPseTNC3")
-    error = True
+        error = True
     if len(vec[0]) != 66:
         print("Error, Pseudo Nucleic acid Composition PCPseTNC4")
-    error = True
+        error = True
 
     from repDNA.util import normalize_index
 
@@ -468,10 +468,10 @@ if __name__ == '__main__':
          0.023, 0.0, 0.0, 0.0, 0.023, 0.0, 0.0, 0.0, 0.023, 0.0, 0.0, 0.0, 0.046, 0.023, 0.0, 0.0, 0.0, 0.023, 0.046,
          0.023, 0.0, 0.023, 0.023, 0.046, 0.07, 0.1102, 0.1229]]:
         print("Error, Pseudo Nucleic acid Composition PCPseTNC5")
-    error = True
+        error = True
     if len(vec[0]) != 66:
         print("Error, Pseudo Nucleic acid Composition PCPseTNC6")
-    error = True
+        error = True
 
     print("PC-PseTNC test end!")
 
@@ -483,15 +483,15 @@ if __name__ == '__main__':
     if vec != [[0.03, 0.09, 0.0, 0.09, 0.06, 0.0, 0.0, 0.12, 0.06, 0.06, 0.03, 0.03, 0.06, 0.06, 0.12, 0.21, -0.0088,
                 -0.0093]]:
         print("Error, Pseudo Nucleic acid Composition SCPseDNC1")
-    error = True
+        error = True
     if len(vec[0]) != 18:
         print("Error, Pseudo Nucleic acid Composition SCPseDNC2")
-    error = True
+        error = True
     sc_psednc = SCPseDNC(lamada=2, w=0.05)
     vec = sc_psednc.make_scpsednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
     if len(vec[0]) != 92:
         print("Error, Pseudo Nucleic acid Composition SCPseDNC3")
-    error = True
+        error = True
 
     from repDNA.util import normalize_index
 
@@ -504,10 +504,10 @@ if __name__ == '__main__':
         [0.03, 0.09, 0.0, 0.09, 0.06, 0.0, 0.0, 0.12, 0.06, 0.06, 0.03, 0.03, 0.06, 0.06, 0.12, 0.209, -0.0088, -0.0093,
          0.0004, -0.0088, 0.0, 0.01]]:
         print("Error, Pseudo Nucleic acid Composition SCPseDNC4")
-    error = True
+        error = True
     if len(vec[0]) != 22:
         print("Error, Pseudo Nucleic acid Composition SCPseDNC5")
-    error = True
+        error = True
 
     print("SC-PseDNC test end!")
 
@@ -518,12 +518,12 @@ if __name__ == '__main__':
     vec = sc_psetnc.make_scpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome'])
     if len(vec[0]) != 66:
         print("Error, Pseudo Nucleic acid Composition SCPseTNC1")
-    error = True
+        error = True
     sc_psetnc = SCPseTNC(lamada=2, w=0.05)
     vec = sc_psetnc.make_scpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], all_property=True)
     if len(vec[0]) != 88:
         print("Error, Pseudo Nucleic acid Composition SCPseTNC2")
-    error = True
+        error = True
 
     from repDNA.util import normalize_index
 
@@ -537,7 +537,7 @@ if __name__ == '__main__':
                                       extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True))
     if len(vec[0]) != 70:
         print("Error, Pseudo Nucleic acid Composition SCPseTNC3")
-    error = True
+        error = True
 
     print("SC-PseTNC test end!")
 
