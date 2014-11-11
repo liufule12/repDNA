@@ -18,7 +18,7 @@ def check_psenac(lamada, w, k):
         raise
 
 
-def get_sequence_list_and_phyche_value_psednc_pseknc(input_data, extra_phyche_index=None):
+def get_sequence_list_and_phyche_value_psednc(input_data, extra_phyche_index=None):
     """For PseDNC, PseKNC, make sequence_list and phyche_value.
 
     :param input_data: file type or handle.
@@ -45,6 +45,41 @@ def get_sequence_list_and_phyche_value_psednc_pseknc(input_data, extra_phyche_in
                              'TC': [-0.08, 0.5, 0.27, 0.13, -0.39, 0.71],
                              'TG': [-1.38, -1.36, -0.27, -0.86, -0.62, -1.25],
                              'TT': [0.06, 0.5, 0.27, 1.59, 0.11, -0.11]}
+
+    sequence_list = get_data(input_data)
+    phyche_value = extend_phyche_index(original_phyche_value, extra_phyche_index)
+
+    return sequence_list, phyche_value
+
+
+def get_sequence_list_and_phyche_value_pseknc(input_data, extra_phyche_index=None):
+    """For PseDNC, PseKNC, make sequence_list and phyche_value.
+
+    :param input_data: file type or handle.
+    :param extra_phyche_index: dict, the key is the dinucleotide (string),
+                                     the value is its physicochemical property value (list).
+                               It means the user-defined physicochemical indices.
+    """
+    if extra_phyche_index is None:
+        extra_phyche_index = {}
+
+    original_phyche_value = {
+        'AA': [0.06, 0.5, 0.09, 1.59, 0.11, -0.11],
+        'AC': [1.5, 0.5, 1.19, 0.13, 1.29, 1.04],
+        'GT': [1.5, 0.5, 1.19, 0.13, 1.29, 1.04],
+        'AG': [0.78, 0.36, -0.28, 0.68, -0.24, -0.62],
+        'CC': [0.06, 1.08, -0.28, 0.56, -0.82, 0.24],
+        'CA': [-1.38, -1.36, -1.01, -0.86, -0.62, -1.25],
+        'CG': [-1.66, -1.22, -1.38, -0.82, -0.29, -1.39],
+        'TT': [0.06, 0.5, 0.09, 1.59, 0.11, -0.11],
+        'GG': [0.06, 1.08, -0.28, 0.56, -0.82, 0.24],
+        'GC': [-0.08, 0.22, 2.3, -0.35, 0.65, 1.59],
+        'AT': [1.07, 0.22, 0.83, -1.02, 2.51, 1.17],
+        'GA': [-0.08, 0.5, 0.09, 0.13, -0.39, 0.71],
+        'TG': [-1.38, -1.36, -1.01, -0.86, -0.62, -1.25],
+        'TA': [-1.23, -2.37, -1.38, -2.24, -1.51, -1.39],
+        'TC': [-0.08, 0.5, 0.09, 0.13, -0.39, 0.71],
+        'CT': [0.78, 0.36, -0.28, 0.68, -0.24, -0.62]}
 
     sequence_list = get_data(input_data)
     phyche_value = extend_phyche_index(original_phyche_value, extra_phyche_index)
@@ -123,7 +158,7 @@ class PseDNC():
                                          the value is its physicochemical property value (list).
                                    It means the user-defined physicochemical indices.
         """
-        sequence_list, phyche_value = get_sequence_list_and_phyche_value_psednc_pseknc(input_data, extra_phyche_index)
+        sequence_list, phyche_value = get_sequence_list_and_phyche_value_psednc(input_data, extra_phyche_index)
         from repDNA.psenacutil import make_pseknc_vector
 
         vector = make_pseknc_vector(sequence_list, self.lamada, self.w, self.k, phyche_value, theta_type=1)
@@ -151,7 +186,7 @@ class PseKNC():
                                          the value is its physicochemical property value (list).
                                    It means the user-defined physicochemical indices.
         """
-        sequence_list, phyche_value = get_sequence_list_and_phyche_value_psednc_pseknc(input_data, extra_phyche_index)
+        sequence_list, phyche_value = get_sequence_list_and_phyche_value_pseknc(input_data, extra_phyche_index)
         from repDNA.psenacutil import make_old_pseknc_vector
 
         return make_old_pseknc_vector(sequence_list, self.lamada, self.w, self.k, phyche_value, theta_type=1)
@@ -413,3 +448,14 @@ if __name__ == '__main__':
                                       extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True))
     print(vec)
     print(len(vec[0]))
+
+    # Normalize PseDNC index Twist, Tilt, Roll, Shift, Slide, Rise.
+    original_phyche_value = [
+        [0.026, 0.036, 0.031, 0.033, 0.016, 0.026, 0.014, 0.031, 0.025, 0.025, 0.026, 0.036, 0.017, 0.025, 0.016, 0.026],
+        [0.038, 0.038, 0.037, 0.036, 0.025, 0.042, 0.026, 0.037, 0.038, 0.036, 0.042, 0.038, 0.018, 0.038, 0.025, 0.038],
+        [0.020, 0.023, 0.019, 0.022, 0.017, 0.019, 0.016, 0.019, 0.020, 0.026, 0.019, 0.023, 0.016, 0.020, 0.017, 0.020],
+        [1.69, 1.32, 1.46, 1.03, 1.07, 1.43, 1.08, 1.46, 1.32, 1.20, 1.43, 1.32, 0.72, 1.32, 1.07, 1.69],
+        [2.26, 3.03, 2.03, 3.83, 1.78, 1.65, 2.00, 2.03, 1.93, 2.61, 1.65, 3.03, 1.20, 1.93, 1.78, 2.26],
+        [7.65, 8.93, 7.08, 9.07, 6.38, 8.04, 6.23, 7.08, 8.56, 9.53, 8.04, 8.93, 6.23, 8.56, 6.38, 7.65]]
+    for e in normalize_index(original_phyche_value, is_convert_dict=True).items():
+        print(e)
