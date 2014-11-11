@@ -1,6 +1,7 @@
-# Version 1.1.1 (2014-11-04)
+# Version 1.1.1 (2014-11-11)
 
 - Update the repDNA_example, repDNA_manual and repDNA_paper_Bioinformatics document for Bioinformatics reviewer.
+- Fix PseKNC physicochemical indices.
 
 # Version 1.1.0 (2014-10-08)
 
