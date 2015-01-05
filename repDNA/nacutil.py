@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # FILE: fasta2matrix.py
 # AUTHOR: William Stafford Noble, Changed by Fule liu.
-# CREATE DATE: 27 September 2005, modified date: June 11 2014.
+# CREATE DATE: 27 September 2005, modified date: January 5 2015.
 import sys
 import math
 
@@ -11,27 +11,21 @@ sys.setrecursionlimit(99999999)
 
 
 def make_kmer_list(k, alphabet):
-    # Base case.
-    if k == 1:
-        return alphabet
+    if k < 0:
+        print("Error, k must be an inter and larger than 0.")
 
-    # Handle k=0 from user.
-    if k == 0:
-        return []
+    kmers = []
+    for i in range(1, k + 1):
+        if len(kmers) == 0:
+            kmers = list(alphabet)
+        else:
+            new_kmers = []
+            for kmer in kmers:
+                for c in alphabet:
+                    new_kmers.append(kmer + c)
+            kmers = new_kmers
 
-    # Error case.
-    if k < 1:
-        sys.stderr.write("Invalid k=%d" % k)
-        sys.exit(1)
-
-    # Precompute alphabet length for speed.
-    alphabet_length = len(alphabet)
-
-    # Recursive call.
-    return_value = [kmer + alphabet[i_letter] for kmer in make_kmer_list(k - 1, alphabet)
-                    for i_letter in range(alphabet_length)]
-
-    return return_value
+    return kmers
 
 
 def make_upto_kmer_list(k_values, alphabet):
