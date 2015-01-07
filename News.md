@@ -1,3 +1,8 @@
+# Version 1.1.2 (2015-1-7)
+
+- Optimize make_kmer_list.
+
+
 # Version 1.1.1 (2014-11-11)
 
 - Update the repDNA_example, repDNA_manual and repDNA_paper_Bioinformatics document for Bioinformatics reviewer.
