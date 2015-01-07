@@ -13,7 +13,7 @@ Important links
 - Home-page: http://bioinformatics.hitsz.edu.cn/repDNA/
 - Official source code repo: https://github.com/liufule12/repDNA
 - Download releases: http://bioinformatics.hitsz.edu.cn/repDNA/download
-- Supplymentary (maunal and example): http://bioinformatics.hitsz.edu.cn/repDNA/supplementary
+- Supplementary (manual and example): http://bioinformatics.hitsz.edu.cn/repDNA/supplementary
 - Issue tracker: https://github.com/liufule12/repDNA/issues
 - Citation: http://bioinformatics.hitsz.edu.cn/repDNA/citation
 
