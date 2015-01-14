@@ -2,6 +2,9 @@ __author__ = 'Fule Liu'
 
 from distutils.core import setup
 
+with open('README.md') as f:
+    LONG_DESCRIPTION = f.read()
+
 setup(name='repDNA',
       version='1.1.2',
       author='Bin Liu and Fule Liu',
@@ -11,7 +14,7 @@ setup(name='repDNA',
       url='bioinformatics.hitsz.edu.cn/repDNA/',
       description='a Python package to generate various modes of feature vectors for DNA sequences '
                   'by incorporating user-defined physicochemical properties and sequence-order effects',
-      long_description=open('README.md'),
+      long_description=LONG_DESCRIPTION,
       download_url='bioinformatics.hitsz.edu.cn/repDNA/download',
       platforms=['MS Windows', 'Mac X', 'Unix/Linux'],
       license='GPL',
