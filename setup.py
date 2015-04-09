@@ -6,7 +6,7 @@ with open('README.md') as f:
     LONG_DESCRIPTION = f.read()
 
 setup(name='repDNA',
-      version='1.1.2',
+      version='1.1.3',
       author='Bin Liu and Fule Liu',
       author_email='bliu@insun.hit.edu.cn and liufule12@gmail.com',
       maintainer='Fule Liu',

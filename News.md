@@ -1,6 +1,11 @@
+# Version 1.1.3 (2015-4-9)
+
+- Optimize make_kmer_list by itertools.product.
+- change `from repDNA.a import b` to `from a import b`
+
 # Version 1.1.2 (2015-1-7)
 
-- Optimize make_kmer_list.
+- Optimize make_kmer_list by loop.
 
 
 # Version 1.1.1 (2014-11-11)
