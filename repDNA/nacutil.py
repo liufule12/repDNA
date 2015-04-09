@@ -4,28 +4,20 @@
 # CREATE DATE: 27 September 2005, modified date: January 5 2015.
 import sys
 import math
+import itertools
 
-from repDNA.util import frequency
-
-sys.setrecursionlimit(99999999)
+from util import frequency
 
 
 def make_kmer_list(k, alphabet):
-    if k < 0:
-        print("Error, k must be an inter and larger than 0.")
-
-    kmers = []
-    for i in range(1, k + 1):
-        if len(kmers) == 0:
-            kmers = list(alphabet)
-        else:
-            new_kmers = []
-            for kmer in kmers:
-                for c in alphabet:
-                    new_kmers.append(kmer + c)
-            kmers = new_kmers
-
-    return kmers
+    try:
+        return ["".join(e) for e in itertools.product(alphabet, repeat=k)]
+    except TypeError:
+        print("TypeError: k must be an inter and larger than 0, alphabet must be a string.")
+        raise TypeError
+    except ValueError:
+        print("TypeError: k must be an inter and larger than 0")
+        raise ValueError
 
 
 def make_upto_kmer_list(k_values, alphabet):
