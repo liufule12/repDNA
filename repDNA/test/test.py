@@ -1,12 +1,13 @@
 __author__ = 'Fule Liu'
 # -*- coding: UTF-8 -*-
+import time
 import sys
 sys.path.append("../")
 
 if __name__ == '__main__':
     """This a test script for repDNA_manual.
     """
-
+    start_time = time.time()
     error = False
 
     # ###############################################################################################
@@ -550,3 +551,4 @@ if __name__ == '__main__':
         print("Although the results are not expected due to machine precision, it also works. :D")
 
     print("Test end!")
+    print("Used time: %ss" % (time.time() - start_time))
