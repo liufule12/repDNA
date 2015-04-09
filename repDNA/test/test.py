@@ -1,5 +1,7 @@
 __author__ = 'Fule Liu'
 # -*- coding: UTF-8 -*-
+import sys
+sys.path.append("../")
 
 if __name__ == '__main__':
     """This a test script for repDNA_manual.
@@ -11,7 +13,7 @@ if __name__ == '__main__':
     # Basic function.
 
     # Read sequence data from FASTA files
-    from repDNA.util import get_data
+    from util import get_data
 
     if get_data(open('example.fasta')) != ['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC']:
         print("Error, the basic function get_data1")
@@ -33,7 +35,7 @@ if __name__ == '__main__':
         error = True
 
     # Normalization of physicochemical index.
-    from repDNA.util import normalize_index
+    from util import normalize_index
 
     phyche_index = [
         [0.026, 0.036, 0.031, 0.033, 0.016, 0.026, 0.014, 0.031, 0.025, 0.025, 0.026, 0.036, 0.017, 0.025, 0.016,
@@ -52,7 +54,7 @@ if __name__ == '__main__':
     # Nucleic acid Composition
 
     # Basic kmer
-    from repDNA.nac import Kmer
+    from nac import Kmer
 
     kmer = Kmer(k=2)
     if kmer.make_kmer_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC']) \
@@ -80,7 +82,7 @@ if __name__ == '__main__':
     print("Basic kmer test end!")
 
     # RevcKmer
-    from repDNA.nac import RevcKmer
+    from nac import RevcKmer
 
     revckmer = RevcKmer(k=2)
     if revckmer.make_revckmer_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC']) != [[8, 4, 4, 3, 6, 1, 0, 4, 2, 2]]:
@@ -104,7 +106,7 @@ if __name__ == '__main__':
     print("RevcKmer test end!")
 
     # Increment of Diversity
-    from repDNA.nac import IDkmer
+    from nac import IDkmer
 
     idkmer = IDkmer()
     if idkmer.make_idkmer_vec(open('example.fasta'), open('pos.fasta'), open('neg.fasta')) \
@@ -128,7 +130,7 @@ if __name__ == '__main__':
     # Autocorrelation
 
     # Dinucleotide-based Auto covariance
-    from repDNA.ac import DAC
+    from ac import DAC
 
     dac = DAC(2)
     if dac.make_dac_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt']) \
@@ -140,7 +142,7 @@ if __name__ == '__main__':
         print("Error, Autocorrelation DAC2")
         error = True
 
-    from repDNA.util import normalize_index
+    from util import normalize_index
 
     phyche_index = [
         [2.26, 3.03, 2.03, 3.83, 1.78, 1.65, 2.00, 2.03, 1.93, 2.61, 1.65, 3.03, 1.20, 1.93, 1.78, 2.26],
@@ -154,7 +156,7 @@ if __name__ == '__main__':
     print("DAC test end!")
 
     # Dinucleotide-based Cross covariance
-    from repDNA.ac import DCC
+    from ac import DCC
 
     dcc = DCC(2)
     if dcc.make_dcc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt']) \
@@ -166,7 +168,7 @@ if __name__ == '__main__':
         print("Error, Autocorrelation DCC2")
         error = True
 
-    from repDNA.util import normalize_index
+    from util import normalize_index
 
     phyche_index = [
         [2.26, 3.03, 2.03, 3.83, 1.78, 1.65, 2.00, 2.03, 1.93, 2.61, 1.65, 3.03, 1.20, 1.93, 1.78, 2.26],
@@ -181,7 +183,7 @@ if __name__ == '__main__':
     print("DCC test end!")
 
     # Dinucleotide-based Auto-cross covariance
-    from repDNA.ac import DACC
+    from ac import DACC
 
     dacc = DACC(2)
     if dacc.make_dacc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt']) \
@@ -193,7 +195,7 @@ if __name__ == '__main__':
         print("Error, Autocorrelation DACC2")
         error = True
 
-    from repDNA.util import normalize_index
+    from util import normalize_index
 
     phyche_index = [
         [2.26, 3.03, 2.03, 3.83, 1.78, 1.65, 2.00, 2.03, 1.93, 2.61, 1.65, 3.03, 1.20, 1.93, 1.78, 2.26],
@@ -209,7 +211,7 @@ if __name__ == '__main__':
     print("DACC test end!")
 
     # Trinucleotide-based Auto covariance
-    from repDNA.ac import TAC
+    from ac import TAC
 
     tac = TAC(2)
     if tac.make_tac_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome']) \
@@ -221,7 +223,7 @@ if __name__ == '__main__':
         print("Error, Autocorrelation TAC2")
         error = True
 
-    from repDNA.util import normalize_index
+    from util import normalize_index
 
     phyche_index = [
         [7.176, 6.272, 4.736, 7.237, 3.810, 4.156, 4.156, 6.033, 3.410, 3.524, 4.445, 6.033, 1.613, 5.087, 2.169, 7.237,
@@ -238,7 +240,7 @@ if __name__ == '__main__':
     print("TAC test end!")
 
     # Trinucleotide-based Cross covariance
-    from repDNA.ac import TCC
+    from ac import TCC
 
     tcc = TCC(2)
     if tcc.make_tcc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome']) \
@@ -250,7 +252,7 @@ if __name__ == '__main__':
         print("Error, Autocorrelation TCC2")
         error = True
 
-    from repDNA.util import normalize_index
+    from util import normalize_index
 
     phyche_index = [
         [7.176, 6.272, 4.736, 7.237, 3.810, 4.156, 4.156, 6.033, 3.410, 3.524, 4.445, 6.033, 1.613, 5.087, 2.169, 7.237,
@@ -267,7 +269,7 @@ if __name__ == '__main__':
     print("TCC test end!")
 
     # Trinucleotide-based Auto-cross covariance
-    from repDNA.ac import TACC
+    from ac import TACC
 
     tacc = TACC(2)
     if tacc.make_tacc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome']) \
@@ -279,7 +281,7 @@ if __name__ == '__main__':
         print("Error, Autocorrelation TACC2")
         error = True
 
-    from repDNA.util import normalize_index
+    from util import normalize_index
 
     phyche_index = [
         [7.176, 6.272, 4.736, 7.237, 3.810, 4.156, 4.156, 6.033, 3.410, 3.524, 4.445, 6.033, 1.613, 5.087, 2.169, 7.237,
@@ -300,7 +302,7 @@ if __name__ == '__main__':
     # Pseudo Nucleic acid Composition
 
     # Pseudo dinucleotide composition
-    from repDNA.psenac import PseDNC
+    from psenac import PseDNC
 
     psednc = PseDNC()
     vec = psednc.make_psednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
@@ -323,7 +325,7 @@ if __name__ == '__main__':
         print("Error, Pseudo Nucleic acid Composition PseDNC4")
         error = True
 
-    from repDNA.util import normalize_index
+    from util import normalize_index
 
     phyche_index = [
         [1.019, -0.918, 0.488, 0.567, 0.567, -0.070, -0.579, 0.488, -0.654, -2.455, -0.070, -0.918, 1.603, -0.654,
@@ -342,7 +344,7 @@ if __name__ == '__main__':
     print("PseDNC test end!")
 
     # Pseudo k-tupler composition
-    from repDNA.psenac import PseKNC
+    from psenac import PseKNC
 
     pseknc = PseKNC()
     vec = pseknc.make_pseknc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'])
@@ -369,7 +371,7 @@ if __name__ == '__main__':
 
     phyche_index = [[1.019, -0.918, 0.488, 0.567, 0.567, -0.070, -0.579, 0.488, -0.654, -2.455, -0.070, -0.918, 1.603,
                      -0.654, 0.567, 1.019]]
-    from repDNA.util import normalize_index
+    from util import normalize_index
 
     vec = pseknc.make_pseknc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'],
                                  extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True))
@@ -385,7 +387,7 @@ if __name__ == '__main__':
     print("PseKNC test end!")
 
     # Parallel correlation pseudo dinucleotide composition
-    from repDNA.psenac import PCPseDNC
+    from psenac import PCPseDNC
 
     pc_psednc = PCPseDNC()
     vec = pc_psednc.make_pcpsednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt'])
@@ -406,7 +408,7 @@ if __name__ == '__main__':
         print("Error, Pseudo Nucleic acid Composition PCPseDNC4")
         error = True
 
-    from repDNA.util import normalize_index
+    from util import normalize_index
 
     phyche_index = [
         [1.019, -0.918, 0.488, 0.567, 0.567, -0.070, -0.579, 0.488, -0.654, -2.455, -0.070, -0.918, 1.603, -0.654,
@@ -425,7 +427,7 @@ if __name__ == '__main__':
     print("PC-PseDNC test end!")
 
     # Parallel correlation pseudo trinucleotide composition
-    from repDNA.psenac import PCPseTNC
+    from psenac import PCPseTNC
 
     pc_psetnc = PCPseTNC()
     vec = pc_psetnc.make_pcpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'],
@@ -453,7 +455,7 @@ if __name__ == '__main__':
         print("Error, Pseudo Nucleic acid Composition PCPseTNC4")
         error = True
 
-    from repDNA.util import normalize_index
+    from util import normalize_index
 
     phyche_index = [
         [7.176, 6.272, 4.736, 7.237, 3.810, 4.156, 4.156, 6.033, 3.410, 3.524, 4.445, 6.033, 1.613, 5.087, 2.169, 7.237,
@@ -477,7 +479,7 @@ if __name__ == '__main__':
     print("PC-PseTNC test end!")
 
     # Series correlation pseudo dinucleotide composition
-    from repDNA.psenac import SCPseDNC
+    from psenac import SCPseDNC
 
     sc_psednc = SCPseDNC()
     vec = sc_psednc.make_scpsednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt'])
@@ -494,7 +496,7 @@ if __name__ == '__main__':
         print("Error, Pseudo Nucleic acid Composition SCPseDNC3")
         error = True
 
-    from repDNA.util import normalize_index
+    from util import normalize_index
 
     phyche_index = [
         [1.019, -0.918, 0.488, 0.567, 0.567, -0.070, -0.579, 0.488, -0.654, -2.455, -0.070, -0.918, 1.603, -0.654,
@@ -513,7 +515,7 @@ if __name__ == '__main__':
     print("SC-PseDNC test end!")
 
     # Series correlation pseudo trinucleotide composition
-    from repDNA.psenac import SCPseTNC
+    from psenac import SCPseTNC
 
     sc_psetnc = SCPseTNC()
     vec = sc_psetnc.make_scpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome'])
@@ -526,7 +528,7 @@ if __name__ == '__main__':
         print("Error, Pseudo Nucleic acid Composition SCPseTNC2")
         error = True
 
-    from repDNA.util import normalize_index
+    from util import normalize_index
 
     phyche_index = [
         [7.176, 6.272, 4.736, 7.237, 3.810, 4.156, 4.156, 6.033, 3.410, 3.524, 4.445, 6.033, 1.613, 5.087, 2.169, 7.237,

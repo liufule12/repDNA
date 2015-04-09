@@ -5,8 +5,8 @@ import os
 import pickle
 from math import pow
 
-from repDNA.util import frequency
-from repDNA.nacutil import make_kmer_list
+from util import frequency
+from nacutil import make_kmer_list
 
 
 ALPHABET = 'ACGT'

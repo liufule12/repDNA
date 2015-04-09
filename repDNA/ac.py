@@ -1,6 +1,6 @@
 __author__ = 'Fule Liu'
 
-from repDNA.util import get_data, generate_phyche_value
+from util import get_data, generate_phyche_value
 from functools import reduce
 
 
@@ -45,7 +45,7 @@ class DAC():
                                    It means user-defined phyche_index.
         """
         sequence_list, phyche_value = ready_acc(input_data, self.k, phyche_index, all_property, extra_phyche_index)
-        from repDNA.acutil import make_ac_vector
+        from acutil import make_ac_vector
         return make_ac_vector(sequence_list, self.lag, phyche_value, self.k)
 
 
@@ -65,7 +65,7 @@ class DCC():
                                    It means user-defined phyche_index.
         """
         sequence_list, phyche_value = ready_acc(input_data, self.k, phyche_index, all_property, extra_phyche_index)
-        from repDNA.acutil import make_cc_vector
+        from acutil import make_cc_vector
         return make_cc_vector(sequence_list, self.lag, phyche_value, self.k)
 
 
@@ -85,7 +85,7 @@ class DACC():
                                    It means user-defined phyche_index.
         """
         sequence_list, phyche_value = ready_acc(input_data, self.k, phyche_index, all_property, extra_phyche_index)
-        from repDNA.acutil import make_ac_vector, make_cc_vector
+        from acutil import make_ac_vector, make_cc_vector
         zipped = list(zip(make_ac_vector(sequence_list, self.lag, phyche_value, self.k),
                      make_cc_vector(sequence_list, self.lag, phyche_value, self.k)))
         vector = [reduce(lambda x, y: x + y, e) for e in zipped]
@@ -109,7 +109,7 @@ class TAC():
                                    It means user-defined phyche_index.
         """
         sequence_list, phyche_value = ready_acc(input_data, self.k, phyche_index, all_property, extra_phyche_index)
-        from repDNA.acutil import make_ac_vector
+        from acutil import make_ac_vector
         return make_ac_vector(sequence_list, self.lag, phyche_value, self.k)
 
 
@@ -129,7 +129,7 @@ class TCC():
                                    It means user-defined phyche_index.
         """
         sequence_list, phyche_value = ready_acc(input_data, self.k, phyche_index, all_property, extra_phyche_index)
-        from repDNA.acutil import make_cc_vector
+        from acutil import make_cc_vector
         return make_cc_vector(sequence_list, self.lag, phyche_value, self.k)
 
 
@@ -150,7 +150,7 @@ class TACC():
         """
         sequence_list, phyche_value = ready_acc(input_data, self.k, phyche_index, all_property, extra_phyche_index)
 
-        from repDNA.acutil import make_ac_vector, make_cc_vector
+        from acutil import make_ac_vector, make_cc_vector
 
         zipped = list(zip(make_ac_vector(sequence_list, self.lag, phyche_value, self.k),
                      make_cc_vector(sequence_list, self.lag, phyche_value, self.k)))
@@ -180,7 +180,7 @@ if __name__ == '__main__':
         [[2.26, 3.03, 2.03, 3.83, 1.78, 1.65, 2.00, 2.03, 1.93, 2.61, 1.65, 3.03, 1.20, 1.93, 1.78, 2.26],
          [7.65, 8.93, 7.08, 9.07, 6.38, 8.04, 6.23, 7.08, 8.56, 9.53, 8.04, 8.93, 6.23, 8.56, 6.38, 7.65]]
 
-    from repDNA.util import normalize_index
+    from util import normalize_index
 
     dac = DAC(2)
     vec = dac.make_dac_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt'])

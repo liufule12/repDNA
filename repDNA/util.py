@@ -313,7 +313,7 @@ def generate_phyche_value(k, phyche_index=None, all_property=False, extra_phyche
                     sys.exit(0)
 
     # Generate phyche_value.
-    from repDNA.psenacutil import get_phyche_index, extend_phyche_index
+    from psenacutil import get_phyche_index, extend_phyche_index
 
     return extend_phyche_index(get_phyche_index(k, phyche_index), extra_phyche_index)
 
@@ -332,7 +332,7 @@ def convert_phyche_index_to_dict(phyche_index):
         if len_index_value == 4**i:
             k = i
             break
-    from repDNA.nacutil import make_kmer_list
+    from nacutil import make_kmer_list
     kmer_list = make_kmer_list(k, ALPHABET)
     # print kmer_list
     len_kmer = len(kmer_list)

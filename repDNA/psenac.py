@@ -1,7 +1,7 @@
 __author__ = 'Fule Liu'
 
-from repDNA.util import get_data
-from repDNA.psenacutil import extend_phyche_index
+from util import get_data
+from psenacutil import extend_phyche_index
 
 
 def check_psenac(lamada, w, k):
@@ -135,7 +135,7 @@ def get_sequence_list_and_phyche_value(input_data, k, phyche_index, extra_phyche
         raise
 
     # Generate phyche_value and sequence_list.
-    from repDNA.psenacutil import get_phyche_index
+    from psenacutil import get_phyche_index
 
     phyche_value = extend_phyche_index(get_phyche_index(k, phyche_index), extra_phyche_index)
     sequence_list = get_data(input_data)
@@ -159,7 +159,7 @@ class PseDNC():
                                    It means the user-defined physicochemical indices.
         """
         sequence_list, phyche_value = get_sequence_list_and_phyche_value_psednc(input_data, extra_phyche_index)
-        from repDNA.psenacutil import make_pseknc_vector
+        from psenacutil import make_pseknc_vector
 
         vector = make_pseknc_vector(sequence_list, self.lamada, self.w, self.k, phyche_value, theta_type=1)
 
@@ -187,7 +187,7 @@ class PseKNC():
                                    It means the user-defined physicochemical indices.
         """
         sequence_list, phyche_value = get_sequence_list_and_phyche_value_pseknc(input_data, extra_phyche_index)
-        from repDNA.psenacutil import make_old_pseknc_vector
+        from psenacutil import make_old_pseknc_vector
 
         return make_old_pseknc_vector(sequence_list, self.lamada, self.w, self.k, phyche_value, theta_type=1)
 
@@ -212,7 +212,7 @@ class PCPseDNC():
         # Make vector.
         sequence_list, phyche_value = get_sequence_list_and_phyche_value(input_data, self.k, phyche_index,
                                                                          extra_phyche_index, all_property)
-        from repDNA.psenacutil import make_pseknc_vector
+        from psenacutil import make_pseknc_vector
 
         vector = make_pseknc_vector(sequence_list, self.lamada, self.w, self.k, phyche_value, theta_type=1)
 
@@ -239,7 +239,7 @@ class PCPseTNC():
         sequence_list, phyche_value = get_sequence_list_and_phyche_value(input_data, self.k, phyche_index,
                                                                          extra_phyche_index, all_property)
         # Make vector.
-        from repDNA.psenacutil import make_pseknc_vector
+        from psenacutil import make_pseknc_vector
 
         vector = make_pseknc_vector(sequence_list, self.lamada, self.w, self.k, phyche_value, theta_type=1)
 
@@ -266,7 +266,7 @@ class SCPseDNC():
         sequence_list, phyche_value = get_sequence_list_and_phyche_value(input_data, self.k, phyche_index,
                                                                          extra_phyche_index, all_property)
         # Make vector.
-        from repDNA.psenacutil import make_pseknc_vector
+        from psenacutil import make_pseknc_vector
 
         vector = make_pseknc_vector(sequence_list, self.lamada, self.w, self.k, phyche_value, theta_type=2)
 
@@ -293,7 +293,7 @@ class SCPseTNC():
         sequence_list, phyche_value = get_sequence_list_and_phyche_value(input_data, self.k, phyche_index,
                                                                          extra_phyche_index, all_property)
         # Make vector.
-        from repDNA.psenacutil import make_pseknc_vector
+        from psenacutil import make_pseknc_vector
 
         vector = make_pseknc_vector(sequence_list, self.lamada, self.w, self.k, phyche_value, theta_type=2)
 
@@ -320,7 +320,7 @@ if __name__ == '__main__':
     # print(sc_psetnc.make_scpsetnc_vec(['ACCCCA'], phyche_index=["Dnase I", 'Nucleosome']))
 
     import time
-    from repDNA.util import normalize_index
+    from util import normalize_index
 
     start_time = time.time()
 
@@ -396,7 +396,7 @@ if __name__ == '__main__':
          4.214, 3.925, 3.353, 5.087, 2.842, 2.448, 4.678, 3.524, 3.581, 2.448, 3.868, 4.156, 3.467, 3.925, 3.239, 6.272,
          2.955, 3.467, 2.673, 1.613, 1.447, 3.581, 3.810, 3.410, 1.447, 2.842, 6.813, 3.810, 2.955, 4.214, 3.581, 7.176]
     ]
-    from repDNA.util import normalize_index
+    from util import normalize_index
 
     vec = pc_psetnc.make_pcpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome'],
                                       extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True))
@@ -417,7 +417,7 @@ if __name__ == '__main__':
 
     phyche_index = [[1.019, -0.918, 0.488, 0.567, 0.567, -0.070, -0.579, 0.488, -0.654, -2.455, -0.070, -0.918, 1.603,
                      -0.654, 0.567, 1.019]]
-    from repDNA.util import normalize_index
+    from util import normalize_index
 
     vec = sc_psednc.make_scpsednc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Twist', 'Tilt'],
                                       extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True))
@@ -442,7 +442,7 @@ if __name__ == '__main__':
          4.214, 3.925, 3.353, 5.087, 2.842, 2.448, 4.678, 3.524, 3.581, 2.448, 3.868, 4.156, 3.467, 3.925, 3.239, 6.272,
          2.955, 3.467, 2.673, 1.613, 1.447, 3.581, 3.810, 3.410, 1.447, 2.842, 6.813, 3.810, 2.955, 4.214, 3.581, 7.176]
     ]
-    from repDNA.util import normalize_index
+    from util import normalize_index
 
     vec = sc_psetnc.make_scpsetnc_vec(['GACTGAACTGCACTTTGGTTTCATATTATTTGCTC'], phyche_index=['Dnase I', 'Nucleosome'],
                                       extra_phyche_index=normalize_index(phyche_index, is_convert_dict=True))
