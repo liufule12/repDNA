@@ -6,16 +6,16 @@ with open('README.md') as f:
     LONG_DESCRIPTION = f.read()
 
 setup(name='repDNA',
-      version='1.1.3',
+      version='1.1.4',
       author='Bin Liu and Fule Liu',
       author_email='bliu@insun.hit.edu.cn and liufule12@gmail.com',
       maintainer='Fule Liu',
       maintainer_email='liufule12@gmail.com',
-      url='bioinformatics.hitsz.edu.cn/repDNA/',
+      url='http://bioinformatics.hitsz.edu.cn/repDNA/',
       description='a Python package to generate various modes of feature vectors for DNA sequences '
                   'by incorporating user-defined physicochemical properties and sequence-order effects',
       long_description=LONG_DESCRIPTION,
-      download_url='bioinformatics.hitsz.edu.cn/repDNA/download',
+      download_url='http://bioinformatics.hitsz.edu.cn/repDNA/download',
       platforms=['MS Windows', 'Mac X', 'Unix/Linux'],
       license='GPL',
       keywords=['repDNA', 'DNA'],

@@ -1,3 +1,7 @@
+# Version 1.1.4 (2015-4-10)
+
+- Because PyPI `Upload failed (400): This filename has previously been used, you should use a different version.`, so change the version to 1.1.4.
+
 # Version 1.1.3 (2015-4-9)
 
 - Optimize `make_kmer_list` by `itertools.product`.
