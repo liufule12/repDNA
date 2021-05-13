@@ -23,6 +23,8 @@ Python Requirements
 
 The repDNA was tested to work under Python 2.7, 3.3 and 3.4 on Windows, Mac and Linux.
 
+Update: Tested with 3.9.2 on Windows, seems to work. (13.05.2021)
+
 
 Installation
 ============
@@ -38,3 +40,5 @@ Otherwise, download and unzip the repDNA package, go to the directory, and type:
 or
 
 `sudo python setup.py install`
+
+Note: If you use windows, you might need to elevate your CMD. 

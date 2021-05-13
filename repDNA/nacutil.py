@@ -6,7 +6,7 @@ import sys
 import math
 import itertools
 
-from util import frequency
+from .util import frequency
 
 
 def make_kmer_list(k, alphabet):
