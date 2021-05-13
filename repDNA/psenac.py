@@ -1,7 +1,7 @@
 __author__ = 'Fule Liu'
 
-from util import get_data
-from psenacutil import extend_phyche_index
+from .util import get_data
+from .psenacutil import extend_phyche_index
 
 
 def check_psenac(lamada, w, k):

@@ -1,6 +1,6 @@
 __author__ = 'Fule Liu'
 
-from util import get_data, generate_phyche_value
+from .util import get_data, generate_phyche_value
 from functools import reduce
 
 

@@ -1,8 +1,8 @@
 __author__ = 'Fule Liu'
 
 
-from nacutil import make_upto_kmer_list, make_revcomp_kmer_list, make_kmer_vector
-from util import get_data
+from .nacutil import make_upto_kmer_list, make_revcomp_kmer_list, make_kmer_vector
+from .util import get_data
 
 
 def check_nac_para(k, normalize=False, upto=False, alphabet='ACGT'):
